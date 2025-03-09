@@ -1,23 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 export default function HomePage() {
-  useEffect(() => {
-    // Esconder o loader após o carregamento da página
-    window.addEventListener("load", () => {
-      document.querySelector(".page-loader")?.classList.add("hidden");
-    });
-  }, []);
-
   return (
     <>
-      {/* Loader de Página */}
-      <div className="page-loader">
-        <div className="loader-spinner"></div>
-      </div>
-
       {/* Cabeçalho */}
       <header className="header fade-in">
         <div className="header-container">
