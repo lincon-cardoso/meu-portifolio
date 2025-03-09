@@ -46,7 +46,7 @@ export default function HomePage() {
       <main>
         <section className="MeuPortifolio fade-in">
           <h1 className="MeuPortifolio-title">
-            Desenvolvedor Web <span className="text-gradient">Fullsta</span>
+            Desenvolvedor Web <span className="text-gradient">Fullstack</span>
           </h1>
           <p className="MeuPortifolio-description">
             Criando experiências digitais atraentes e funcionais com as
