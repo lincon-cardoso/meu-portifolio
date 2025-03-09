@@ -1,0 +1,14 @@
+@use './utilities/loader-de-pagina.scss';
+@use './utilities/utility-fade-in-animation.scss';
+@use './base/variaveis-globais.scss';
+@use './base/reset-e-estilos-globais.scss';
+@use './components/cabecalho-e-navegacao.scss';
+@use './sections/secao-do-portifolio.scss';
+@use './components/botoes.scss';
+@use './sections/secao-dos-projetos-cards.scss';
+@use './components/menu-horizontal-filtro-de-projetos.scss';
+@use './sections/sobre-mim.scss';
+@use './sections/contato.scss';
+@use './components/rodape.scss';
+@use './utilities/classes-utilitarias-e-extas.scss';
+@use './utilities/midia-queries-para-responsividade.scss';

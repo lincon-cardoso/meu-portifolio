@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Metadados da página -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Portfólio Pessoal</title>
+  <!-- Link para o arquivo de estilos CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Link para o arquivo de scripts JavaScript -->
+  <script src="scripts.js" defer></script>
+  <!-- Link para a fonte Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Loader de Página -->
+  <div class="page-loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Cabeçalho da página -->
+  <header class="header fade-in">
+    <div class="header-container">
+      <!-- Perfil no cabeçalho -->
+      <div class="header-profile">
+        <div class="profile-photo"></div>
+        <a href="index.html" class="profile-name">Meu Portfólio Pessoal</a>
+      </div>
+      <!-- Navegação no cabeçalho -->
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="meuProjetos.html" class="nav-link">Meus Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a href="sobre.html" class="nav-link">Sobre Mim</a>
+          </li>
+          <li class="nav-item">
+            <a href="contato.html" class="nav-link">Contato</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal da página -->
+  <main>
+    <!-- Seção do Portfólio (Hero) -->
+    <section class="MeuPortifolio fade-in">
+      <h1 class="MeuPortifolio-title">
+        Desenvolvedor Web <span class="text-gradient">Fullstack</span>
+      </h1>
+      <p class="MeuPortifolio-description">
+        Criando experiências digitais atraentes e funcionais com as tecnologias mais modernas do mercado.
+      </p>
+      <a href="contato.html" class="hire-me-button">Contrate-me</a>
+    </section>
+
+    <!-- Seção dos Projetos em Destaque -->
+    <section class="cards-de-projetos fade-in">
+      <h2 class="projetos-title">Projetos em Destaque</h2>
+      <div class="cards-container">
+        <!-- Card do Projeto 1 -->
+        <div class="card" data-category="frontend">
+          <div class="card-image"></div>
+          <h3 class="card-title">E-commerce Responsivo</h3>
+          <p class="card-description">
+            Site de vendas com design adaptável desenvolvido com React e Node.js
+          </p>
+        </div>
+
+        <!-- Card do Projeto 2 -->
+        <div class="card" data-category="backend">
+          <div class="card-image"></div>
+          <h3 class="card-title">API de Gestão</h3>
+          <p class="card-description">
+            Sistema backend para gerenciamento de recursos empresariais
+          </p>
+        </div>
+
+        <!-- Card do Projeto 3 -->
+        <div class="card" data-category="mobile">
+          <div class="card-image"></div>
+          <h3 class="card-title">App de Finanças</h3>
+          <p class="card-description">
+            Aplicativo móvel para controle financeiro pessoal
+          </p>
+        </div>
+
+        <!-- Card extra (exemplo duplicado) -->
+        <div class="card" data-category="mobile">
+          <div class="card-image"></div>
+          <h3 class="card-title">App de Finanças</h3>
+          <p class="card-description">
+            Aplicativo móvel para controle financeiro pessoal
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: 4rem">
+        <a href="meuProjetos.html" class="btn btn-primary">Ver todos os projetos</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé da página -->
+  <footer class="fade-in">
+    <div class="footer-container">
+      <p class="footer-text">
+        &copy; 2025 Lincon Cardoso. Todos os direitos reservados.
+      </p>
+      <p class="redes-Sociais">Siga-me nas redes sociais</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter">
+          <i class="fab fa-twitter"></i> Twitter
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="#" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i> LinkedIn
+        </a>
+        <a href="#" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para esconder o loader após o carregamento -->
+  <script>
+    window.addEventListener('load', function () {
+      document.querySelector('.page-loader').classList.add('hidden');
+    });
+  </script>
+</body>
+
+</html>

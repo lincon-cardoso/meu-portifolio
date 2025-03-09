@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Metadados da página -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meus Projetos - Portfólio</title>
+  <!-- Link para o arquivo de estilos CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Link para o arquivo de scripts JavaScript -->
+  <script src="scripts.js" defer></script>
+  <!-- Link para a fonte Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Loader de Página -->
+  <div class="page-loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Cabeçalho da página -->
+  <header class="header fade-in">
+    <div class="header-container">
+      <!-- Perfil no cabeçalho -->
+      <div class="header-profile">
+        <div class="profile-photo"></div>
+        <a href="index.html" class="profile-name">Meu Portfólio Pessoal</a>
+      </div>
+      <!-- Navegação no cabeçalho -->
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="meuProjetos.html" class="nav-link active">Meus Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a href="sobre.html" class="nav-link">Sobre Mim</a>
+          </li>
+          <li class="nav-item">
+            <a href="contato.html" class="nav-link">Contato</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal da página -->
+  <main class="fade-in">
+    <!-- Seção dos projetos -->
+    <section class="cards-de-projetos">
+      <h2 class="projetos-title" id="projetos">Meus Projetos</h2>
+      <div class="menu-horizontal">
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a href="#" data-category="todos" class="active">Todos</a>
+          </li>
+          <li class="menu-item">
+            <a href="#" data-category="frontend">Frontend</a>
+          </li>
+          <li class="menu-item">
+            <a href="#" data-category="backend">Backend</a>
+          </li>
+          <li class="menu-item">
+            <a href="#" data-category="mobile">Mobile</a>
+          </li>
+          <li class="menu-item">
+            <a href="#" data-category="ui">UI/UX</a>
+          </li>
+        </ul>
+      </div>
+      <div class="cards-container">
+        <!-- Card do Projeto 1 -->
+        <div class="card" data-category="frontend">
+          <div class="card-image"></div>
+          <h3 class="card-title">E-commerce Responsivo</h3>
+          <p class="card-description">01/2023</p>
+        </div>
+        <!-- Card do Projeto 2 -->
+        <div class="card" data-category="backend">
+          <div class="card-image"></div>
+          <h3 class="card-title">API de Gestão</h3>
+          <p class="card-description">03/2023</p>
+        </div>
+        <!-- Card do Projeto 3 -->
+        <div class="card" data-category="mobile">
+          <div class="card-image"></div>
+          <h3 class="card-title">App de Finanças</h3>
+          <p class="card-description">05/2023</p>
+        </div>
+        <!-- Card do Projeto 4 -->
+        <div class="card" data-category="ui">
+          <div class="card-image"></div>
+          <h3 class="card-title">Design System</h3>
+          <p class="card-description">07/2023</p>
+        </div>
+        <!-- Card do Projeto 5 -->
+        <div class="card" data-category="frontend">
+          <div class="card-image"></div>
+          <h3 class="card-title">Landing Page</h3>
+          <p class="card-description">09/2023</p>
+        </div>
+        <!-- Card do Projeto 6 -->
+        <div class="card" data-category="backend">
+          <div class="card-image"></div>
+          <h3 class="card-title">Sistema de Autenticação</h3>
+          <p class="card-description">10/2023</p>
+        </div>
+        <!-- Card do Projeto 7 -->
+        <div class="card" data-category="mobile">
+          <div class="card-image"></div>
+          <h3 class="card-title">App de Delivery</h3>
+          <p class="card-description">11/2023</p>
+        </div>
+        <!-- Card do Projeto 8 -->
+        <div class="card" data-category="ui">
+          <div class="card-image"></div>
+          <h3 class="card-title">Redesign de Interface</h3>
+          <p class="card-description">12/2023</p>
+        </div>
+        <!-- Card do Projeto 9 -->
+        <div class="card" data-category="frontend">
+          <div class="card-image"></div>
+          <h3 class="card-title">Blog Pessoal</h3>
+          <p class="card-description">01/2024</p>
+        </div>
+        <!-- Card do Projeto 10 -->
+        <div class="card" data-category="backend">
+          <div class="card-image"></div>
+          <h3 class="card-title">API RESTful</h3>
+          <p class="card-description">02/2024</p>
+        </div>
+        <!-- Card do Projeto 11 -->
+        <div class="card" data-category="mobile">
+          <div class="card-image"></div>
+          <h3 class="card-title">App de Notas</h3>
+          <p class="card-description">03/2024</p>
+        </div>
+        <!-- Card do Projeto 12 -->
+        <div class="card" data-category="ui">
+          <div class="card-image"></div>
+          <h3 class="card-title">Dashboard de Analytics</h3>
+          <p class="card-description">04/2024</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé da página -->
+  <footer class="fade-in">
+    <div class="footer-container">
+      <p class="footer-text">
+        &copy; 2025 Lincon Cardoso. Todos os direitos reservados.
+      </p>
+      <p class="redes-Sociais">Siga-me nas redes sociais</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+          <span class="sr-only">Facebook</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+          <span class="sr-only">Twitter</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+          <span class="sr-only">Instagram</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+          <span class="sr-only">LinkedIn</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+          <span class="sr-only">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para esconder o loader após o carregamento -->
+  <script>
+    window.addEventListener('load', function () {
+      document.querySelector('.page-loader').classList.add('hidden');
+    });
+  </script>
+</body>
+
+</html>

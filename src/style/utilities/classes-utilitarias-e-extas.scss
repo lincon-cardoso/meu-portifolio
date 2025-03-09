@@ -1,0 +1,52 @@
+/* =======================================================================
+   11. Classes Utilitárias & Extras
+======================================================================== */
+.text-center {
+  padding: 20px;
+  text-align: center;
+}
+
+.cta-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  justify-content: center;
+  margin-top: var(--spacing-10);
+  margin-bottom: var(--spacing-10);
+}
+
+.skills-container h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-4);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  color: var(--color-dark);
+}
+
+.skill-item {
+  background-color: var(--color-accent);
+  color: white;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition-default);
+  box-shadow: var(--box-shadow-soft);
+}
+
+.skill-item:hover,
+.skill-item:focus {
+  background-color: var(--color-secondary);
+  transform: translateY(-3px);
+}
+
+.skill-item a {
+  color: white;
+}

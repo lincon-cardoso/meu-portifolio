@@ -1,0 +1,116 @@
+/* =======================================================================
+   12. Media Queries para Responsividade
+======================================================================== */
+@media (max-width: 1024px) {
+  :root {
+    --font-size-4xl: 2rem;
+    --font-size-3xl: 1.75rem;
+    --font-size-2xl: 1.375rem;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+  }
+
+  .header-profile {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .profile-name {
+    font-size: var(--font-size-xl);
+  }
+
+  .nav-list {
+    gap: var(--spacing-4);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --content-padding-x: var(--spacing-4);
+  }
+
+  section {
+    padding: var(--spacing-10) 0;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .header-nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: var(--spacing-2);
+    align-items: center;
+    width: 100%;
+    padding: var(--spacing-4) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: var(--spacing-4);
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  .menu-horizontal .menu-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-2);
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .contato-form {
+    padding: var(--spacing-4);
+  }
+
+  .MeuPortifolio {
+    padding: var(--spacing-10) var(--spacing-4);
+  }
+
+  .MeuPortifolio-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .MeuPortifolio-description {
+    font-size: var(--font-size-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.25rem;
+    --font-size-xl: 1.125rem;
+  }
+
+  .header {
+    padding: var(--spacing-2) 0;
+  }
+
+  .profile-photo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hire-me-button,
+  .ver-mais-button {
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .social-icons {
+    gap: var(--spacing-2);
+  }
+
+  .social-icon {
+    width: 32px;
+    height: 32px;
+  }
+}

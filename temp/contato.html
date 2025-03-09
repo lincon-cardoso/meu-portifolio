@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Metadados da página -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato - Portfólio</title>
+  <!-- Link para o arquivo de estilos CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Link para o arquivo de scripts JavaScript -->
+  <script src="scripts.js" defer></script>
+  <!-- Link para a fonte Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Loader de Página -->
+  <div class="page-loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Cabeçalho da página -->
+  <header class="header fade-in">
+    <div class="header-container">
+      <!-- Perfil no cabeçalho -->
+      <div class="header-profile">
+        <div class="profile-photo"></div>
+        <a href="index.html" class="profile-name">Meu Portfólio Pessoal</a>
+      </div>
+      <!-- Navegação no cabeçalho -->
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="meuProjetos.html" class="nav-link">Meus Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a href="sobre.html" class="nav-link">Sobre Mim</a>
+          </li>
+          <li class="nav-item">
+            <a href="contato.html" class="nav-link active">Contato</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal da página -->
+  <main class="fade-in">
+    <!-- Seção de Contato -->
+    <section class="contato">
+      <div class="container">
+        <h2 class="contato-title">Entre em Contato</h2>
+        <p class="contato-description">
+          Tem interesse nos meus serviços ou quer discutir um projeto? Preencha o formulário abaixo e entrarei em
+          contato o mais breve possível.
+        </p>
+
+        <div class="contato-grid">
+          <!-- Informações de Contato -->
+          <div class="contato-info">
+            <div class="contato-item">
+              <i class="fas fa-envelope"></i>
+              <h3>E-mail</h3>
+              <p>exemplo@email.com</p>
+            </div>
+            <div class="contato-item">
+              <i class="fas fa-phone"></i>
+              <h3>Telefone</h3>
+              <p>(00) 12345-6789</p>
+            </div>
+            <div class="contato-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>Localização</h3>
+              <p>São Paulo, SP - Brasil</p>
+            </div>
+          </div>
+          <!-- Formulário de Contato -->
+          <form class="contato-form">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="assunto">Assunto</label>
+              <input type="text" id="assunto" name="assunto" placeholder="Do que se trata?" required />
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..."
+                required></textarea>
+            </div>
+            <button type="submit" class="contato-button">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé da página -->
+  <footer class="fade-in">
+    <div class="footer-container">
+      <p class="footer-text">
+        &copy; 2025 Lincon Cardoso. Todos os direitos reservados.
+      </p>
+      <p class="redes-Sociais">Siga-me nas redes sociais</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+          <span class="sr-only">Facebook</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+          <span class="sr-only">Twitter</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+          <span class="sr-only">Instagram</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+          <span class="sr-only">LinkedIn</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+          <span class="sr-only">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para esconder o loader após o carregamento -->
+  <script>
+    window.addEventListener('load', function () {
+      document.querySelector('.page-loader').classList.add('hidden');
+    });
+  </script>
+</body>
+
+</html>
