@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import useProjectFilter from "@/hooks/useProjectFilter";
+import Cabecalho from "../../components/layout/Cabecalho";
+import Rodape from "../../components/layout/Rodape";
 
 export default function MeuProjetosPage() {
   useProjectFilter();
@@ -10,41 +11,7 @@ export default function MeuProjetosPage() {
   return (
     <>
       {/* Cabeçalho */}
-      <header className="header fade-in">
-        <div className="header-container">
-          <div className="header-profile">
-            <div className="profile-photo"></div>
-            <Link href="/" className="profile-name">
-              Meu Portfólio Pessoal
-            </Link>
-          </div>
-          <nav className="header-nav">
-            <ul className="nav-list">
-              <li className="nav-item">
-                <Link href="/" className="nav-link">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/meuProjetos" className="nav-link active">
-                  Meus Projetos
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/sobre" className="nav-link">
-                  Sobre Mim
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/contato" className="nav-link">
-                  Contato
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
+      <Cabecalho />
       {/* Conteúdo Principal */}
       <main className="fade-in">
         <section className="cards-de-projetos">
@@ -156,38 +123,8 @@ export default function MeuProjetosPage() {
           </div>
         </section>
       </main>
-
+      <Rodape />
       {/* Rodapé */}
-      <footer className="fade-in">
-        <div className="footer-container">
-          <p className="footer-text">
-            &copy; 2025 Lincon Cardoso. Todos os direitos reservados.
-          </p>
-          <p className="redes-Sociais">Siga-me nas redes sociais</p>
-          <div className="social-icons">
-            <Link href="#" className="social-icon" aria-label="Facebook">
-              <i className="fab fa-facebook-f"></i>
-              <span className="sr-only">Facebook</span>
-            </Link>
-            <Link href="#" className="social-icon" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
-              <span className="sr-only">Twitter</span>
-            </Link>
-            <Link href="#" className="social-icon" aria-label="Instagram">
-              <i className="fab fa-instagram"></i>
-              <span className="sr-only">Instagram</span>
-            </Link>
-            <Link href="#" className="social-icon" aria-label="LinkedIn">
-              <i className="fab fa-linkedin-in"></i>
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-            <Link href="#" className="social-icon" aria-label="GitHub">
-              <i className="fab fa-github"></i>
-              <span className="sr-only">GitHub</span>
-            </Link>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }
