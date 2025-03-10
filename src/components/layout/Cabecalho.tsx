@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Cabecalho = () => {
+export default function Cabecalho() {
   const pathname = usePathname();
 
   return (
@@ -58,6 +58,4 @@ const Cabecalho = () => {
       </div>
     </header>
   );
-};
-
-export default Cabecalho;
+}
