@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^15.2.1",
     "crypto": "^1.0.1",
     "next": "15.2.1",
     "react": "^19.0.0",
