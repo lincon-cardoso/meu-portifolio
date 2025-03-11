@@ -15,6 +15,7 @@ O projeto é composto pelos seguintes arquivos e diretórios:
     - `contato/page.tsx`: Página de contato.
   - `components/`: Componentes reutilizáveis.
     - `HomePage.tsx`: Componente da página inicial.
+    - `Rodape.tsx`: Componente do rodapé.
   - `style/`: Arquivos de estilo.
     - `style.scss`: Arquivo principal de estilos.
     - `base/`: Estilos base e reset.
@@ -40,39 +41,3 @@ O projeto é composto pelos seguintes arquivos e diretórios:
 
    ```sh
    git clone https://github.com/seu-usuario/meu-portifolio.git
-   ```
-
-2. Navegue até o diretório do projeto:
-
-   ```sh
-   cd meu-portifolio-next
-   ```
-
-3. Instale as dependências:
-
-   ```sh
-   npm install
-   ```
-
-4. Execute o servidor de desenvolvimento:
-
-   ```sh
-   npm run dev
-   ```
-
-5. Abra o navegador e acesse `http://localhost:3000` para ver o portfólio em execução.
-
-## Estrutura de Páginas
-
-- **Home**: Página inicial com uma introdução e projetos em destaque.
-- **Meus Projetos**: Página que lista todos os projetos com filtros por categoria.
-- **Sobre Mim**: Página com informações sobre a experiência e habilidades.
-- **Contato**: Página com um formulário para entrar em contato.
-
-## Contribuição
-
-Se você quiser contribuir para este projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
