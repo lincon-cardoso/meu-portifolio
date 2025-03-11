@@ -1,116 +1,284 @@
 /* =======================================================================
-   12. Media Queries para Responsividade
+  12. Media Queries para Responsividade
 ======================================================================== */
+
+/* Por padrão, o botão fica oculto */
+.mobile-menu-toggle {
+  display: none; // O botão de alternância do menu é oculto por padrão
+}
+
+/* Media Query para telas com largura máxima de 1024px */
 @media (max-width: 1024px) {
   :root {
-    --font-size-4xl: 2rem;
-    --font-size-3xl: 1.75rem;
-    --font-size-2xl: 1.375rem;
+    --font-size-4xl: 2rem; // Ajusta o tamanho da fonte para 4xl
+    --font-size-3xl: 1.75rem; // Ajusta o tamanho da fonte para 3xl
+    --font-size-2xl: 1.375rem; // Ajusta o tamanho da fonte para 2xl
   }
 
   .header-container {
-    flex-direction: column;
-    gap: var(--spacing-4);
-    padding: var(--spacing-4);
+    flex-direction: column; // Altera a direção do flex para coluna
+    gap: var(--spacing-4); // Adiciona espaçamento entre os itens
+    padding: var(--spacing-4); // Adiciona padding ao container do cabeçalho
   }
 
   .header-profile {
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(
+      --spacing-2
+    ); // Adiciona margem inferior ao perfil do cabeçalho
   }
 
   .profile-name {
-    font-size: var(--font-size-xl);
+    font-size: var(
+      --font-size-xl
+    ); // Ajusta o tamanho da fonte do nome do perfil
   }
 
   .nav-list {
-    gap: var(--spacing-4);
+    gap: var(
+      --spacing-4
+    ); // Adiciona espaçamento entre os itens da lista de navegação
   }
 }
 
+/* Media Query para telas com largura máxima de 768px */
 @media (max-width: 768px) {
   :root {
-    --content-padding-x: var(--spacing-4);
+    --content-padding-x: var(
+      --spacing-4
+    ); // Ajusta o padding horizontal do conteúdo
   }
 
   section {
-    padding: var(--spacing-10) 0;
+    padding: var(--spacing-10) 0; // Adiciona padding vertical às seções
+  }
+
+  .header-container {
+    display: flex; // Define o display como flex
+    justify-content: space-between; // Espaça os itens igualmente
+    align-items: center; // Alinha os itens ao centro
+  }
+
+  .header-profile {
+    display: flex; // Define o display como flex
+    align-items: center; // Alinha os itens ao centro
+    gap: var(--spacing-2); // Adiciona espaçamento entre os itens
   }
 
   .mobile-menu-toggle {
-    display: flex;
+    display: flex; // Define o display como flex
+    flex-direction: column; // Altera a direção do flex para coluna
+    gap: 4px; // Adiciona espaçamento entre as linhas do botão
+    background: none; // Remove o background
+    border: none; // Remove a borda
+    cursor: pointer; // Define o cursor como pointer
+  }
+
+  .mobile-menu-toggle span {
+    display: block; // Define o display como block
+    width: 25px; // Define a largura das linhas do botão
+    height: 3px; // Define a altura das linhas do botão
+    background-color: var(
+      --color-text
+    ); // Define a cor de fundo das linhas do botão
   }
 
   .header-nav {
-    width: 100%;
+    display: none; // Oculta o menu de navegação por padrão
+    flex-direction: column; // Altera a direção do flex para coluna
+    gap: var(--spacing-4); // Adiciona espaçamento entre os itens do menu
+    background-color: var(--color-bg); // Define a cor de fundo do menu
+    position: absolute; // Define a posição como absoluta
+    top: 100%; // Posiciona o menu abaixo do cabeçalho
+    left: 0; // Alinha o menu à esquerda
+    width: 100%; // Define a largura do menu como 100%
+    padding: var(--spacing-4); // Adiciona padding ao menu
+    box-shadow: var(--box-shadow-soft); // Adiciona sombra ao menu
+    opacity: 0; // Define a opacidade como 0 (invisível)
+    transform: translateY(-10px); // Move o menu 10px para cima
+    transition: opacity 0.3s ease, transform 0.3s ease; // Adiciona transição suave para opacidade e transformação
+  }
+
+  .header-nav.active {
+    display: flex; // Exibe o menu de navegação quando ativo
+    opacity: 1; // Define a opacidade como 1 (visível)
+    transform: translateY(0); // Move o menu para a posição original
   }
 
   .nav-list {
-    flex-direction: column;
-    gap: var(--spacing-2);
-    align-items: center;
-    width: 100%;
-    padding: var(--spacing-4) 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: var(--spacing-4);
+    flex-direction: column; // Altera a direção do flex para coluna
+    gap: var(--spacing-2); // Adiciona espaçamento entre os itens da lista
+    align-items: center; // Alinha os itens ao centro
+    width: 100%; // Define a largura da lista como 100%
+    padding: var(--spacing-4) 0; // Adiciona padding vertical à lista
+    border-top: 1px solid rgba(0, 0, 0, 0.1); // Adiciona uma borda superior à lista
+    margin-top: var(--spacing-4); // Adiciona margem superior à lista
   }
 
   .cards-container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-4);
+    grid-template-columns: 1fr; // Define a grade com uma coluna
+    gap: var(--spacing-4); // Adiciona espaçamento entre os itens da grade
   }
 
   .menu-horizontal .menu-list {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: var(--spacing-2);
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: row; // Altera a direção do flex para linha
+    overflow-x: auto; // Adiciona rolagem horizontal
+    padding-bottom: var(--spacing-2); // Adiciona padding inferior
+    justify-content: flex-start; // Alinha os itens ao início
+    -webkit-overflow-scrolling: touch; // Adiciona rolagem suave no iOS
   }
 
   .contato-form {
-    padding: var(--spacing-4);
+    padding: var(--spacing-4); // Adiciona padding ao formulário de contato
   }
 
   .MeuPortifolio {
-    padding: var(--spacing-10) var(--spacing-4);
+    padding: var(--spacing-10) var(--spacing-4); // Adiciona padding ao portfólio
   }
 
   .MeuPortifolio-title {
-    font-size: var(--font-size-3xl);
+    font-size: var(
+      --font-size-3xl
+    ); // Ajusta o tamanho da fonte do título do portfólio
   }
 
   .MeuPortifolio-description {
-    font-size: var(--font-size-lg);
+    font-size: var(
+      --font-size-lg
+    ); // Ajusta o tamanho da fonte da descrição do portfólio
   }
 }
 
+/* Media Query para telas com largura máxima de 480px */
 @media (max-width: 480px) {
   :root {
-    --font-size-3xl: 1.5rem;
-    --font-size-2xl: 1.25rem;
-    --font-size-xl: 1.125rem;
+    --font-size-3xl: 1.5rem; // Ajusta o tamanho da fonte para 3xl
+    --font-size-2xl: 1.25rem; // Ajusta o tamanho da fonte para 2xl
+    --font-size-xl: 1.125rem; // Ajusta o tamanho da fonte para xl
   }
 
+  .header-profile{
+    display: flex;   
+    width: 100%;
+    height: auto;
+    padding: var(--spacing-4); // Adiciona padding ao perfil do cabeçalho
+    background-color: var(--color-bg); // Define a cor de fundo do perfil
+    justify-content: center; // Alinha os itens ao centro
+    align-items: center; // Alinha os itens ao centro
+    gap: var(--spacing-5); // Adiciona espaçamento entre os itens
+  }
+  
+
   .header {
-    padding: var(--spacing-2) 0;
+    padding: var(--spacing-2) 0; // Adiciona padding ao cabeçalho
   }
 
   .profile-photo {
-    width: 32px;
-    height: 32px;
+    width: 32px; // Define a largura da foto do perfil
+    height: 32px; // Define a altura da foto do perfil
   }
 
   .hire-me-button,
   .ver-mais-button {
-    padding: var(--spacing-2) var(--spacing-4);
+    padding: var(--spacing-2) var(--spacing-4); // Adiciona padding aos botões
   }
 
   .social-icons {
-    gap: var(--spacing-2);
+    gap: var(--spacing-2); // Adiciona espaçamento entre os ícones sociais
   }
 
   .social-icon {
-    width: 32px;
-    height: 32px;
+    width: 32px; // Define a largura dos ícones sociais
+    height: 32px; // Define a altura dos ícones sociais
+  }
+}
+
+/* =======================================================================
+   Media Queries para Responsividade do Rodapé
+======================================================================== */
+
+/* Media Query para telas com largura máxima de 1024px */
+@media (max-width: 1024px) {
+  .footer-container {
+    gap: var(--spacing-3); // Reduz o espaçamento entre os itens
+    padding: 0 var(--spacing-6); // Ajusta o padding horizontal
+  }
+
+  .social-icons {
+    gap: var(--spacing-6); // Reduz o espaçamento entre os ícones sociais
+  }
+
+  .social-icon {
+    width: 100px; // Ajusta a largura dos ícones sociais
+    height: 40px; // Ajusta a altura dos ícones sociais
+    font-size: var(
+      --font-size-md
+    ); // Ajusta o tamanho da fonte dos ícones sociais
+    padding: 8px; // Ajusta o padding para englobar o texto
+  }
+
+  .social-icon i {
+    margin-right: 6px; // Ajusta o espaçamento entre o ícone e o texto
+  }
+}
+
+/* Media Query para telas com largura máxima de 768px */
+@media (max-width: 768px) {
+  .footer-container {
+    gap: var(--spacing-2); // Reduz ainda mais o espaçamento entre os itens
+    padding: 0 var(--spacing-4); // Ajusta o padding horizontal
+  }
+
+  .social-icons {
+    gap: var(
+      --spacing-5
+    ); // Reduz ainda mais o espaçamento entre os ícones sociais
+  }
+
+  .social-icon {
+    width: 80px; // Ajusta a largura dos ícones sociais
+    height: 35px; // Ajusta a altura dos ícones sociais
+    font-size: var(
+      --font-size-sm
+    ); // Ajusta o tamanho da fonte dos ícones sociais
+    padding: 6px; // Ajusta o padding para englobar o texto
+  }
+
+  .social-icon i {
+    margin-right: 4px; // Ajusta o espaçamento entre o ícone e o texto
+  }
+}
+
+/* Media Query para telas com largura máxima de 480px */
+@media (max-width: 480px) {
+  .footer-container {
+    gap: var(--spacing-1); // Reduz ao mínimo o espaçamento entre os itens
+    padding: 0 var(--spacing-2); // Ajusta o padding horizontal
+  }
+
+  .social-icons {
+    gap: var(
+      --spacing-2
+    ); // Reduz ao mínimo o espaçamento entre os ícones sociais
+    width: 100%;
+    padding: 20px; // Adiciona padding ao redor dos ícones sociais
+    display: flex;
+    justify-content: space-between; // Adiciona espaçamento entre os itens
+    align-items: center; // Alinha os itens ao centro
+    margin: 0 auto; // Centraliza os ícones sociais
+  }
+
+  .social-icon {
+    width: 80px; // Ajusta a largura dos ícones sociais
+    height: 60px; // Ajusta a altura dos ícones sociais
+    font-size: var(
+      --font-size-sm
+    ); // Ajusta o tamanho da fonte dos ícones sociais
+    padding: 10px; // Ajusta o padding para englobar o texto
+
+    text-align: center; // Centraliza o texto dentro do ícone
+  }
+
+  .social-icon i {
+    margin-right: 4px; // Ajusta o espaçamento entre o ícone e o texto
   }
 }

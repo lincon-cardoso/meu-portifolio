@@ -1,6 +1,6 @@
 "use client";
 
-const Rodape: React.FC = () => {
+export default function Rodape() {
   return (
     <footer className="fade-in">
       <div className="footer-container">
@@ -22,6 +22,4 @@ const Rodape: React.FC = () => {
       </div>
     </footer>
   );
-};
-
-export default Rodape;
+}

@@ -2,9 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Cabecalho() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <header className="header fade-in">
@@ -14,8 +20,13 @@ export default function Cabecalho() {
           <Link href="/" className="profile-name">
             Meu Portfólio Pessoal
           </Link>
+          <button className="mobile-menu-toggle" onClick={toggleMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <nav className="header-nav">
+        <nav className={`header-nav ${menuOpen ? "active" : ""}`}>
           <ul className="nav-list">
             <li className="nav-item">
               <Link

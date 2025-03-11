@@ -20,7 +20,7 @@ footer {
 }
 
 .footer-text,
-.redes-Sociais {
+.redes-sociais {
   margin: 0;
   opacity: 0.8;
   font-size: var(--font-size-sm);
@@ -46,7 +46,9 @@ footer {
   transition: var(--transition-default);
   font-size: var(--font-size-lg);
   margin: 5px;
+  text-align: center; 
 }
+
 
 .social-icon:hover,
 .social-icon:focus {
