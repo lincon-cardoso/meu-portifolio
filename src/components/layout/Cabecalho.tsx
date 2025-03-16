@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+// import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -16,7 +17,6 @@ export default function Cabecalho() {
     <header className="header fade-in">
       <div className="header-container">
         <div className="header-profile">
-          <div className="profile-photo"></div>
           <Link href="/" className="profile-name">
             Meu Portfólio Pessoal
           </Link>
