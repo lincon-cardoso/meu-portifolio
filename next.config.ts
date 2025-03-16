@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value:
               "default-src 'self'; " +
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+              "script-src 'self'; " +
               "style-src 'self' 'unsafe-inline'; " +
               "img-src 'self' data:; " +
               "connect-src 'self'; " +
@@ -28,7 +28,8 @@ const nextConfig: NextConfig = {
               "object-src 'none'; " +
               "frame-ancestors 'none'; " +
               "base-uri 'self'; " +
-              "form-action 'self';",
+              "form-action 'self'; " +
+              "report-uri /csp-violation-report-endpoint;",
           },
           {
             key: "X-Content-Type-Options",
@@ -65,6 +66,10 @@ const nextConfig: NextConfig = {
           {
             key: "Cross-Origin-Resource-Policy",
             value: "same-origin",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
