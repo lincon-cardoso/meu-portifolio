@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-// import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -20,7 +19,10 @@ export default function Cabecalho() {
           <Link href="/" className="profile-name">
             Meu Portfólio Pessoal
           </Link>
-          <button className="mobile-menu-toggle" onClick={toggleMenu}>
+          <button
+            className={`mobile-menu-toggle ${menuOpen ? "open" : ""}`}
+            onClick={toggleMenu}
+          >
             <span></span>
             <span></span>
             <span></span>
