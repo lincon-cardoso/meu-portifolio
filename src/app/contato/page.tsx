@@ -28,17 +28,17 @@ export default function ContatoPage() {
                 <div className="contato-item">
                   <i className="fas fa-envelope"></i>
                   <h3>E-mail</h3>
-                  <p>exemplo@email.com</p>
+                  <p>linkon789@gmail.com</p>
                 </div>
                 <div className="contato-item">
                   <i className="fas fa-phone"></i>
                   <h3>Telefone</h3>
-                  <p>(00) 12345-6789</p>
+                  <p>(47) 9 9936-7604</p>
                 </div>
                 <div className="contato-item">
                   <i className="fas fa-map-marker-alt"></i>
                   <h3>Localização</h3>
-                  <p>São Paulo, SP - Brasil</p>
+                  <p>Joinville, SC - Brasil</p>
                 </div>
               </div>
               {/* Formulário de Contato */}
