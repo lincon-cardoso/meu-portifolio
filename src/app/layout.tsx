@@ -20,6 +20,7 @@ export default function RootLayout({
         />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        {/* Adicionar Favicon */}
         <link rel="icon" href="/icons/favicon.ico" />
       </head>
       <body>{children}</body>
