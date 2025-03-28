@@ -1,4 +1,3 @@
-// Exemplo com fetch em um componente React (Client Component)
 
 "use client";
 
