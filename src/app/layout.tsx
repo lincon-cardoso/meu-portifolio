@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "@/style/style.scss";
 
 export const metadata = {
@@ -10,6 +11,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Chamada de teste ao back-end
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/teste`)
+      .then((res) => res.json())
+      .then((data) => console.log("Resposta do back-end:", data))
+      .catch((err) => console.error("Erro de conexão com o back-end:", err));
+  }, []);
+
   return (
     <html lang="pt-br">
       <head>
