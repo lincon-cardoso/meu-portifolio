@@ -20,10 +20,10 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value:
               "default-src 'self'; " +
-              "script-src 'self'; " +
-              "style-src 'self' 'unsafe-inline'; " +
+              "script-src 'self' 'unsafe-inline'; " + // Permite scripts inline
+              "style-src 'self' 'unsafe-inline'; " + // Permite estilos inline
               "img-src 'self' data:; " +
-              "connect-src 'self'; " +
+              "connect-src 'self' https://sua-api-no-railway.app; " + // Permite conexões com a API
               "font-src 'self'; " +
               "object-src 'none'; " +
               "frame-ancestors 'none'; " +
