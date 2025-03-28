@@ -4,10 +4,18 @@ import React from "react";
 import useProjectFilter from "../../hooks/useProjectFilter";
 import Cabecalho from "../../components/layout/Cabecalho";
 import Rodape from "../../components/layout/Rodape";
+import { useEffect } from "react";
 
 export default function ContatoPage() {
   // Executa o hook para manipulação do filtro ou do formulário após a montagem, sem afetar a renderização inicial.
   useProjectFilter();
+  // Chamada de teste ao back-end
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/teste`)
+      .then((res) => res.json())
+      .then((data) => console.log("Resposta do back-end:", data))
+      .catch((err) => console.error("Erro de conexão com o back-end:", err));
+  }, []);
 
   return (
     <>

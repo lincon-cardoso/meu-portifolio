@@ -13,6 +13,7 @@ export default function Home() {
 
       {/* Rodapé Global */}
       <Rodape />
+      
     </main>
   );
 }
