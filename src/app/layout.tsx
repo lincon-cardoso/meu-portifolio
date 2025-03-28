@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "@/style/style.scss";
+import TesteBackEnd from "../components/TesteBackEnd"; // Importa o componente de teste
 
 export const metadata = {
   title: "Meu Portfólio Pessoal",
@@ -11,14 +12,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Chamada de teste ao back-end
-  useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/teste`)
-      .then((res) => res.json())
-      .then((data) => console.log("Resposta do back-end:", data))
-      .catch((err) => console.error("Erro de conexão com o back-end:", err));
-  }, []);
-
   return (
     <html lang="pt-br">
       <head>
@@ -32,7 +25,10 @@ export default function RootLayout({
         {/* Adicionar Favicon */}
         <link rel="icon" href="/icons/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body>
+        <TesteBackEnd /> {/* Adiciona o componente de teste */}
+        {children}
+      </body>
     </html>
   );
 }
