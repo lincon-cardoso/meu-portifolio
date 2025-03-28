@@ -1,6 +1,5 @@
 import React from "react";
 import "@/style/style.scss";
-import TesteBackEnd from "../components/TesteBackEnd"; // Importa o componente de teste
 
 export const metadata = {
   title: "Meu Portfólio Pessoal",
@@ -25,10 +24,7 @@ export default function RootLayout({
         {/* Adicionar Favicon */}
         <link rel="icon" href="/icons/favicon.ico" />
       </head>
-      <body>
-        <TesteBackEnd /> {/* Adiciona o componente de teste */}
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
