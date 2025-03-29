@@ -6,7 +6,7 @@ export default function Home() {
   const [mensagem, setMensagem] = useState('Carregando...');
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/ping`)
+    fetch(`${process.env.FRONTEND_URL}/ping`)
       .then((res) => res.json())
       .then((data) => setMensagem(data.mensagem))
       .catch(() => setMensagem('Erro ao conectar com o back-end'));
