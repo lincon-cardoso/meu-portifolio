@@ -16,7 +16,7 @@ export default function Home() {
       })
       .then((data) => setMensagem(data.mensagem))
       .catch((error) => {
-        console.error("Erro ao chamar a API:", error);
+        console.error("Erro ao chamar o API:", error);
         setMensagem("Erro ao conectar com o back-end");
       });
   }, []);
