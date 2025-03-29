@@ -27,14 +27,7 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*", // Rota no front-end
-        destination: "http://back-end-portifolio.railway.internal/:path*", // Rota no back-end
-      },
-    ];
-  },
+
 };
 
 export default nextConfig;
