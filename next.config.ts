@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*", // Rota no front-end
-        destination: "http://meu-portf-lio-pessoal-back-end.railway.internal/:path*", // Rota no back-end
+        destination: "http://back-end-portifolio.railway.internal/:path*", // Rota no back-end
       },
     ];
   },

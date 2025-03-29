@@ -1,21 +1,34 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react";
+
+const API_URL = "https://back-end-portifolio-production.up.railway.app";
 
 export default function Home() {
-  const [mensagem, setMensagem] = useState('Carregando...');
+  const [mensagem, setMensagem] = useState("Carregando...");
 
   useEffect(() => {
-    fetch(`${process.env.FRONTEND_URL}/ping`)
-      .then((res) => res.json())
-      .then((data) => setMensagem(data.mensagem))
-      .catch(() => setMensagem('Erro ao conectar com o back-end'));
+    const fetchPing = async () => {
+      try {
+        const response = await fetch(`${API_URL}/ping`);
+        if (!response.ok) {
+          throw new Error("Erro ao chamar a API");
+        }
+        const data = await response.json();
+        setMensagem(data.mensagem);
+      } catch (error) {
+        console.error("Erro ao chamar a API:", error);
+        setMensagem("Erro ao conectar com o servidor");
+      }
+    };
+
+    fetchPing();
   }, []);
 
   return (
-    <div>
+    <main>
       <h1>Status do back:</h1>
       <p>{mensagem}</p>
-    </div>
+    </main>
   );
 }
