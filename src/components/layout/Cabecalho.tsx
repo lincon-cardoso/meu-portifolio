@@ -66,6 +66,16 @@ export default function Cabecalho() {
                 Contato
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+              href="/login"
+              className={`nav-link ${
+                pathname === "/login" ? "active" : ""
+              }`}
+              >
+              Login
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
