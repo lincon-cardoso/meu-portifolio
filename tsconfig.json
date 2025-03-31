@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ESNext", // Updated
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "esModuleInterop": true, // Already present
+    "module": "es2015", // Updated to fix compatibility with 'bundler'
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
