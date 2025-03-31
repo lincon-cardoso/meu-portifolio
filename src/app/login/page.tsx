@@ -13,7 +13,7 @@ export default function LoginPage() {
         setIsMounted(true);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const emailError = validateEmail(email);
@@ -24,7 +24,23 @@ export default function LoginPage() {
             return;
         }
 
-        console.log("Email:", email, "Password:", password);
+        try {
+            const response = await fetch("http://localhost:3000/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                console.log("Login registrado com sucesso!");
+            } else {
+                console.error("Erro ao registrar login.");
+            }
+        } catch (error) {
+            console.error("Erro ao conectar ao servidor:", error);
+        }
     };
 
     if (!isMounted) {
