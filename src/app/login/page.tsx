@@ -16,8 +16,9 @@ export default function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const emailError = (email);
-        const passwordError = (password);
+        // Validação de email e senha
+        const emailError = !email.includes("@") ? "Email inválido." : "";
+        const passwordError = password.length < 6 ? "A senha deve ter pelo menos 6 caracteres." : "";
 
         if (emailError || passwordError) {
             setErrors({ email: emailError, password: passwordError });
@@ -30,7 +31,7 @@ export default function LoginPage() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, password }), // Incluindo a senha no corpo da requisição
             });
 
             if (response.ok) {
