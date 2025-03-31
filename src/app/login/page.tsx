@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { validateEmail, validatePassword } from "@/utils/validation";
+// import { validateEmail, validatePassword } from "@/utils/validation";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -16,8 +16,8 @@ export default function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const emailError = validateEmail(email);
-        const passwordError = validatePassword(password);
+        const emailError = (email);
+        const passwordError = (password);
 
         if (emailError || passwordError) {
             setErrors({ email: emailError, password: passwordError });
