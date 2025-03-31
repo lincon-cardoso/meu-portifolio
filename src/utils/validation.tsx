@@ -1,26 +1,17 @@
-// Função para validar um endereço de email
 export function validateEmail(email: string): string | undefined {
-  // Verifica se o email foi fornecido
-  if (!email) return "O email é obrigatório.";
-
-  // Expressão regular para validar o formato do email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Verifica se o email corresponde ao formato esperado
+  if (!email) return "O email é obrigatório.";
+  if (email.length > 254) return "O email não pode exceder 254 caracteres.";
   if (!emailRegex.test(email)) return "O email não é válido.";
-
-  // Retorna undefined se não houver erros
   return undefined;
 }
 
-// Função para validar uma senha
 export function validatePassword(password: string): string | undefined {
-  // Verifica se a senha foi fornecida
   if (!password) return "A senha é obrigatória.";
-
-  // Verifica se a senha tem pelo menos 6 caracteres
-  if (password.length < 6) return "A senha deve ter pelo menos 6 caracteres.";
-
-  // Retorna undefined se não houver erros
+  if (password.length < 8) return "A senha deve ter pelo menos 8 caracteres.";
+  if (password.length > 128) return "A senha não pode exceder 128 caracteres.";
+  if (!/[A-Z]/.test(password)) return "A senha deve conter pelo menos uma letra maiúscula.";
+  if (!/[0-9]/.test(password)) return "A senha deve conter pelo menos um número.";
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) return "A senha deve conter pelo menos um caractere especial.";
   return undefined;
 }
