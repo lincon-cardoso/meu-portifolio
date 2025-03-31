@@ -1,17 +1,18 @@
 import pool from "../connection";
 
-export async function saveLogin(email: string): Promise<void> {
-    const query = `
-    INSERT INTO logins (email, message, timestamp)
-    VALUES ($1, $2, NOW())
-  `;
-    const values = [email, "Login feito com sucesso"];
+import { QueryResult, QueryResultRow } from "pg";
 
+export async function executeQuery<T extends QueryResultRow>(query: string, values: unknown[]): Promise<QueryResult<T>> {
     try {
-        await pool.query(query, values);
-        console.log("Login registrado com sucesso!");
+        const client = await pool.connect();
+        try {
+            const result = await client.query(query, values);
+            return result;
+        } finally {
+            client.release();
+        }
     } catch (error) {
-        console.error("Erro ao registrar login:", error);
+        console.error("Erro ao executar a consulta:", error);
         throw error;
     }
 }
