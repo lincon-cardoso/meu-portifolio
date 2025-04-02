@@ -14,20 +14,26 @@
 }
 
 .skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-4);
-  justify-content: center;
   margin-top: var(--spacing-10);
   margin-bottom: var(--spacing-10);
 }
 
 .skills-container h3 {
   font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
   font-weight: var(--font-weight-bold);
   text-align: center;
   color: var(--color-dark);
+}
+
+/* Grid de habilidades em colunas */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-4);
+  max-width: 800px;
+  margin: 0 auto;
+  justify-items: center;
 }
 
 .skill-item {
@@ -39,14 +45,12 @@
   font-weight: var(--font-weight-semibold);
   transition: var(--transition-default);
   box-shadow: var(--box-shadow-soft);
+  text-align: center;
+  width: 100%; /* força a ocupação igual nas colunas */
 }
 
 .skill-item:hover,
 .skill-item:focus {
   background-color: var(--color-secondary);
   transform: translateY(-3px);
-}
-
-.skill-item a {
-  color: white;
 }

@@ -24,25 +24,19 @@ export default function SobrePage() {
               {/* Texto descritivo */}
               <div className="sobre-mim-text">
                 <p className="sobre-mim-description">
-                  Olá! Sou Lincon Cardoso, um desenvolvedor web apaixonado por
-                  criar soluções digitais inovadoras. Minha jornada com
-                  programação começou há 5 anos quando descobri a fascinante
-                  possibilidade de transformar ideias em interfaces funcionais.
+                  Olá! Sou Lincon Cardoso, desenvolvedor web apaixonado por criar soluções digitais inovadoras.
                 </p>
                 <p className="sobre-mim-description">
-                  Especializo-me em desenvolvimento <strong>frontend</strong> e{" "}
-                  <strong>backend</strong>, utilizando tecnologias como{" "}
-                  <strong>HTML5</strong>, <strong>CSS3</strong>,{" "}
-                  <strong>JavaScript</strong>,<strong>React</strong>,{" "}
-                  <strong>Node.js</strong> e <strong>MongoDB</strong>. Tenho
-                  experiência com sites responsivos, aplicações web e
-                  desenvolvimento de APIs.
+                  Minha jornada na programação começou há 5 anos, quando descobri o quanto era fascinante transformar ideias em interfaces funcionais e intuitivas.
                 </p>
                 <p className="sobre-mim-description">
-                  Meu objetivo é criar experiências digitais que não apenas
-                  pareçam excelentes, mas também ofereçam alto desempenho e
-                  usabilidade. Acredito que um bom código é aquele que equilibra
-                  inovação técnica com experiência do usuário.
+                  Atualmente, me especializo em desenvolvimento <strong>frontend</strong> e <strong>backend</strong>, com foco em aplicações modernas e escaláveis. Trabalho com tecnologias como <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Sass</strong>, <strong>PostgreSQL</strong> e <strong>Node.js</strong>, buscando sempre manter meu código limpo e padronizado com ferramentas como <strong>ESLint</strong> e controle de versão com <strong>Git</strong>.
+                </p>
+                <p className="sobre-mim-description">
+                  Tenho experiência na construção de interfaces responsivas, design centrado no usuário (<strong>UI/UX</strong>) e APIs <strong>RESTful</strong>, sempre com atenção à performance, acessibilidade e boas práticas.
+                </p>
+                <p className="sobre-mim-description">
+                  Acredito que um bom código vai além de simplesmente funcionar — ele precisa oferecer uma experiência marcante para o usuário, com equilíbrio entre inovação técnica e usabilidade.
                 </p>
 
                 {/* Seção de habilidades */}
