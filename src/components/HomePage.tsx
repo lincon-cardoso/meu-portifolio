@@ -41,7 +41,7 @@ export default function HomePage() {
               <Link href="/contato" className="hire-me-button destaque-botao">
                 🚀 Contrate-me agora
               </Link>
-              <Link href="/meus-projetos" className="btn btn-secondary">
+              <Link href="/meuProjetos" className="btn btn-secondary">
                 🌟 Ver todos os projetos
               </Link>
             </div>
