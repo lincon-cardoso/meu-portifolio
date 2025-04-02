@@ -1,36 +1,52 @@
 /* =======================================================================
    4. Seção do Portfólio (Home)
 ======================================================================== */
+
+/* ===========================
+   Estilos gerais da seção
+=========================== */
 .MeuPortifolio {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: var(--spacing-20) var(--spacing-4);
-  text-align: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-dark) 100%
+  );
   color: white;
   position: relative;
   overflow: hidden;
 }
 
-.MeuPortifolio::before {
-  content: "<portfolio>";
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-family: "Courier New", monospace;
-  color: rgba(255, 255, 255, 0.1);
-  font-size: 1rem;
+/* ===========================
+   Conteúdo principal
+=========================== */
+.MeuPortifolio-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-8); // Espaçamento entre a foto e o texto
 }
 
-.MeuPortifolio::after {
-  content: "</portfolio>";
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-family: "Courier New", monospace;
-  color: rgba(255, 255, 255, 0.1);
-  font-size: 1rem;
+/* ===========================
+   Estilos da foto
+=========================== */
+.MeuPortifolio-foto {
+  flex-shrink: 0; // Garante que a imagem não será redimensionada
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
+}
+
+/* ===========================
+   Estilos do texto
+=========================== */
+.MeuPortifolio-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .MeuPortifolio-title {
@@ -38,7 +54,6 @@
   margin-bottom: var(--spacing-4);
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.025em;
-  position: relative;
 }
 
 .MeuPortifolio-description {
@@ -46,4 +61,79 @@
   max-width: 600px;
   margin-bottom: var(--spacing-8);
   opacity: 0.9;
+}
+
+.destaque-impacto {
+  color: #00ffff;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00ffff99;
+}
+
+/* ===========================
+   Botões
+=========================== */
+.MeuPortifolio-buttons {
+  display: flex;
+  gap: var(--spacing-4); // Espaçamento entre os botões
+  margin-top: var(--spacing-6); // Espaçamento superior opcional
+}
+
+.destaque-botao {
+  background-color: #00ffff;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  transition: transform 0.2s ease;
+}
+
+.destaque-botao:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+}
+
+.btn-secondary {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); // Fundo opaco (branco com 20% de opacidade)
+  color: var(--color-light-gray); // Texto em cinza claro
+  border: 1px solid rgba(255, 255, 255, 0.3); // Borda com opacidade
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-md);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.4
+  ); // Fundo um pouco mais visível no hover
+  color: var(--color-white); // Texto branco no hover
+}
+
+/* ===========================
+   Stacks (ícones de tecnologias)
+=========================== */
+.MeuPortifolio-stacks {
+  margin-top: 3.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  // border: 3px solid red;
+  text-align: left;
+}
+
+.icon {
+  font-size: 4rem;
+  transition: transform 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.15);
 }

@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
     "target": "ESNext", // Updated
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true, // Already present
-    "module": "es2015", // Updated to fix compatibility with 'bundler'
+    "module": "esnext", // Updated to fix compatibility with 'bundler'
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -15,7 +19,9 @@
     "incremental": true,
     "baseUrl": ".", // Added
     "paths": { // Updated
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "plugins": [
       {
@@ -23,6 +29,13 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

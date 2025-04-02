@@ -2,22 +2,65 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { FaReact, FaSass, FaGitAlt } from 'react-icons/fa';
+import { SiNextdotjs, SiTypescript, SiPostgresql, SiEslint } from 'react-icons/si';
 
 export default function HomePage() {
   return (
     <main>
       <section className="MeuPortifolio fade-in">
-        <h1 className="MeuPortifolio-title">
-          Desenvolvedor Web <span className="text-gradient">Front-End</span>
-        </h1>
-        <p className="MeuPortifolio-description">
-          Criando experiências digitais atraentes e funcionais com as
-          tecnologias mais modernas do mercado.
-        </p>
-        <Link href="/contato" className="hire-me-button">
-          Contrate-me
-        </Link>
+        <div className="MeuPortifolio-content">
+          <a href="/img/Foto.jpg" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/img/Foto.jpg"
+              alt="Minha foto de perfil"
+              className="MeuPortifolio-foto"
+              width={300}
+              height={300}
+              style={{ borderRadius: "50%", objectFit: "cover" }}
+              priority
+            />
+          </a>
+
+          <div className="MeuPortifolio-text">
+            <h1 className="MeuPortifolio-title">
+              Desenvolvedor <span className="text-gradient">Web</span><br />
+              Front-<span className="text-gradient">End</span>
+            </h1>
+
+            <p className="MeuPortifolio-description">
+              <strong>Transformo ideias em interfaces únicas</strong>. Cada linha que escrevo tem um <strong>propósito claro</strong>, comunica uma <strong>identidade</strong> e gera <span className="destaque-impacto">impacto visual real</span>.
+            </p>
+
+            <h2 className="MeuPortifolio-tech">
+              React · Next.js · UI/UX Design
+            </h2>
+
+            <div className="MeuPortifolio-buttons">
+              <Link href="/contato" className="hire-me-button destaque-botao">
+                🚀 Contrate-me agora
+              </Link>
+              <Link href="/meus-projetos" className="btn btn-secondary">
+                🌟 Ver todos os projetos
+              </Link>
+            </div>
+
+            {/* Stacks */}
+            {/* Stacks com ícones */}
+            <div className="MeuPortifolio-stacks">
+              <FaReact title="React" className="icon" />
+              <SiNextdotjs title="Next.js" className="icon" />
+              <SiTypescript title="TypeScript" className="icon" />
+              <FaSass title="Sass" className="icon" />
+              <SiPostgresql title="PostgreSQL" className="icon" />
+              <SiEslint title="ESLint" className="icon" />
+              <FaGitAlt title="Git" className="icon" />
+            </div>
+          </div>
+        </div>
       </section>
+
 
       <section className="cards-de-projetos fade-in">
         <h2 className="projetos-title">Projetos em Destaque</h2>
