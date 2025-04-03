@@ -35,9 +35,12 @@
   display: none; // O botão de alternância do menu é oculto por padrão
 }
 
-/* Media Query para telas com largura máxima de 1024px */
+/* =======================================================================
+   Media Query para telas com largura máxima de 1024px
+======================================================================== */
 @media (max-width: 1024px) {
   :root {
+    /* Ajuste de tamanhos de fonte para telas menores */
     --font-size-4xl: 2rem;
     --font-size-3xl: 1.75rem;
     --font-size-2xl: 1.375rem;
@@ -82,9 +85,12 @@
   }
 }
 
-/* Media Query para telas com largura máxima de 768px */
+/* =======================================================================
+   Media Query para telas com largura máxima de 768px
+======================================================================== */
 @media (max-width: 768px) {
   :root {
+    /* Ajuste de padding para conteúdo */
     --content-padding-x: var(--spacing-4);
   }
 
@@ -174,13 +180,42 @@
 
   .MeuPortifolio {
     padding: var(--spacing-10) var(--spacing-4);
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-6);
+
+    .MeuPortifolio-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-4);
+    }
 
     .MeuPortifolio-title {
       font-size: var(--font-size-3xl);
+      text-align: center;
     }
 
     .MeuPortifolio-description {
       font-size: var(--font-size-lg);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .MeuPortifolio-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-4);
+      justify-content: center;
+    }
+
+    .MeuPortifolio-stacks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: var(--spacing-4);
+      justify-items: center;
     }
   }
 
@@ -205,15 +240,45 @@
   }
 }
 
-/* Media Query para telas com largura máxima de 480px */
+/* =======================================================================
+   Media Query para telas com largura máxima de 480px
+======================================================================== */
 @media (max-width: 480px) {
   :root {
+    /* Ajuste de tamanhos de fonte para telas muito pequenas */
     --font-size-3xl: 1.5rem;
     --font-size-2xl: 1.25rem;
     --font-size-xl: 1.125rem;
   }
 
-  .header-container {    
+  .MeuPortifolio {
+    padding: var(--spacing-10) var(--spacing-2);
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
+
+    .MeuPortifolio-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-4);
+    }
+
+    .MeuPortifolio-title {
+      font-size: var(--font-size-2xl);
+      text-align: center;
+    }
+
+    .MeuPortifolio-description {
+      font-size: var(--font-size-md);
+      text-align: center;
+      line-height: 1.6;
+    }
+  }
+
+  .header-container {
     .header-nav {
       display: none;
       flex-direction: column;
@@ -228,7 +293,6 @@
       opacity: 0;
       transform: translateY(-10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
-      
 
       &.active {
         display: flex;

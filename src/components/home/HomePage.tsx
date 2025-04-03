@@ -11,14 +11,13 @@ export default function HomePage() {
     <main>
       <section className="MeuPortifolio fade-in">
         <div className="MeuPortifolio-content">
-          <a href="/img/Foto.jpg" target="_blank" rel="noopener noreferrer">
+          <a href="/img/Foto.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir minha foto de perfil em tamanho maior">
             <Image
               src="/img/Foto.jpg"
               alt="Minha foto de perfil"
               className="MeuPortifolio-foto"
               width={300}
               height={300}
-              style={{ borderRadius: "50%", objectFit: "cover" }}
               priority
             />
           </a>
@@ -38,16 +37,14 @@ export default function HomePage() {
             </h2>
 
             <div className="MeuPortifolio-buttons">
-              <Link href="/contato" className="hire-me-button destaque-botao">
+              <Link href="/contato" className="hire-me-button destaque-botao" aria-label="Contrate-me agora">
                 🚀 Contrate-me agora
               </Link>
-              <Link href="/meuProjetos" className="btn btn-secondary">
+              <Link href="/meuProjetos" className="btn btn-secondary" aria-label="Ver todos os projetos">
                 🌟 Ver todos os projetos
               </Link>
             </div>
 
-            {/* Stacks */}
-            {/* Stacks com ícones */}
             <div className="MeuPortifolio-stacks">
               <div className="stack-item">
                 <FaReact title="React" className="icon" />
