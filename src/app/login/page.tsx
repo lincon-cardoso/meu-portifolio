@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 // import { validateEmail, validatePassword } from "@/utils/validation";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -44,6 +45,14 @@ export default function LoginPage() {
         }
     };
 
+    const router = useRouter();
+    // Função para lidar com o logout
+    const handleLogout = () => {
+        // Redireciona para a raiz do projeto
+        router.push("/");
+    };
+
+
     if (!isMounted) {
         return null;
     }
@@ -74,10 +83,16 @@ export default function LoginPage() {
                     />
                     {errors.password && <p className="error-message">{errors.password}</p>}
                 </div>
-                <button type="submit" className="login-button">
-                    Entrar
-                </button>
+                <div className="button-group">
+                    <button type="submit" className="login-button">
+                        login
+                    </button>
+                    <button type="button" className="logout-button" onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
             </form>
+
         </div>
     );
 }

@@ -49,13 +49,34 @@ export default function HomePage() {
             {/* Stacks */}
             {/* Stacks com ícones */}
             <div className="MeuPortifolio-stacks">
-              <FaReact title="React" className="icon" />
-              <SiNextdotjs title="Next.js" className="icon" />
-              <SiTypescript title="TypeScript" className="icon" />
-              <FaSass title="Sass" className="icon" />
-              <SiPostgresql title="PostgreSQL" className="icon" />
-              <SiEslint title="ESLint" className="icon" />
-              <FaGitAlt title="Git" className="icon" />
+              <div className="stack-item">
+                <FaReact title="React" className="icon" />
+                <span className="stack-name">React</span>
+              </div>
+              <div className="stack-item">
+                <SiNextdotjs title="Next.js" className="icon" />
+                <span className="stack-name">Next.js</span>
+              </div>
+              <div className="stack-item">
+                <SiTypescript title="TypeScript" className="icon" />
+                <span className="stack-name">TypeScript</span>
+              </div>
+              <div className="stack-item">
+                <FaSass title="Sass" className="icon" />
+                <span className="stack-name">Sass</span>
+              </div>
+              <div className="stack-item">
+                <SiPostgresql title="PostgreSQL" className="icon" />
+                <span className="stack-name">PostgreSQL</span>
+              </div>
+              <div className="stack-item">
+                <SiEslint title="ESLint" className="icon" />
+                <span className="stack-name">ESLint</span>
+              </div>
+              <div className="stack-item">
+                <FaGitAlt title="Git" className="icon" />
+                <span className="stack-name">Git</span>
+              </div>
             </div>
           </div>
         </div>

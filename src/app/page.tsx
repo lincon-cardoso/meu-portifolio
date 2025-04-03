@@ -1,4 +1,4 @@
-import HomePage from "@/components/HomePage";
+import HomePage from "@/components/home/HomePage";
 import Cabecalho from "@/components/layout/Cabecalho"; // Ensure that the file exists at this path
 import Rodape from "@/components/layout/Rodape"; // Ensure that the file exists at this path
 
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main>
       {/* Cabeçalho Global */}
-      
+
       <Cabecalho />
 
       {/* Conteúdo das páginas */}
@@ -16,7 +16,7 @@ export default function Home() {
 
       {/* Rodapé Global */}
       <Rodape />
-      
+
     </main>
   );
 }
