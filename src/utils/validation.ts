@@ -12,6 +12,7 @@ export function validatePassword(password: string): string | undefined {
   if (password.length > 128) return "A senha não pode exceder 128 caracteres.";
   if (!/[A-Z]/.test(password)) return "A senha deve conter pelo menos uma letra maiúscula.";
   if (!/[0-9]/.test(password)) return "A senha deve conter pelo menos um número.";
-  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) return "A senha deve conter pelo menos um caractere especial.";
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password))
+    return "A senha deve conter pelo menos um caractere especial.";
   return undefined;
 }
