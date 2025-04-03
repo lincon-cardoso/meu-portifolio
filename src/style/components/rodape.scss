@@ -1,58 +1,144 @@
 /* =======================================================================
-   10. Rodapé (Footer)
+   Rodapé (Footer)
 ======================================================================== */
-footer {
-  background-color: var(--color-footer);
-  color: white;
-  padding: var(--spacing-10) 0 var(--spacing-4);
+.footer {
+  background-color: var(--color-dark);
+  color: #fff;
+  padding: var(--spacing-20) 0;
   text-align: center;
-  margin-top: auto;
-}
 
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-4);
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--content-padding-x);
-}
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-10);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding-x);
 
-.footer-text,
-.redes-sociais {
-  margin: 0;
-  opacity: 0.8;
-  font-size: var(--font-size-sm);
-}
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      text-align: left;
 
-.social-icons {
-  display: flex;
-  gap: var(--spacing-9);
-  margin-top: var(--spacing-3);
-  justify-content: center;
-  padding: var(--spacing-2) 0;
-}
+      h3 {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--spacing-4);
+        color: var(--color-accent);
+      }
 
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 130px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 50%;
-  transition: var(--transition-default);
-  font-size: var(--font-size-lg);
-  margin: 5px;
-  text-align: center; 
-}
+      ul {
+        list-style: none;
+        padding: 0;
 
+        li {
+          margin-bottom: var(--spacing-2);
 
-.social-icon:hover,
-.social-icon:focus {
-  background-color: var(--color-accent);
-  transform: translateY(-3px);
-  box-shadow: var(--box-shadow-medium);
+          a {
+            color: #fff;
+            font-size: var(--font-size-md);
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: var(--color-accent);
+            }
+          }
+        }
+      }
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap; // Permite que os ícones quebrem para a próxima linha, se necessário
+      gap: var(--spacing-4); // Espaçamento entre os ícones
+      justify-content: center; // Centraliza os ícones
+      padding-bottom: var(--spacing-2); // Espaçamento inferior
+
+      a {
+        flex: 0 0 auto; // Garante que os ícones mantenham seu tamanho
+        width: 50px; // Tamanho dos ícones ajustado para telas menores
+        height: 50px;
+        font-size: var(--font-size-lg); // Ajusta o tamanho da fonte dos ícones
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); // Fundo sutil para os ícones
+        color: #fff; // Cor do ícone
+        border-radius: 50%; // Ícones redondos
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        &:hover {
+          background-color: var(--color-accent); // Cor de destaque no hover
+          transform: scale(1.1); // Leve aumento no hover
+        }
+      }
+    }
+  }
+
+  .footer-signature {
+    margin-top: var(--spacing-10);
+    font-size: var(--font-size-md);
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  .footer-back-to-top {
+    margin-top: var(--spacing-8);
+
+    a {
+      color: var(--color-accent);
+      font-size: var(--font-size-md);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .footer-copyright {
+    margin-top: var(--spacing-10);
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .footer-back-to-top {
+    margin-top: var(--spacing-8);
+    text-align: center;
+
+    .btn-back-to-top {
+      background-color: var(--color-accent); // Cor de destaque
+      color: var(--color-bg); // Texto branco para contraste
+      border: none;
+      padding: var(--spacing-3) var(--spacing-6); // Tamanho do botão
+      font-size: var(--font-size-md);
+      font-weight: bold;
+      border-radius: var(--border-radius-md); // Bordas arredondadas
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: #444; // Cinza suave que combina com o fundo escuro
+        transform: scale(1.05); // Leve aumento no hover
+      }
+
+      &:active {
+        transform: scale(0.95); // Efeito de clique
+      }
+    }
+  }
 }
