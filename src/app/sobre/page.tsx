@@ -45,10 +45,12 @@ export default function SobrePage() {
                   <div className="skills-grid">
                     <div className="skill-item">HTML5</div>
                     <div className="skill-item">CSS3</div>
-                    <div className="skill-item">JavaScript</div>
-                    <div className="skill-item">React</div>
+                    <div className="skill-item">TypeScript</div>
+                    <div className="skill-item">Next.js</div>
                     <div className="skill-item">Node.js</div>
+                    <div className="skill-item">Sass</div>
                     <div className="skill-item">MongoDB</div>
+                    <div className="skill-item">PostgreSQL</div>
                     <div className="skill-item">Git</div>
                     <div className="skill-item">UI/UX</div>
                     <div className="skill-item">Responsive Design</div>
