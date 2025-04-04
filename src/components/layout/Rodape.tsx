@@ -30,7 +30,9 @@ export default function Rodape() {
 
         {/* Coluna 3: Redes Sociais */}
         <div className="footer-column">
-          <h3>Redes Sociais</h3>
+          <div className="footer-social-header">
+            <h3>Redes Sociais</h3>
+          </div>
           <div className="footer-social">
             <a href="https://facebook.com" target="_blank" aria-label="Facebook"><FaFacebookF /></a>
             <a href="https://twitter.com" target="_blank" aria-label="Twitter"><FaTwitter /></a>

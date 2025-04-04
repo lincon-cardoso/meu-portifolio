@@ -11,16 +11,14 @@ export default function HomePage() {
     <main>
       <section className="MeuPortifolio fade-in">
         <div className="MeuPortifolio-content">
-          <a href="/img/Foto.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir minha foto de perfil em tamanho maior">
-            <Image
-              src="/img/Foto.jpg"
-              alt="Minha foto de perfil"
-              className="MeuPortifolio-foto"
-              width={300}
-              height={300}
-              priority
-            />
-          </a>
+          <Image
+            src="/img/Foto.jpg"
+            alt="Minha foto de perfil"
+            className="MeuPortifolio-foto"
+            width={300}
+            height={300}
+            priority
+          />
 
           <div className="MeuPortifolio-text">
             <h1 className="MeuPortifolio-title">

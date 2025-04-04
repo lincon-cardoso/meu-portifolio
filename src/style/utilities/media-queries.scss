@@ -178,6 +178,24 @@
     padding: var(--spacing-4);
   }
 
+  .MeuPortifolio-text {
+    font-size: var(--font-size-md);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .footer-column {
+    .footer-social-header {
+      text-align: center; // Centraliza o conteúdo
+      margin-bottom: var(--spacing-4); // Espaçamento inferior
+
+      h3 {
+        font-size: var(--font-size-lg); // Ajuste o tamanho da fonte
+        color: var(--color-accent); // Cor de destaque
+      }
+    }
+  }
+
   .MeuPortifolio {
     padding: var(--spacing-10) var(--spacing-4);
     border: none;
@@ -244,16 +262,12 @@
    Media Query para telas com largura máxima de 480px
 ======================================================================== */
 @media (max-width: 480px) {
-  
   :root {
     /* Ajuste de tamanhos de fonte para telas muito pequenas */
     --font-size-3xl: 1.5rem;
     --font-size-2xl: 1.25rem;
     --font-size-xl: 1.125rem;
   }
-
-  
-   
 
   .MeuPortifolio {
     padding: var(--spacing-10) var(--spacing-2);
@@ -369,8 +383,8 @@
     }
   }
 
-  .footer{
-    .footer-container{
+  .footer {
+    .footer-container {
       flex-direction: column;
       gap: var(--spacing-2);
       padding: 0 var(--spacing-2);
@@ -408,5 +422,9 @@
     }
   }
 
-  
+  .MeuPortifolio-text {
+    font-size: var(--font-size-md);
+    text-align: center;
+    line-height: 1.6;
+  }
 }
