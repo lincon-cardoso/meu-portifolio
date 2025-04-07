@@ -22,9 +22,9 @@ export default function Rodape() {
         <div className="footer-column">
           <h3>Contato</h3>
           <ul>
-            <li><a href="mailto:contato@devlincon.com.br">contato@devlincon.com.br</a></li>
+            {/* <li><a href="mailto:contato@devlincon.com.br">contato@devlincon.com.br</a></li>
             <li><a href="/curriculo.pdf" target="_blank">Currículo (PDF)</a></li>
-            <li>Santa Catarina, Brasil</li>
+            <li>Santa Catarina, Brasil</li> */}
           </ul>
         </div>
 
