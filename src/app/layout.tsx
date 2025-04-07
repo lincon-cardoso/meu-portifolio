@@ -1,7 +1,6 @@
 // src/app/layout.tsx
 import React from "react";
 import "@/style/style.scss";
-import VersionChecker from "@/components/VersionChecker"; // Adjust the path as needed
 
 export const metadata = {
   title: "Meu Portfólio Pessoal",
@@ -20,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>{metadata.title}</title>
       </head>
       <body>
-        <VersionChecker />
+        
         {children}</body>
     </html>
   );

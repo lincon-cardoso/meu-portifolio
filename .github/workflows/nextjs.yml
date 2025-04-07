@@ -58,9 +58,6 @@ jobs:
       - name: Clean .next folder
         run: rm -rf .next
 
-      - name: Gerar versão do build
-        run: echo "v-$(date +%s)" > public/version.txt
-
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
