@@ -23,7 +23,7 @@ export default function VersionChecker() {
         }
 
         checkVersion()
-        const interval = setInterval(checkVersion, 30000) // verifica a cada 30 segundos
+        const interval = setInterval(checkVersion, 300) // verifica a cada 30 segundos
         return () => clearInterval(interval)
     }, [])
 
