@@ -5,8 +5,9 @@ const nextConfig: NextConfig = {
 
   async headers() {
     return [
+      // 🔹 Cabeçalhos de segurança + sem cache para páginas (SSR e HTML)
       {
-        source: "/(.*)", // Aplica a todas as rotas
+        source: "/:path*",
         headers: [
           { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, proxy-revalidate" },
           { key: "Pragma", value: "no-cache" },
@@ -15,13 +16,25 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-XSS-Protection", value: "1; mode=block" },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          }, // Cache de 1 ano
-          { key: "Surrogate-Control", value: "no-store" },
+          { key: "Surrogate-Control", value: "no-store" }
         ],
       },
+
+      // 🔹 Cache agressivo para arquivos estáticos com hash
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+
+      // 🔹 Cache agressivo para imagens otimizadas do Next
+      {
+        source: "/_next/image",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      }
     ];
   },
 };
