@@ -30,7 +30,7 @@ export default function ContatoPage() {
                 <div className="contato-item">
                   <i className="fas fa-envelope"></i>
                   <h3>E-mail</h3>
-                  {/* <p>linkon789@gmail.com</p> */}
+                  <p>linkon789@gmail.com</p>
                 </div>
                 <div className="contato-item">
                   <i className="fas fa-phone"></i>
