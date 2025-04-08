@@ -1,27 +1,26 @@
 /* =======================================================================
-   1. Variáveis Globais - Paleta Moderna para Dev
+   1. Variáveis Globais - Paleta Acessível e Moderna
 ======================================================================== */
 :root {
-  /* Paleta de cores */
-  --color-primary: #2d3e50;
-  --color-secondary: #3498db;
-  --color-accent: #1abc9c;
-  --color-danger: #e74c3c;
-  --color-dark: #2c3e50;
-  --color-text: #34495e;
-  --color-light-text: #7f8c8d;
-  --color-bg: #f9fafb;
-  --color-card-bg: #ffffff;
-  --color-footer: #2d3e50;
+  /* Paleta de cores ajustada para maior contraste e acessibilidade */
+  --color-primary: #1a1f36; /* Azul escuro com contraste aprimorado */
+  --color-secondary: #3a506b; /* Azul médio */
+  --color-accent: #e63946; /* Vermelho vibrante para destaque */
+  --color-success: #2a9d8f; /* Verde para mensagens de sucesso */
+  --color-warning: #b8860b; /* Amarelo escuro para alertas */
+  --color-danger: #b22222; /* Vermelho escuro para erros */
+  --color-dark: #0d1117; /* Preto profundo */
+  --color-text: #1c1e21; /* Cinza escuro para texto */
+  --color-light-text: #6c757d; /* Cinza claro para texto secundário */
+  --color-bg: #f8f9fa; /* Cinza muito claro para fundo */
+  --color-card-bg: #ffffff; /* Branco puro para cartões */
+  --color-footer: #121212; /* Preto profundo para rodapé */
 
   /* Efeitos e Bordas */
   --border-radius: 8px;
-  --box-shadow-soft: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
-    0 4px 6px -2px rgba(0, 0, 0, 0.03);
-  --box-shadow-medium: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --box-shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --box-shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
   --transition-default: all 0.3s ease-in-out;
 
   /* Tipografia */

@@ -22,6 +22,8 @@ export default function Cabecalho() {
           <button
             className={`mobile-menu-toggle ${menuOpen ? "open" : ""}`}
             onClick={toggleMenu}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} 
+
           >
             <span></span>
             <span></span>
