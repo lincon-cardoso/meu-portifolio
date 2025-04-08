@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+      "purge": "purgecss --css public/styles/globals.css --content src/**/*.{js,ts,jsx,tsx} --output public/styles/"
   },
   "dependencies": {
     "crypto": "^1.0.1",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
+    "purgecss": "^7.0.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }
