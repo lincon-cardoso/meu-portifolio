@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  experimental: {
+    optimizeCss: true,
+  },
+
   async headers() {
     return [
       // 🔹 Cabeçalhos de segurança + sem cache para páginas (SSR e HTML)
