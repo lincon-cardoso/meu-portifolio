@@ -1,18 +1,17 @@
-const purgecss = require("@fullhuman/postcss-purgecss").default;
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  plugins: [
-    require("postcss-flexbugs-fixes"),
-    require("postcss-preset-env")({
+  plugins: {
+    "postcss-flexbugs-fixes": {},
+    "postcss-preset-env": {
       stage: 3,
       features: {
         "custom-properties": false,
       },
-    }),
+    },
     ...(isProd
-      ? [
-          purgecss({
+      ? {
+          "@fullhuman/postcss-purgecss": {
             content: [
               "./pages/**/*.{js,ts,jsx,tsx}",
               "./components/**/*.{js,ts,jsx,tsx}",
@@ -22,8 +21,8 @@ module.exports = {
             safelist: [/^fade-/, /^btn-/, /^nav-/, /^MeuPortifolio/],
             defaultExtractor: (content) =>
               content.match(/[\w-/:]+(?<!:)/g) || [],
-          }),
-        ]
-      : []),
-  ],
+          },
+        }
+      : {}),
+  },
 };
