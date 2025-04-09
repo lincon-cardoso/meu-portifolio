@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   experimental: {
-    optimizeCss: true,
+    optimizeCss: true, // Ativa otimização de CSS
   },
 
   async headers() {
@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-XSS-Protection", value: "1; mode=block" },
-          { key: "Surrogate-Control", value: "no-store" }
+          { key: "Surrogate-Control", value: "no-store" },
         ],
       },
 
@@ -38,9 +38,11 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
-      }
+      },
     ];
   },
+
+
 };
 
 export default nextConfig;
