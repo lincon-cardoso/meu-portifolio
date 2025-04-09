@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap",
-    "purge": "purgecss --css public/styles/globals.css --content src/**/*.{js,ts,jsx,tsx} --output public/styles/"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "next": "^15.2.4",
@@ -21,7 +20,6 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@fullhuman/postcss-purgecss": "^7.0.2",
     "@types/node": "^20.17.28",
     "@types/pg": "^8.11.11",
     "@types/react": "^19",
@@ -31,7 +29,6 @@
     "postcss": "^8.5.3",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^10.1.5",
-    "purgecss": "^7.0.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }
