@@ -11,7 +11,7 @@ module.exports = {
     },
     ...(isProd
       ? {
-          "@fullhuman/postcss-purgecss": {
+          [require.resolve("@fullhuman/postcss-purgecss")]: {
             content: [
               "./pages/**/*.{js,ts,jsx,tsx}",
               "./components/**/*.{js,ts,jsx,tsx}",
