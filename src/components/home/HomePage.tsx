@@ -17,7 +17,7 @@ export default function HomePage() {
             className="MeuPortifolio-foto"
             width={300}
             height={300}            
-            loading="lazy"
+            priority
           />
 
           <div className="MeuPortifolio-text">
