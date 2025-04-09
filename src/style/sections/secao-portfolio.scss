@@ -79,17 +79,23 @@
 }
 
 .destaque-botao {
-  background-color: #00ffff;
-  color: #000;
+  background-color: var(--color-accent);
+  color: #ffffff;
   font-weight: bold;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none; // Remove o contorno padrão do navegador
+
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5); // Adiciona um contorno visível no foco
+  }
 }
 
 .destaque-botao:hover {
+  background-color: var(--color-accent-hover);
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); // Ajuste para um contraste melhor
 }
 
 .btn-secondary {
@@ -120,7 +126,6 @@
 /* ===========================
    Stacks (ícones de tecnologias)
 =========================== */
-
 
 .MeuPortifolio-stacks {
   margin-top: 3.5rem;
