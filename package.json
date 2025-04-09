@@ -12,7 +12,6 @@
     "purge": "purgecss --css public/styles/globals.css --content src/**/*.{js,ts,jsx,tsx} --output public/styles/"
   },
   "dependencies": {
-    "crypto": "^1.0.1",
     "next": "^15.2.4",
     "next-sitemap": "^4.2.3",
     "pg": "^8.14.1",

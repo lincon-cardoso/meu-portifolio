@@ -1,4 +1,5 @@
-import purgecss from "@fullhuman/postcss-purgecss";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const purgecss = require("@fullhuman/postcss-purgecss").default;
 
 const isProd = process.env.NODE_ENV === "production";
 
