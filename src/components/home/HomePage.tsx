@@ -16,8 +16,7 @@ export default function HomePage() {
             alt="Minha foto de perfil"
             className="MeuPortifolio-foto"
             width={300}
-            height={300}
-            priority
+            height={300}            
             loading="lazy"
           />
 
