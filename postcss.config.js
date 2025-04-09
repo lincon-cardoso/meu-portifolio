@@ -13,7 +13,6 @@ module.exports = {
               "./components/**/*.{js,ts,jsx,tsx}",
               "./app/**/*.{js,ts,jsx,tsx}",
             ],
-            css: ["./styles/**/*.scss"],
             safelist: [/^fade-/, /^btn-/, /^nav-/, /^MeuPortifolio/],
             defaultExtractor: (content) =>
               content.match(/[\w-/:]+(?<!:)/g) || [],
