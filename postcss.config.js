@@ -1,17 +1,23 @@
+// postcss.config.js
 module.exports = {
   plugins: {
-    // Corrige bugs conhecidos do Flexbox em navegadores antigos
+    // Corrige bugs conhecidos do Flexbox em alguns navegadores antigos
     "postcss-flexbugs-fixes": {},
 
-    // Permite utilizar recursos modernos do CSS com fallback e autoprefixer
+    // Permite usar recursos modernos de CSS e faz fallback automaticamente
     "postcss-preset-env": {
+      stage: 1, // Permite features mais modernas ainda (como nesting nativo)
       autoprefixer: {
         flexbox: "no-2009",
+        grid: true, // Suporte a CSS Grid para navegadores antigos
       },
-      stage: 3,
+      features: {
+        "custom-properties": true,
+        "nesting-rules": true,
+      },
     },
 
-    // Em produção, minifica o CSS para reduzir o tamanho e melhorar a performance
+    // Remove comentários e minifica CSS em produção
     ...(process.env.NODE_ENV === "production"
       ? {
           cssnano: {
