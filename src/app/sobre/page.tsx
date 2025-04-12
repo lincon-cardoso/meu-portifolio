@@ -24,37 +24,49 @@ export default function SobrePage() {
               {/* Texto descritivo */}
               <div className="sobre-mim-text">
                 <p className="sobre-mim-description">
-                  Olá! Sou Lincon Cardoso, desenvolvedor web apaixonado por criar soluções digitais inovadoras.
+                  Olá! Sou Lincon Cardoso, desenvolvedor web apaixonado por criar soluções digitais com propósito, segurança e impacto real.
                 </p>
                 <p className="sobre-mim-description">
-                  Minha jornada na programação começou há 5 anos, quando descobri o quanto era fascinante transformar ideias em interfaces funcionais e intuitivas.
+                  Minha jornada na programação começou há cerca de 5 anos, quando percebi o poder de transformar ideias em experiências interativas e funcionais. Desde então, venho me especializando em desenvolvimento <strong>fullstack</strong>, com foco em boas práticas, performance e segurança digital.
                 </p>
                 <p className="sobre-mim-description">
-                  Atualmente, me especializo em desenvolvimento <strong>frontend</strong> e <strong>backend</strong>, com foco em aplicações modernas e escaláveis. Trabalho com tecnologias como <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Sass</strong>, <strong>PostgreSQL</strong> e <strong>Node.js</strong>, buscando sempre manter meu código limpo e padronizado com ferramentas como <strong>ESLint</strong> e controle de versão com <strong>Git</strong>.
+                  Trabalho com tecnologias modernas como <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Sass</strong>, <strong>PostgreSQL</strong> e <strong>Node.js</strong>, buscando sempre manter um código limpo, escalável e padronizado. Uso ferramentas como <strong>Git</strong>, <strong>ESLint</strong> e <strong>Cloudflare</strong> para garantir qualidade e proteção no desenvolvimento de aplicações.
                 </p>
                 <p className="sobre-mim-description">
-                  Tenho experiência na construção de interfaces responsivas, design centrado no usuário (<strong>UI/UX</strong>) e APIs <strong>RESTful</strong>, sempre com atenção à performance, acessibilidade e boas práticas.
+                  Gosto de pensar além do código: criar soluções que realmente façam sentido para quem usa, com <strong>experiências intuitivas, acessíveis e seguras</strong>. Acredito que um bom projeto une técnica e propósito — e é nisso que coloco meu foco todos os dias.
                 </p>
-                <p className="sobre-mim-description">
-                  Acredito que um bom código vai além de simplesmente funcionar — ele precisa oferecer uma experiência marcante para o usuário, com equilíbrio entre inovação técnica e usabilidade.
-                </p>
+
 
                 {/* Seção de habilidades */}
                 <div className="skills-container">
                   <h3>Minhas habilidades</h3>
                   <div className="skills-grid">
-                    <div className="skill-item">HTML5</div>
-                    <div className="skill-item">CSS3</div>
-                    <div className="skill-item">TypeScript</div>
-                    <div className="skill-item">Next.js</div>
-                    <div className="skill-item">Node.js</div>
-                    <div className="skill-item">Sass</div>
-                    <div className="skill-item">MongoDB</div>
-                    <div className="skill-item">PostgreSQL</div>
-                    <div className="skill-item">Git</div>
-                    <div className="skill-item">UI/UX</div>
-                    <div className="skill-item">Responsive Design</div>
-                    <div className="skill-item">RESTful API</div>
+                    {/* Frontend */}
+                    <div className="skills-column">
+                      <h4>Frontend</h4>
+                      <div className="skill-item">HTML5</div>
+                      <div className="skill-item">CSS3</div>
+                      <div className="skill-item">Sass</div>
+                      <div className="skill-item">Responsive Design</div>
+                      <div className="skill-item">UI/UX</div>
+                      <div className="skill-item">TypeScript</div>
+                      <div className="skill-item">Next.js</div>
+                    </div>
+
+                    {/* Backend */}
+                    <div className="skills-column">
+                      <h4>Backend</h4>
+                      <div className="skill-item">Node.js</div>
+                      <div className="skill-item">RESTful API</div>
+                      <div className="skill-item">PostgreSQL</div>
+                      <div className="skill-item">MongoDB</div>
+                    </div>
+
+                    {/* Dev Tools */}
+                    <div className="skills-column">
+                      <h4>Dev Tools</h4>
+                      <div className="skill-item">Git & GitHub</div>
+                    </div>
                   </div>
                 </div>
 
@@ -68,6 +80,7 @@ export default function SobrePage() {
                   </a>
                 </div>
               </div>
+
             </div>
           </div>
         </section>

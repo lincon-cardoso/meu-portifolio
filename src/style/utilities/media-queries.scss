@@ -256,6 +256,9 @@
       }
     }
   }
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas menores */
+  }
 }
 
 /* =======================================================================
@@ -426,5 +429,18 @@
     font-size: var(--font-size-md);
     text-align: center;
     line-height: 1.6;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+    gap: var(--spacing-4);
+    text-align: center;
+    .skill-item {
+      width: 100%; /* Garante que todos os itens ocupem a mesma largura */
+      height: auto; /* Ajusta a altura automaticamente */
+      text-align: center;
+      padding: var(--spacing-3) var(--spacing-6);
+      box-sizing: border-box; /* Inclui padding e borda no cálculo do tamanho */
+      font-size: var(--font-size-sm); /* Tamanho da fonte menor */
+    }
   }
 }
