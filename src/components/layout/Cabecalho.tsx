@@ -22,7 +22,7 @@ export default function Cabecalho() {
           <button
             className={`mobile-menu-toggle ${menuOpen ? "open" : ""}`}
             onClick={toggleMenu}
-            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} 
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
 
           >
             <span></span>
@@ -43,9 +43,8 @@ export default function Cabecalho() {
             <li className="nav-item">
               <Link
                 href="/meuProjetos"
-                className={`nav-link ${
-                  pathname === "/meuProjetos" ? "active" : ""
-                }`}
+                className={`nav-link ${pathname === "/meuProjetos" ? "active" : ""
+                  }`}
               >
                 Meus Projetos
               </Link>
@@ -61,21 +60,18 @@ export default function Cabecalho() {
             <li className="nav-item">
               <Link
                 href="/contato"
-                className={`nav-link ${
-                  pathname === "/contato" ? "active" : ""
-                }`}
+                className={`nav-link ${pathname === "/contato" ? "active" : ""
+                  }`}
               >
                 Contato
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                href="admin.devlincon.com.br"
-              className={`nav-link ${
-                pathname === "/login" ? "active" : ""
-              }`}
+                href="https://admin.devlincon.com.br"
+                className="nav-link"
               >
-              Login
+                Login
               </Link>
             </li>
           </ul>

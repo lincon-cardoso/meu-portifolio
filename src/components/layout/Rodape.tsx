@@ -1,6 +1,12 @@
 "use client";
 import Link from "next/link";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaGithub,
+} from "react-icons/fa";
 
 export default function Rodape() {
   return (
@@ -10,11 +16,23 @@ export default function Rodape() {
         <div className="footer-column">
           <h3>Navegação</h3>
           <ul>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/meuProjetos">Projetos</Link></li>
-            <li><Link href="/sobre">Sobre Mim</Link></li>
-            <li><Link href="/contato">Contato</Link></li>
-            <li><Link href="/admin.devlincon.com.br">Login</Link></li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/meuProjetos">Projetos</Link>
+            </li>
+            <li>
+              <Link href="/sobre">Sobre Mim</Link>
+            </li>
+            <li>
+              <Link href="/contato">Contato</Link>
+            </li>
+            <li className="nav-item">
+              <Link href="https://admin.devlincon.com.br" className="nav-link">
+                Login
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -22,8 +40,16 @@ export default function Rodape() {
         <div className="footer-column">
           <h3>Contato</h3>
           <ul>
-            <li><a href="mailto:contato@devlincon.com.br">contato@devlincon.com.br</a></li>
-            <li><a href="/curriculo.pdf" target="_blank">Currículo (PDF)</a></li>
+            <li>
+              <a href="mailto:contato@devlincon.com.br">
+                contato@devlincon.com.br
+              </a>
+            </li>
+            <li>
+              <a href="/curriculo.pdf" target="_blank">
+                Currículo (PDF)
+              </a>
+            </li>
             <li>Santa Catarina, Brasil</li>
           </ul>
         </div>
@@ -34,18 +60,43 @@ export default function Rodape() {
             <h3>Redes Sociais</h3>
           </div>
           <div className="footer-social">
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><FaTwitter /></a>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><FaInstagram /></a>
-            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><FaLinkedin /></a>
-            <a href="https://github.com" target="_blank" aria-label="GitHub"><FaGithub /></a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <FaTwitter />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+            <a href="https://github.com" target="_blank" aria-label="GitHub">
+              <FaGithub />
+            </a>
           </div>
         </div>
       </div>
 
       {/* Frase de Assinatura */}
       <div className="footer-signature">
-        <p>&quot;Criando soluções digitais com identidade, propósito e impacto visual real.&quot;</p>
+        <p>
+          &quot;Criando soluções digitais com identidade, propósito e impacto
+          visual real.&quot;
+        </p>
       </div>
 
       {/* Botão Voltar ao Topo */}
@@ -61,9 +112,11 @@ export default function Rodape() {
       {/* Copyright */}
       <div className="footer-copyright">
         <p>
-          © 2025 Lincon Cardoso – Desenvolvedor Web. Todos os direitos reservados.
+          © 2025 Lincon Cardoso – Desenvolvedor Web. Todos os direitos
+          reservados.
           <br />
-          <a href="/politica-de-privacidade">Política de Privacidade</a> | <a href="/termos-de-uso">Termos de Uso</a>
+          <a href="/politica-de-privacidade">Política de Privacidade</a> |{" "}
+          <a href="/termos-de-uso">Termos de Uso</a>
         </p>
       </div>
     </footer>
