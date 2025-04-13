@@ -14,7 +14,7 @@ export default function Rodape() {
             <li><Link href="/meuProjetos">Projetos</Link></li>
             <li><Link href="/sobre">Sobre Mim</Link></li>
             <li><Link href="/contato">Contato</Link></li>
-            <li><Link href="/login">Login</Link></li>
+            <li><Link href="/admin.devlincon.com.br">Login</Link></li>
           </ul>
         </div>
 

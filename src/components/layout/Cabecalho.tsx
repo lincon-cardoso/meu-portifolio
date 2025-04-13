@@ -70,7 +70,7 @@ export default function Cabecalho() {
             </li>
             <li className="nav-item">
               <Link
-              href="/login"
+                href="admin.devlincon.com.br"
               className={`nav-link ${
                 pathname === "/login" ? "active" : ""
               }`}
