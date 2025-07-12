@@ -1,50 +1,87 @@
+// next.config.js
+import dotenv from "dotenv";
+dotenv.config();
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  productionBrowserSourceMaps: true,
 
   experimental: {
-    optimizeCss: true, // Ativa otimização de CSS
+    optimizeCss: true,
+  },
+
+  onDemandEntries: {
+    maxInactiveAge: process.env.NODE_ENV === "development" ? 0 : 15_000,
   },
 
   async headers() {
+    const isDev = process.env.NODE_ENV === "development";
+
     return [
-      // 🔹 Cabeçalhos de segurança + sem cache para páginas (SSR e HTML)
+      // ─── HTML / Rotas dinâmicas ────────────────────────
+      // Browser e CDN sempre revalidam no F5 normal
       {
         source: "/:path*",
         headers: [
-          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, proxy-revalidate" },
-          { key: "Pragma", value: "no-cache" },
-          { key: "Expires", value: "0" },
+          ...(isDev
+            ? [
+                // Dev: nada em cache
+                {
+                  key: "Cache-Control",
+                  value:
+                    "no-store, no-cache, must-revalidate, proxy-revalidate",
+                },
+                { key: "Pragma", value: "no-cache" },
+                { key: "Expires", value: "0" },
+              ]
+            : [
+                // Prod: browser e CDN com TTL zero
+                {
+                  key: "Cache-Control",
+                  value: "public, max-age=0, s-maxage=0, must-revalidate",
+                },
+              ]),
+          // Cabeçalhos de segurança
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-XSS-Protection", value: "1; mode=block" },
-          { key: "Surrogate-Control", value: "no-store" },
-          { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains; preload" },
-
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains; preload",
+          },
           { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
-
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
           { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
         ],
       },
 
-      // 🔹 Cache agressivo para arquivos estáticos com hash
+      // ─── Assets estáticos versionados ────────────────────
       {
         source: "/_next/static/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
 
-      // 🔹 Cache agressivo para imagens otimizadas do Next
+      // ─── Imagens otimizadas ─────────────────────────────
       {
-        source: "/_next/image",
+        source: "/_next/image(/:path*)?",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
     ];
