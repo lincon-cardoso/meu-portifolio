@@ -8,7 +8,7 @@ import Rodape from "../../components/layout/Rodape";
 export default function SobrePage() {
   return (
     <>
-      Cabeçalho
+      {/* Cabeçalho */}
 
       <Cabecalho />
       {/* Conteúdo Principal */}
