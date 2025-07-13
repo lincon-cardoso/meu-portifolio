@@ -3,7 +3,8 @@
 ======================================================================== */
 .sobre-mim {
   padding: var(--spacing-16) var(--content-padding-x);
-  background-color: white;
+  background-color: var(--color-bg);
+  
 }
 
 .sobre-mim-title {
@@ -27,15 +28,123 @@
   border-radius: 2px;
 }
 
-.sobre-mim-description {
+/* Layout para imagem e texto */
+.sobre-mim-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-12);
+}
+
+.sobre-mim-text {
+  flex: 1;
+  /* Ocupa o espaço restante */
+}
+
+.sobre-mim-description{
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
-  margin: 0 auto;
-  max-width: 800px;
   color: var(--color-text);
+  margin-bottom: var(--spacing-6);
+  /* Espaçamento entre parágrafos */
 }
 
 .sobre-mim-description strong {
-  color: var(--color-dark);
-  font-weight: var(--font-weight-semibold);
+  /* Cor e peso ajustados para maior destaque */
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* =======================================================================
+   9. Seção "Stacks"
+======================================================================== */
+.skills-container {
+  margin-top: var(--spacing-16);
+
+  h3 {
+    font-size: var(--font-size-2xl);
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+    color: var(--color-dark);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-8);
+  }
+
+  .skills-column {
+    background: var(--color-card-bg);
+    padding: var(--spacing-8);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-soft);
+    transition: all var(--transition-default);
+    
+    h4 {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-6);
+      color: var(--color-dark);
+    }
+
+    .skill-item {
+      font-size: var(--font-size-md);
+      margin-bottom: var(--spacing-4);
+      color: var(--color-text);
+
+      strong {
+        /* Aumentar o destaque com uma cor mais vibrante */
+        color: red;
+        font-weight: var(--font-weight-bold);
+      }
+    }
+  }
+}
+
+/* =======================================================================
+   10. Seção "Call to Action"
+======================================================================== */
+.cta-container {
+  margin-top: var(--spacing-16);
+  text-align: center;
+
+  .btn {
+    display: inline-block;
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: all var(--transition-default);
+    will-change: transform;
+
+    &.btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-card-bg);
+      border: 1px solid transparent;
+      box-shadow: var(--box-shadow-soft);
+
+      &:hover,
+        &:focus-visible {
+          background-color: var(--color-accent-hover);
+          /* Ajustado para uma cor diferente */
+          transform: translateY(-3px);
+          box-shadow: var(--box-shadow-hover);
+        }
+    }
+
+    &.btn-outline {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color-primary);
+        color: var(--color-card-bg);
+        transform: translateY(-3px);
+        box-shadow: var(--box-shadow-soft);
+      }
+    }
+  }
 }

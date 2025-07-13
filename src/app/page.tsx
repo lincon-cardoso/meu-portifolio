@@ -8,15 +8,11 @@ export default function Home() {
   return (
     <main>
       {/* Cabeçalho Global */}
-
       <Cabecalho />
-
       {/* Conteúdo das páginas */}
       <HomePage />
-
       {/* Rodapé Global */}
       <Rodape />
-
     </main>
   );
 }
