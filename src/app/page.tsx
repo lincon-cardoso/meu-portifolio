@@ -11,7 +11,7 @@ export default function Home() {
 
       {/* <Cabecalho /> */}
       <h1>
-        Pagina em construção
+        Pagina em construçãoo
       </h1>
       {/* Conteúdo das páginas */}
       {/* <HomePage /> */}
