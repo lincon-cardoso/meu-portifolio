@@ -77,7 +77,6 @@ export default function HomePage() {
         </div>
       </section>
 
-teste
       <section className="cards-de-projetos fade-in">
         <h2 className="projetos-title">Projetos em Destaque</h2>
         <div className="cards-container">
