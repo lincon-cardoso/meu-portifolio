@@ -36,7 +36,7 @@ export default function MeuProjetosPage() {
       <Cabecalho />
       <main className="fade-in">
         <section className="cards-de-projetos">
-          {/* <h2 className="projetos-title" id="projetos">
+          <h2 className="projetos-title" id="projetos">
             Meus Projetos
           </h2>
 
@@ -68,11 +68,9 @@ export default function MeuProjetosPage() {
                 <p className="card-description">{project.date}</p>
               </div>
             ))}
-          </div> */}
+          </div>
 
-          <h1 style={{ textAlign: "center", marginTop: "50px" }}>
-            area em desenvolvimento, em breve teremos novidades!
-          </h1>
+         
 
         </section>
       </main>
