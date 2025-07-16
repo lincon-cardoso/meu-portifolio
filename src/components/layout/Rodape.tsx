@@ -26,7 +26,7 @@ export default function Rodape() {
               <Link href="/contato">Contato</Link>
             </li>
             <li className="nav-item">
-              <Link href="https://admin.devlincon.com.br" className="nav-link">
+              <Link href="/login" className="nav-link">
                 Login
               </Link>
             </li>
@@ -52,9 +52,6 @@ export default function Rodape() {
             <h3>Redes Sociais</h3>
           </div>
           <div className="footer-social">
-
-
-     
             <a
               href="https://linkedin.com"
               target="_blank"

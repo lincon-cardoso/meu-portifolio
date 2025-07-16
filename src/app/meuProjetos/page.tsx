@@ -5,126 +5,78 @@ import useProjectFilter from "@/hooks/useProjectFilter";
 import Cabecalho from "../../components/layout/Cabecalho";
 import Rodape from "../../components/layout/Rodape";
 
+const menuItems = [
+  { category: "todos", label: "Todos" },
+  { category: "frontend", label: "Frontend" },
+  { category: "backend", label: "Backend" },
+  { category: "mobile", label: "Mobile" },
+  { category: "ui", label: "UI/UX" },
+];
+
+const projectsData = [
+  { category: "frontend", title: "E-commerce Responsivo", date: "01/2023" },
+  { category: "backend", title: "API de Gestão", date: "03/2023" },
+  { category: "mobile", title: "App de Finanças", date: "05/2023" },
+  { category: "ui", title: "Design System", date: "07/2023" },
+  { category: "frontend", title: "Landing Page", date: "09/2023" },
+  { category: "backend", title: "Sistema de Autenticação", date: "10/2023" },
+  { category: "mobile", title: "App de Delivery", date: "11/2023" },
+  { category: "ui", title: "Redesign de Interface", date: "12/2023" },
+  { category: "frontend", title: "Blog Pessoal", date: "01/2024" },
+  { category: "backend", title: "API RESTful", date: "02/2024" },
+  { category: "mobile", title: "App de Notas", date: "03/2024" },
+  { category: "ui", title: "Dashboard de Analytics", date: "04/2024" },
+];
+
 export default function MeuProjetosPage() {
   useProjectFilter();
 
   return (
     <>
-      {/* Cabeçalho */}
       <Cabecalho />
-      {/* Conteúdo Principal */}
       <main className="fade-in">
         <section className="cards-de-projetos">
-          <h2 className="projetos-title" id="projetos">
+          {/* <h2 className="projetos-title" id="projetos">
             Meus Projetos
           </h2>
+
           <div className="menu-horizontal">
             <ul className="menu-list">
-              <li className="menu-item">
-                <a href="#" data-category="todos" className="active">
-                  Todos
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="#" data-category="frontend">
-                  Frontend
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="#" data-category="backend">
-                  Backend
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="#" data-category="mobile">
-                  Mobile
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="#" data-category="ui">
-                  UI/UX
-                </a>
-              </li>
+              {menuItems.map((item) => (
+                <li className="menu-item" key={item.category}>
+                  <a
+                    href="#"
+                    data-category={item.category}
+                    className={item.category === "todos" ? "active" : ""}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
+
           <div className="cards-container">
-            {/* Card do Projeto 1 */}
-            <div className="card" data-category="frontend">
-              <div className="card-image"></div>
-              <h3 className="card-title">E-commerce Responsivo</h3>
-              <p className="card-description">01/2023</p>
-            </div>
-            {/* Card do Projeto 2 */}
-            <div className="card" data-category="backend">
-              <div className="card-image"></div>
-              <h3 className="card-title">API de Gestão</h3>
-              <p className="card-description">03/2023</p>
-            </div>
-            {/* Card do Projeto 3 */}
-            <div className="card" data-category="mobile">
-              <div className="card-image"></div>
-              <h3 className="card-title">App de Finanças</h3>
-              <p className="card-description">05/2023</p>
-            </div>
-            {/* Card do Projeto 4 */}
-            <div className="card" data-category="ui">
-              <div className="card-image"></div>
-              <h3 className="card-title">Design System</h3>
-              <p className="card-description">07/2023</p>
-            </div>
-            {/* Card do Projeto 5 */}
-            <div className="card" data-category="frontend">
-              <div className="card-image"></div>
-              <h3 className="card-title">Landing Page</h3>
-              <p className="card-description">09/2023</p>
-            </div>
-            {/* Card do Projeto 6 */}
-            <div className="card" data-category="backend">
-              <div className="card-image"></div>
-              <h3 className="card-title">Sistema de Autenticação</h3>
-              <p className="card-description">10/2023</p>
-            </div>
-            {/* Card do Projeto 7 */}
-            <div className="card" data-category="mobile">
-              <div className="card-image"></div>
-              <h3 className="card-title">App de Delivery</h3>
-              <p className="card-description">11/2023</p>
-            </div>
-            {/* Card do Projeto 8 */}
-            <div className="card" data-category="ui">
-              <div className="card-image"></div>
-              <h3 className="card-title">Redesign de Interface</h3>
-              <p className="card-description">12/2023</p>
-            </div>
-            {/* Card do Projeto 9 */}
-            <div className="card" data-category="frontend">
-              <div className="card-image"></div>
-              <h3 className="card-title">Blog Pessoal</h3>
-              <p className="card-description">01/2024</p>
-            </div>
-            {/* Card do Projeto 10 */}
-            <div className="card" data-category="backend">
-              <div className="card-image"></div>
-              <h3 className="card-title">API RESTful</h3>
-              <p className="card-description">02/2024</p>
-            </div>
-            {/* Card do Projeto 11 */}
-            <div className="card" data-category="mobile">
-              <div className="card-image"></div>
-              <h3 className="card-title">App de Notas</h3>
-              <p className="card-description">03/2024</p>
-            </div>
-            {/* Card do Projeto 12 */}
-            <div className="card" data-category="ui">
-              <div className="card-image"></div>
-              <h3 className="card-title">Dashboard de Analytics</h3>
-              <p className="card-description">04/2024</p>
-            </div>
-          </div>
+            {projectsData.map((project, index) => (
+              <div
+                className="card"
+                data-category={project.category}
+                key={index}
+              >
+                <div className="card-image"></div>
+                <h3 className="card-title">{project.title}</h3>
+                <p className="card-description">{project.date}</p>
+              </div>
+            ))}
+          </div> */}
+
+          <h1 style={{ textAlign: "center", marginTop: "50px" }}>
+            area em desenvolvimento, em breve teremos novidades!
+          </h1>
+
         </section>
       </main>
       <Rodape />
-      {/* Rodapé */}
     </>
   );
 }

@@ -39,3 +39,10 @@
   color: var(--color-dark);
   font-weight: var(--font-weight-semibold);
 }
+
+// Adicionado para estilizar a lista de habilidades
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

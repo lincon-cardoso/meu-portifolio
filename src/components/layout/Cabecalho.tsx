@@ -68,7 +68,7 @@ export default function Cabecalho() {
             </li>
             <li className="nav-item">
               <Link
-                href="https://admin.devlincon.com.br"
+                href="/login"
                 className="nav-link"
               >
                 Login

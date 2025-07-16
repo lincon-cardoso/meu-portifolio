@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "@/style/style.scss";
 
+// Força a renderização dinâmica (SSR) em toda requisição
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
@@ -34,8 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Portfólio | Lincon Cardoso",
-    description:
-      "Desenvolvedor Front-End com projetos de impacto visual real.",
+    description: "Desenvolvedor Front-End com projetos de impacto visual real.",
     images: ["/img/Foto.jpg"],
     creator: "@seuUsuarioTwitter",
   },

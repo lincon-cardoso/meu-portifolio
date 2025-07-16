@@ -5,12 +5,44 @@ import Link from "next/link";
 import Cabecalho from "../../components/layout/Cabecalho";
 import Rodape from "../../components/layout/Rodape";
 
+// Estrutura de dados para as habilidades
+const skillsData = [
+  {
+    category: "Frontend",
+    skills: [
+      "HTML5",
+      "CSS3",
+      "Sass",
+      "Responsive Design",
+      "UI/UX",
+      "TypeScript",
+      "React",
+      "Next.js",
+    ],
+  },
+  {
+    category: "Backend",
+    skills: [
+      "Node.js",
+      "RESTful API",
+      "Prisma",
+      "PostgreSQL",
+      "JWT (Autenticação)",
+      "Zod (Validação)",
+    ],
+  },
+  {
+    category: "Dev Tools",
+    skills: ["Git & GitHub", "ESLint", "Jest", "Cloudflare"],
+  },
+];
+
 export default function SobrePage() {
   return (
     <>
       {/* Cabeçalho */}
-
       <Cabecalho />
+
       {/* Conteúdo Principal */}
       <main className="fade-in">
         <section className="sobre-mim">
@@ -21,52 +53,72 @@ export default function SobrePage() {
               <div className="sobre-mim-image">
                 <div className="profile-photo-large"></div>
               </div>
+
               {/* Texto descritivo */}
               <div className="sobre-mim-text">
                 <p className="sobre-mim-description">
-                  Olá! Sou Lincon Cardoso, desenvolvedor web apaixonado por criar soluções digitais com propósito, segurança e impacto real.
+                  Olá! Sou Lincon Cardoso,{" "}
+                  <strong>desenvolvedor front-end</strong> apaixonado por criar{" "}
+                  <strong>soluções digitais</strong> que façam sentido para as
+                  pessoas. Acredito que cada linha de código pode carregar um{" "}
+                  <strong>propósito</strong> — seja para facilitar a rotina de
+                  alguém ou transformar uma ideia em algo{" "}
+                  <strong>real e funcional</strong>.
                 </p>
                 <p className="sobre-mim-description">
-                  Minha jornada na programação começou há cerca de 5 anos, quando percebi o poder de transformar ideias em experiências interativas e funcionais. Desde então, venho me especializando em desenvolvimento <strong>fullstack</strong>, com foco em boas práticas, performance e segurança digital.
+                  Minha trajetória com programação começou há cerca de 5 anos,
+                  quando descobri o poder de unir{" "}
+                  <strong>criatividade com tecnologia</strong>. Desde então,
+                  venho me especializando na criação de{" "}
+                  <strong>interfaces modernas, acessíveis e seguras</strong>,
+                  sempre com atenção aos detalhes que melhoram a{" "}
+                  <strong>experiência do usuário</strong>.
                 </p>
                 <p className="sobre-mim-description">
-                  Trabalho com tecnologias modernas como <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Sass</strong>, <strong>PostgreSQL</strong> e <strong>Node.js</strong>, buscando sempre manter um código limpo, escalável e padronizado. Uso ferramentas como <strong>Git</strong>, <strong>ESLint</strong> e <strong>Cloudflare</strong> para garantir qualidade e proteção no desenvolvimento de aplicações.
+                  Trabalho com tecnologias como{" "}
+                  <strong>React, Next.js, TypeScript e Sass</strong>, buscando
+                  desenvolver{" "}
+                  <strong>
+                    aplicações rápidas, responsivas e com código limpo
+                  </strong>
+                  . No dia a dia, utilizo ferramentas como{" "}
+                  <strong>Git, ESLint e Jest</strong> para manter a qualidade do
+                  projeto, além de contar com o apoio de soluções como{" "}
+                  <strong>Cloudflare</strong> para performance e proteção.
                 </p>
                 <p className="sobre-mim-description">
-                  Gosto de pensar além do código: criar soluções que realmente façam sentido para quem usa, com <strong>experiências intuitivas, acessíveis e seguras</strong>. Acredito que um bom projeto une técnica e propósito — e é nisso que coloco meu foco todos os dias.
+                  Tenho <strong>experiência também no back-end</strong>,
+                  utilizando <strong>Node.js, Prisma e PostgreSQL</strong> para
+                  estruturar <strong>APIs seguras</strong>, com autenticação via{" "}
+                  <strong>JWT</strong> e validação de dados com{" "}
+                  <strong>Zod</strong>. Isso me permite colaborar melhor com{" "}
+                  <strong>times fullstack</strong> e entender a aplicação de
+                  ponta a ponta.
                 </p>
-
+                <p className="sobre-mim-description">
+                  Mais do que programar, gosto de{" "}
+                  <strong>resolver problemas com empatia e clareza</strong>.
+                  Valorizo projetos que priorizam a{" "}
+                  <strong>experiência do usuário</strong> e que entregam{" "}
+                  <strong>valor de verdade</strong>.
+                </p>
 
                 {/* Seção de habilidades */}
                 <div className="skills-container">
                   <h3>Minhas habilidades</h3>
                   <div className="skills-grid">
-                    {/* Frontend */}
-                    <div className="skills-column">
-                      <h4>Frontend</h4>
-                      <div className="skill-item">HTML5</div>
-                      <div className="skill-item">CSS3</div>
-                      <div className="skill-item">Sass</div>
-                      <div className="skill-item">Responsive Design</div>
-                      <div className="skill-item">UI/UX</div>
-                      <div className="skill-item">TypeScript</div>
-                      <div className="skill-item">Next.js</div>
-                    </div>
-
-                    {/* Backend */}
-                    <div className="skills-column">
-                      <h4>Backend</h4>
-                      <div className="skill-item">Node.js</div>
-                      <div className="skill-item">RESTful API</div>
-                      <div className="skill-item">PostgreSQL</div>
-                      <div className="skill-item">MongoDB</div>
-                    </div>
-
-                    {/* Dev Tools */}
-                    <div className="skills-column">
-                      <h4>Dev Tools</h4>
-                      <div className="skill-item">Git & GitHub</div>
-                    </div>
+                    {skillsData.map((group) => (
+                      <div key={group.category} className="skills-column">
+                        <h4>{group.category}</h4>
+                        <ul className="skills-list">
+                          {group.skills.map((skill) => (
+                            <li key={skill} className="skill-item">
+                              {skill}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -75,12 +127,8 @@ export default function SobrePage() {
                   <Link href="/contato" className="btn btn-primary">
                     Entre em contato
                   </Link>
-                  <a href="#" className="btn btn-outline">
-                    Baixar currículo
-                  </a>
                 </div>
               </div>
-
             </div>
           </div>
         </section>

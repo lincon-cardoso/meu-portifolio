@@ -1,15 +1,58 @@
 "use client";
 
-import React from "react";
-import useProjectFilter from "../../hooks/useProjectFilter";
+import React, { useState } from "react";
 import Cabecalho from "../../components/layout/Cabecalho";
 import Rodape from "../../components/layout/Rodape";
 
-
 export default function ContatoPage() {
-  // Executa o hook para manipulação do filtro ou do formulário após a montagem, sem afetar a renderização inicial.
-  useProjectFilter();
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    assunto: "",
+    mensagem: "",
+  });
+  const [status, setStatus] = useState(""); // Para feedback ao usuário
+  const [isSending, setIsSending] = useState(false);
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSending(true);
+    setStatus("Enviando...");
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("Mensagem enviada com sucesso!");
+        setFormData({ nome: "", email: "", assunto: "", mensagem: "" }); // Limpa o formulário
+      } else {
+        const errorData = await response.json();
+        setStatus(`Falha ao enviar: ${errorData.error || "Erro no servidor"}`);
+      }
+    } catch {
+      setStatus("Falha ao enviar a mensagem. Tente novamente.");
+    } finally {
+      setIsSending(false);
+      // Opcional: Limpar a mensagem de status após alguns segundos
+      setTimeout(() => setStatus(""), 5000);
+    }
+  };
 
   return (
     <>
@@ -44,7 +87,7 @@ export default function ContatoPage() {
                 </div>
               </div>
               {/* Formulário de Contato */}
-              <form className="contato-form">
+              <form className="contato-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="nome">Nome</label>
                   <input
@@ -53,6 +96,8 @@ export default function ContatoPage() {
                     name="nome"
                     placeholder="Seu nome completo"
                     required
+                    value={formData.nome}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -63,6 +108,8 @@ export default function ContatoPage() {
                     name="email"
                     placeholder="seu.email@exemplo.com"
                     required
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -73,6 +120,8 @@ export default function ContatoPage() {
                     name="assunto"
                     placeholder="Do que se trata?"
                     required
+                    value={formData.assunto}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -83,11 +132,18 @@ export default function ContatoPage() {
                     rows={5}
                     placeholder="Escreva sua mensagem aqui..."
                     required
+                    value={formData.mensagem}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
-                <button type="submit" className="contato-button">
-                  Enviar Mensagem
+                <button
+                  type="submit"
+                  className="contato-button"
+                  disabled={isSending}
+                >
+                  {isSending ? "Enviando..." : "Enviar Mensagem"}
                 </button>
+                {status && <p className="contato-status">{status}</p>}
               </form>
             </div>
           </div>
