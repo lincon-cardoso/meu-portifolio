@@ -1,12 +1,20 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-// Instancia o Resend puxando a chave do arquivo .env
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const toEmail = "contato@devlincon.com.br"; // Seu e-mail de destino
 
 export async function POST(request: Request) {
+  // Verifica se a chave RESEND_API_KEY está definida
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY não definida");
+    return NextResponse.json(
+      { error: "Chave RESEND_API_KEY não definida" },
+      { status: 500 }
+    );
+  }
+  // Instancia o Resend usando a chave de API válida
+  const resend = new Resend(apiKey);
   try {
     const { nome, email, assunto, mensagem } = await request.json();
 
