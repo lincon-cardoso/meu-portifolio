@@ -1,9 +1,6 @@
 "use client";
 import Link from "next/link";
 import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
   FaLinkedin,
   FaGithub,
 } from "react-icons/fa";
@@ -45,11 +42,6 @@ export default function Rodape() {
                 contato@devlincon.com.br
               </a>
             </li>
-            <li>
-              <a href="/curriculo.pdf" target="_blank">
-                Currículo (PDF)
-              </a>
-            </li>
             <li>Santa Catarina, Brasil</li>
           </ul>
         </div>
@@ -60,23 +52,9 @@ export default function Rodape() {
             <h3>Redes Sociais</h3>
           </div>
           <div className="footer-social">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
-            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-              <FaTwitter />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
+
+
+     
             <a
               href="https://linkedin.com"
               target="_blank"
