@@ -8,9 +8,31 @@ export default function LoginPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Lógica de autenticação aqui
-    // console.log("Email:", email, "Password:", password);
-    alert("Area em desenvolvi");
+   fetch("/api/login", {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({ email, password }),
+   })
+     .then((response) => {
+       if (!response.ok) {
+         throw new Error("Erro na autenticação");
+       }
+       return response.json();
+     })
+     .then((data) => {
+       console.log("Resposta da API:", data);
+       if (data.message === "Login successful") {
+         console.log("Login bem-sucedido!");
+       } else {
+         console.error("Credenciais inválidas:", data);
+       }
+     })
+     .catch((error) => {
+       console.error("Erro ao chamar a API:", error);
+       alert("Erro ao fazer login. Tente novamente.");
+     });
   };
 
   return (
