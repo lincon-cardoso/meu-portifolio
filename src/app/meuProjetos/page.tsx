@@ -39,8 +39,12 @@ export default function MeuProjetosPage() {
           <h2 className="projetos-title" id="projetos">
             Meus Projetos
           </h2>
+          <h1 style={{ textAlign: "center" }}>
+            Breve projetos que desenvolvi e participei, com foco em frontend, backend, mobile e UI/UX.
+          </h1>
 
-          <div className="menu-horizontal">
+
+          {/* <div className="menu-horizontal">
             <ul className="menu-list">
               {menuItems.map((item) => (
                 <li className="menu-item" key={item.category}>
@@ -68,7 +72,7 @@ export default function MeuProjetosPage() {
                 <p className="card-description">{project.date}</p>
               </div>
             ))}
-          </div>
+          </div> */}
 
          
 
