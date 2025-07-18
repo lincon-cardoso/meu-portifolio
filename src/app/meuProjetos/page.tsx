@@ -40,7 +40,7 @@ export default function MeuProjetosPage() {
             Meus Projetos
           </h2>
           <h1 style={{ textAlign: "center" }}>
-            Breve projetos que desenvolvi e participei, com foco em frontend, backend, mobile e UI/UX.
+            Breve projetos que desenvolvi e participei, com foco em frontend, backend.
           </h1>
 
 
