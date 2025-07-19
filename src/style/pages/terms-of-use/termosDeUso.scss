@@ -1,0 +1,67 @@
+// Estilos para a página de termos de uso
+
+.termos-de-uso {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+
+    .termos-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .termos-header {
+        text-align: center;
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .termos-atualizacao {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        .termos-introducao {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 0.3rem;
+            line-height: 1.3;
+        }
+    }
+
+    .termos-secao {
+        margin: 3px;
+
+        .termos-titulo {
+            font-size: 1.5rem;
+            color: #222;
+            margin-bottom: 0.3rem;
+        }
+
+        .termos-texto {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+        }
+
+        .termos-lista {
+            margin-top: 0.3rem;
+            padding-left: 1rem;
+
+            li {
+                font-size: 1rem;
+                color: #444;
+                margin-bottom: 0.2rem;
+                line-height: 1.3;
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+/* =======================================================================
+   Variáveis Globais para Responsividade
+======================================================================== */
+:root {
+    /* Font Sizes */
+    --font-size-4xl: 2.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-xl: 1.25rem;
+    --font-size-lg: 1.125rem;
+    --font-size-md: 1rem;
+    --font-size-sm: 0.875rem;
+
+    /* Spacing */
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-10: 40px;
+
+    /* Outras Variáveis */
+    --color-text: #333;
+    --color-bg: #fff;
+    --box-shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* =======================================================================
+   Estilos Base para Responsividade
+======================================================================== */
+
+/* Por padrão, o botão do menu mobile fica oculto */
+.mobile-menu-toggle {
+    display: none;
+}

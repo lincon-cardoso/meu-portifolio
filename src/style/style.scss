@@ -1,18 +1,35 @@
-@use './utilities/loader.scss';
-@use './utilities/fade-in-animation.scss';
-@use './base/variaveis.scss';
-@use './base/reset-e-estilos-globais.scss';
-@use './components/cabecalho-navegacao.scss';
-@use './sections/secao-portfolio.scss';
-@use './components/botoes.scss';
-@use './sections/projetos-cards.scss';
-@use './components/menu-filtro-projetos.scss';
-@use './sections/sobre.scss';
-@use './sections/contato.scss';
-@use './components/rodape.scss';
-@use './sections/login.scss';
-@use './utilities/classes-utilitarias.scss';
-@use './utilities/media-queries.scss';
-@use './sections/termosDeUso.scss';
-@use './sections/politicaPrivacidade.scss';
+// =======================================================================
+// Imports dos Estilos - Organização por Tipo
+// =======================================================================
 
+// 1. Helpers (Utilitários e Animações)
+@use './helpers/loader.scss';
+@use './helpers/fade-in-animation.scss';
+
+// 2. Global (Variáveis e Reset)
+@use './global/variaveis.scss';
+@use './global/reset-e-estilos-globais.scss';
+
+// 3. UI Components (Componentes de Interface)
+@use './ui-components/header/cabecalho-navegacao.scss';
+@use './ui-components/buttons/botoes.scss';
+@use './ui-components/menu/menu-filtro-projetos.scss';
+@use './ui-components/footer/rodape.scss';
+
+// 4. Pages (Páginas e Seções)
+@use './pages/portfolio/secao-portfolio.scss';
+@use './pages/projects/projetos-cards.scss';
+@use './pages/about/sobre.scss';
+@use './pages/contact/contato.scss';
+@use './pages/login/login.scss';
+@use './pages/terms-of-use/termosDeUso.scss';
+@use './pages/privacy-policy/politicaPrivacidade.scss';
+
+// 5. Helpers Finais (Classes Utilitárias e Media Queries)
+@use './helpers/classes-utilitarias.scss';
+@use './helpers/media-queries.scss';
+
+// 6. Media Queries por Breakpoint
+@use './helpers/media/tablet.scss';
+@use './helpers/media/mobile.scss';
+@use './helpers/media/mobile-small.scss';

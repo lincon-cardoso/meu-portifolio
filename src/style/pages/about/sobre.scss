@@ -1,0 +1,48 @@
+/* =======================================================================
+   8. Seção "Sobre Mim"
+======================================================================== */
+.sobre-mim {
+    padding: var(--spacing-16) var(--content-padding-x);
+    background-color: white;
+}
+
+.sobre-mim-title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-10);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    color: var(--color-dark);
+    position: relative;
+}
+
+.sobre-mim-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--color-accent);
+    border-radius: 2px;
+}
+
+.sobre-mim-description {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    margin: 0 auto;
+    max-width: 800px;
+    color: var(--color-text);
+}
+
+.sobre-mim-description strong {
+    color: var(--color-dark);
+    font-weight: var(--font-weight-semibold);
+}
+
+// Adicionado para estilizar a lista de habilidades
+.skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

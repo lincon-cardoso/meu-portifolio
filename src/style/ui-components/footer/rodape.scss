@@ -1,0 +1,66 @@
+/* =======================================================================
+   Rodapé (Footer)
+======================================================================== */
+.footer {
+    background-color: var(--color-dark);
+    color: #fff;
+    padding: var(--spacing-20) 0;
+    text-align: center;
+
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--spacing-10);
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--content-padding-x);
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+
+            h3 {
+                font-size: var(--font-size-lg);
+                margin-bottom: var(--spacing-4);
+                color: var(--color-accent);
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: var(--spacing-2);
+
+                    a {
+                        color: #fff;
+                        font-size: var(--font-size-md);
+                        transition: color 0.3s ease;
+
+                        &:hover {
+                            color: var(--color-accent);
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-4);
+
+            a {
+                color: var(--color-light-text);
+                font-size: var(--font-size-lg);
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: var(--color-accent);
+                }
+            }
+        }
+    }
+}

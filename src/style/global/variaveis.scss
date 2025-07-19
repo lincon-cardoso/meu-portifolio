@@ -1,0 +1,94 @@
+/* =======================================================================
+   1. Variáveis Globais - Paleta Acessível e Moderna
+======================================================================== */
+:root {
+    /* Paleta de cores ajustada para maior contraste e acessibilidade */
+    --color-primary: #1a1f36;
+    /* Azul escuro com contraste aprimorado */
+    --color-secondary: #3a506b;
+    /* Azul médio */
+    --color-accent: #007bff;
+    /* Azul com bom contraste */
+    --color-accent-hover: #0056b3;
+    /* Azul mais escuro para hover */
+    --color-link: #e63946;
+    /* Vermelho vibrante para links */
+    --color-link-hover: #ffffff;
+    /* Branco no hover */
+    --color-success: #2a9d8f;
+    /* Verde para mensagens de sucesso */
+    --color-warning: #b8860b;
+    /* Amarelo escuro para alertas */
+    --color-danger: #b22222;
+    /* Vermelho escuro para erros */
+    --color-dark: #0d1117;
+    /* Preto profundo */
+    --color-text: #1c1e21;
+    /* Cinza escuro para texto */
+    --color-light-text: #6c757d;
+    /* Cinza claro para texto secundário */
+    --color-bg: #f8f9fa;
+    /* Cinza muito claro para fundo */
+    --color-card-bg: #ffffff;
+    /* Branco puro para cartões */
+    --color-footer: #121212;
+    /* Preto profundo para rodapé */
+
+    /* Efeitos e Bordas */
+    --border-radius: 8px;
+    --box-shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --transition-default: all 0.3s ease-in-out;
+
+    /* Tipografia */
+    --font-family-base: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-base: 1rem;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --line-height-tight: 1.25;
+    --line-height-base: 1.5;
+    --line-height-relaxed: 1.75;
+
+    /* Espaçamento */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+
+    /* Tamanhos */
+    --size-xs: 20px;
+    --size-sm: 30px;
+    --size-md: 40px;
+    --size-lg: 50px;
+    --size-xl: 60px;
+    --size-2xl: 80px;
+    --size-3xl: 100px;
+    --size-4xl: 120px;
+
+    /* Z-index */
+    --z-index-dropdown: 1000;
+    --z-index-modal: 1050;
+    --z-index-tooltip: 1100;
+    --z-index-popover: 1150;
+    --z-index-toast: 1200;
+    --z-index-overlay: 1300;
+    --z-index-header: 1400;
+    --z-index-footer: 1500;
+}

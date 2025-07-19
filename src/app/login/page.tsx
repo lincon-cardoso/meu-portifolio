@@ -5,11 +5,11 @@ import React, { useState } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // Estado para armazenar a mensagem de erro
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setErrorMessage(""); // Limpa a mensagem de erro antes de enviar
+    setErrorMessage("");
 
     fetch("/api/login", {
       method: "POST",
@@ -21,14 +21,14 @@ export default function LoginPage() {
       .then(async (response) => {
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(errorData.error || "Erro na autenticação"); // Mantive o tratamento de erro.
+          throw new Error(errorData.error || "Erro na autenticação");
         }
         const data = await response.json();
-        window.location.href = data.redirect; // Redireciona para a página de dashboard.
+        window.location.href = data.redirect;
       })
       .catch((error) => {
         console.error("Erro ao chamar a API:", error);
-        setErrorMessage(error.message); // Define a mensagem de erro no estado.
+        setErrorMessage(error.message);
       });
   };
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
-                setErrorMessage(""); // Limpa a mensagem de erro ao digitar.
+                setErrorMessage("");
               }}
               required
             />
@@ -62,11 +62,10 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                setErrorMessage(""); // Limpa a mensagem de erro ao digitar.
+                setErrorMessage("");
               }}
               required
             />
-            {/* Exibe a mensagem de erro abaixo do campo de senha */}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
           <button type="submit" className="login-button">
