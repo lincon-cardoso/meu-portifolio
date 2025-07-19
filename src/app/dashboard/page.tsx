@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 import { useState, useEffect, useCallback } from "react";
 import {
   Project,
@@ -7,6 +8,15 @@ import {
 } from "@/app/dashboard/types/dashboard.types";
 import "@/style/pages/dashboard/dashboard.scss";
 
+=======
+import { useState, useEffect } from "react";
+import { Project, DashboardStats, FilterType } from "@/app/dashboard/types/dashboard.types";
+import "@/style/pages/dashboard/dashboard.scss";
+
+// Interfaces/Types
+
+
+>>>>>>> ff03523 (feat: add dashboard page styles and media queries)
 export default function DashboardPage() {
   // Estados principais
   const [projects, setProjects] = useState<Project[]>([]);
@@ -31,6 +41,7 @@ export default function DashboardPage() {
     { value: "error", label: "Com Erro", icon: "❌" },
   ];
 
+<<<<<<< HEAD
   const updateStats = useCallback(() => {
     const newStats: DashboardStats = {
       totalProjects: projects.length,
@@ -38,6 +49,129 @@ export default function DashboardPage() {
       onlineProjects: projects.filter(
         (p) => p.status === "online" || p.status === "deployed"
       ).length,
+=======
+  // Carregar dados iniciais
+  useEffect(() => {
+    loadDashboardData();
+  }, []);
+
+  // Atualizar estatísticas quando projetos mudarem
+  useEffect(() => {
+    updateStats();
+  }, [projects]);
+
+  const loadDashboardData = async () => {
+    setIsLoading(true);
+    try {
+      // Futuramente será uma chamada para API
+      // const response = await fetch('/api/projects');
+      // const projectsData = await response.json();
+
+      // Dados mockados mais completos para desenvolvimento
+      const mockProjects: Project[] = [
+        {
+          id: "1",
+          name: "Portfolio Website",
+          description:
+            "Meu portfólio pessoal desenvolvido em Next.js com design moderno",
+          githubUrl: "https://github.com/usuario/portfolio",
+          deployUrl: "https://portfolio.devlincon.com.br",
+          subdomain: "portfolio",
+          featured: true,
+          status: "deployed",
+          techStack: ["Next.js", "TypeScript", "SCSS", "Prisma"],
+          createdAt: new Date("2024-01-15"),
+          lastDeployed: new Date("2024-01-20"),
+          deployLogs: [
+            "Deploy iniciado...",
+            "Clonando repositório...",
+            "Build concluído com sucesso",
+            "Deploy realizado com sucesso",
+            "DNS configurado",
+          ],
+          repositoryBranch: "main",
+          buildCommand: "npm run build",
+          environmentVars: {
+            NODE_ENV: "production",
+            DATABASE_URL: "***",
+          },
+        },
+        {
+          id: "2",
+          name: "E-commerce App",
+          description:
+            "Aplicação de e-commerce com carrinho de compras e pagamento",
+          githubUrl: "https://github.com/usuario/ecommerce",
+          deployUrl: "https://loja.devlincon.com.br",
+          subdomain: "loja",
+          featured: false,
+          status: "building",
+          techStack: ["React", "Node.js", "MongoDB", "Stripe"],
+          createdAt: new Date("2024-01-10"),
+          lastDeployed: new Date("2024-01-18"),
+          deployLogs: [
+            "Deploy iniciado...",
+            "Clonando repositório...",
+            "Instalando dependências...",
+            "Executando build...",
+          ],
+          repositoryBranch: "main",
+          buildCommand: "npm run build",
+        },
+        {
+          id: "3",
+          name: "Task Manager API",
+          description:
+            "API REST para gerenciamento de tarefas com autenticação JWT",
+          githubUrl: "https://github.com/usuario/task-api",
+          deployUrl: "https://api-tasks.devlincon.com.br",
+          subdomain: "api-tasks",
+          featured: true,
+          status: "deployed",
+          techStack: ["Node.js", "Express", "PostgreSQL", "JWT"],
+          createdAt: new Date("2024-01-05"),
+          lastDeployed: new Date("2024-01-19"),
+          deployLogs: ["Deploy concluído com sucesso"],
+          repositoryBranch: "production",
+        },
+        {
+          id: "4",
+          name: "Blog Pessoal",
+          description: "Blog com sistema de posts e comentários",
+          githubUrl: "https://github.com/usuario/blog",
+          deployUrl: "https://blog.devlincon.com.br",
+          subdomain: "blog",
+          featured: false,
+          status: "error",
+          techStack: ["Gatsby", "GraphQL", "Contentful"],
+          createdAt: new Date("2024-01-12"),
+          lastDeployed: new Date("2024-01-17"),
+          deployLogs: [
+            "Deploy iniciado...",
+            "Erro: Build falhou",
+            "Erro: Variável de ambiente CONTENTFUL_TOKEN não encontrada",
+          ],
+          repositoryBranch: "main",
+        },
+      ];
+
+      // Simular delay de carregamento
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setProjects(mockProjects);
+    } catch (error) {
+      console.error("Erro ao carregar dados do dashboard:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateStats = () => {
+    const newStats: DashboardStats = {
+      totalProjects: projects.length,
+      featuredProjects: projects.filter((p) => p.featured).length,
+      onlineProjects: projects.filter((p) => p.status === "deployed").length,
+>>>>>>> ff03523 (feat: add dashboard page styles and media queries)
       deployingProjects: projects.filter((p) =>
         ["cloning", "building", "deploying", "configuring-dns"].includes(
           p.status
@@ -46,6 +180,7 @@ export default function DashboardPage() {
       errorProjects: projects.filter((p) => p.status === "error").length,
     };
     setStats(newStats);
+<<<<<<< HEAD
   }, [projects]);
 
   // Carregar dados iniciais
@@ -251,6 +386,8 @@ export default function DashboardPage() {
     };
 
     setStats(fallbackStats);
+=======
+>>>>>>> ff03523 (feat: add dashboard page styles and media queries)
   };
 
   // Filtrar projetos por filtro ativo e termo de busca
@@ -266,8 +403,12 @@ export default function DashboardPage() {
         "configuring-dns",
       ].includes(project.status);
     } else if (filter === "online")
+<<<<<<< HEAD
       matchesFilter =
         project.status === "online" || project.status === "deployed";
+=======
+      matchesFilter = project.status === "deployed";
+>>>>>>> ff03523 (feat: add dashboard page styles and media queries)
     else if (filter === "error") matchesFilter = project.status === "error";
 
     // Filtro por busca
@@ -357,8 +498,12 @@ export default function DashboardPage() {
     }
   };
 
+<<<<<<< HEAD
   const formatDate = (date: Date | null) => {
     if (!date) return "Nunca";
+=======
+  const formatDate = (date: Date) => {
+>>>>>>> ff03523 (feat: add dashboard page styles and media queries)
     return new Intl.DateTimeFormat("pt-BR", {
       day: "2-digit",
       month: "2-digit",
