@@ -1,6 +1,22 @@
-# Meu Portfólio Pessoal
+# 🚀 Portfolio Automatizado com Deploy Railway + Cloudflare
 
-Bem-vindo ao meu portfólio pessoal! Este projeto foi desenvolvido para apresentar meus projetos, habilidades e experiências como desenvolvedor web.
+Dashboard completo para gerenciamento de projetos com deploy automático integrado entre **Railway** e **Cloudflare**.
+
+## 🎯 Funcionalidades Principais
+
+### ✅ **Implementado** (Itens 13-15 + Integração Completa)
+
+- 📊 **Dashboard APIs** - CRUD completo de projetos
+- 🔗 **Integração Real** - Dados conectados ao PostgreSQL
+- 🚀 **Deploy Automático** - Railway + Cloudflare integrados
+- 🌐 **Subdomínios Automáticos** - DNS configurado automaticamente
+- 📈 **Monitoramento** - Logs e status de deploy em tempo real
+
+### 🔧 **Próximos Passos** (Itens 16-18)
+
+- 🔒 **Authentication Middleware** - Proteção de rotas
+- 🎨 **ProjectManager Component** - Modal de criação
+- 💄 **Estilização Completa** - SCSS para modal
 
 ## 🚀 Tecnologias Utilizadas
 

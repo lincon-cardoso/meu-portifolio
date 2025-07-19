@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.devlincon.com.br
+
+# Sitemaps
+Sitemap: https://www.devlincon.com.br/sitemap.xml

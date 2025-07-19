@@ -14,15 +14,23 @@ export interface Project {
     | "deploying"
     | "configuring-dns"
     | "deployed"
+    | "online"
     | "error";
   techStack: string[];
   previewImage?: string;
   createdAt: Date;
-  lastDeployed: Date;
-  deployLogs: string[];
+  lastDeployed: Date | null;
+  deployLogs?: string[];
   repositoryBranch?: string;
   buildCommand?: string;
   environmentVars?: Record<string, string>;
+  analytics?: {
+    views: number;
+    visitors: number;
+    bounceRate: number;
+    loadTime: number;
+  };
+  totalDeployments?: number;
 }
 
 export interface DashboardStats {
@@ -38,4 +46,3 @@ export interface FilterType {
   label: string;
   icon: string;
 }
-
