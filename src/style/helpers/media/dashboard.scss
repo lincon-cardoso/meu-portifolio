@@ -1,0 +1,129 @@
+// ========================================
+// DASHBOARD - MEDIA QUERIES
+// ========================================
+
+// Desktop Grande (1200px+)
+@media (max-width: 1200px) {
+    .dashboard-page {
+        .dashboard-container {
+            max-width: 1000px;
+        }
+    }
+}
+
+// Tablet (768px - 1200px)
+@media (max-width: 768px) {
+    .dashboard-page {
+        padding: var(--spacing-4) 0;
+
+        .dashboard-container {
+            padding: 0 var(--spacing-4);
+
+            .dashboard-header {
+                flex-direction: column;
+                gap: var(--spacing-6);
+                align-items: stretch;
+
+                .header-actions {
+                    justify-content: center;
+                }
+            }
+
+            .dashboard-stats {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: var(--spacing-4);
+
+                .stat-card {
+                    padding: var(--spacing-4);
+
+                    .stat-content .stat-number {
+                        font-size: var(--font-size-2xl);
+                    }
+                }
+            }
+
+            .dashboard-controls {
+                .search-bar {
+                    max-width: 100%;
+                }
+
+                .dashboard-filters {
+                    gap: var(--spacing-2);
+
+                    .filter-btn {
+                        font-size: var(--font-size-xs);
+                        padding: var(--spacing-2) var(--spacing-3);
+                    }
+                }
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-6);
+
+                .project-card .card-actions {
+                    gap: var(--spacing-1);
+
+                    button {
+                        font-size: var(--font-size-xs);
+                        padding: var(--spacing-1) var(--spacing-2);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Mobile (480px - 768px)
+@media (max-width: 480px) {
+    .dashboard-page {
+        .dashboard-container {
+            .dashboard-header {
+                padding: var(--spacing-6);
+
+                .header-content .dashboard-title {
+                    font-size: var(--font-size-3xl);
+                }
+
+                .header-actions {
+                    flex-direction: column;
+                    width: 100%;
+
+                    .btn-secondary,
+                    .btn-primary {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid .project-card {
+                .card-actions {
+                    flex-direction: column;
+
+                    button {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+
+        .modal-overlay {
+            padding: var(--spacing-4);
+
+            .modal-content {
+
+                .modal-header,
+                .modal-body,
+                .modal-footer {
+                    padding: var(--spacing-4);
+                }
+            }
+        }
+    }
+}

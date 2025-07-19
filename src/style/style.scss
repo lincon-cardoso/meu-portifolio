@@ -22,6 +22,7 @@
 @use './pages/about/sobre.scss';
 @use './pages/contact/contato.scss';
 @use './pages/login/login.scss';
+@use './pages/dashboard/dashboard.scss';
 @use './pages/terms-of-use/termosDeUso.scss';
 @use './pages/privacy-policy/politicaPrivacidade.scss';
 
@@ -33,3 +34,4 @@
 @use './helpers/media/tablet.scss';
 @use './helpers/media/mobile.scss';
 @use './helpers/media/mobile-small.scss';
+@use './helpers/media/dashboard.scss' as dashboard-media;
