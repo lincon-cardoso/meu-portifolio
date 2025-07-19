@@ -5,34 +5,31 @@ import React, { useState } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // Estado para armazenar a mensagem de erro
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-   fetch("/api/login", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify({ email, password }),
-   })
-     .then((response) => {
-       if (!response.ok) {
-         throw new Error("Erro na autenticação");
-       }
-       return response.json();
-     })
-     .then((data) => {
-       console.log("Resposta da API:", data);
-       if (data.message === "Login successful") {
-         console.log("Login bem-sucedido!");
-       } else {
-         console.error("Credenciais inválidas:", data);
-       }
-     })
-     .catch((error) => {
-       console.error("Erro ao chamar a API:", error);
-       alert("Erro ao fazer login. Tente novamente.");
-     });
+    setErrorMessage(""); // Limpa a mensagem de erro antes de enviar
+
+    fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Erro na autenticação"); // Mantive o tratamento de erro.
+        }
+        const data = await response.json();
+        window.location.href = data.redirect; // Redireciona para a página de dashboard.
+      })
+      .catch((error) => {
+        console.error("Erro ao chamar a API:", error);
+        setErrorMessage(error.message); // Define a mensagem de erro no estado.
+      });
   };
 
   return (
@@ -48,7 +45,10 @@ export default function LoginPage() {
               name="email"
               className="form-input"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setErrorMessage(""); // Limpa a mensagem de erro ao digitar.
+              }}
               required
             />
           </div>
@@ -60,14 +60,18 @@ export default function LoginPage() {
               name="password"
               className="form-input"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrorMessage(""); // Limpa a mensagem de erro ao digitar.
+              }}
               required
             />
+            {/* Exibe a mensagem de erro abaixo do campo de senha */}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
           <button type="submit" className="login-button">
             Entrar
           </button>
-          {/* crie um botao de sair para voltar para o / */}
           <button
             type="button"
             className="login-button"
