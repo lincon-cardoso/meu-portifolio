@@ -14,34 +14,15 @@ export interface Project {
     | "deploying"
     | "configuring-dns"
     | "deployed"
-<<<<<<< HEAD
-    | "online"
-=======
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
     | "error";
   techStack: string[];
   previewImage?: string;
   createdAt: Date;
-<<<<<<< HEAD
-  lastDeployed: Date | null;
-  deployLogs?: string[];
-  repositoryBranch?: string;
-  buildCommand?: string;
-  environmentVars?: Record<string, string>;
-  analytics?: {
-    views: number;
-    visitors: number;
-    bounceRate: number;
-    loadTime: number;
-  };
-  totalDeployments?: number;
-=======
   lastDeployed: Date;
   deployLogs: string[];
   repositoryBranch?: string;
   buildCommand?: string;
   environmentVars?: Record<string, string>;
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
 }
 
 export interface DashboardStats {
@@ -57,7 +38,3 @@ export interface FilterType {
   label: string;
   icon: string;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)

@@ -1,14 +1,4 @@
 "use client";
-<<<<<<< HEAD
-import { useState, useEffect, useCallback } from "react";
-import {
-  Project,
-  DashboardStats,
-  FilterType,
-} from "@/app/dashboard/types/dashboard.types";
-import "@/style/pages/dashboard/dashboard.scss";
-
-=======
 import { useState, useEffect } from "react";
 import { Project, DashboardStats, FilterType } from "@/app/dashboard/types/dashboard.types";
 import "@/style/pages/dashboard/dashboard.scss";
@@ -16,7 +6,6 @@ import "@/style/pages/dashboard/dashboard.scss";
 // Interfaces/Types
 
 
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
 export default function DashboardPage() {
   // Estados principais
   const [projects, setProjects] = useState<Project[]>([]);
@@ -41,15 +30,6 @@ export default function DashboardPage() {
     { value: "error", label: "Com Erro", icon: "❌" },
   ];
 
-<<<<<<< HEAD
-  const updateStats = useCallback(() => {
-    const newStats: DashboardStats = {
-      totalProjects: projects.length,
-      featuredProjects: projects.filter((p) => p.featured).length,
-      onlineProjects: projects.filter(
-        (p) => p.status === "online" || p.status === "deployed"
-      ).length,
-=======
   // Carregar dados iniciais
   useEffect(() => {
     loadDashboardData();
@@ -171,7 +151,6 @@ export default function DashboardPage() {
       totalProjects: projects.length,
       featuredProjects: projects.filter((p) => p.featured).length,
       onlineProjects: projects.filter((p) => p.status === "deployed").length,
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
       deployingProjects: projects.filter((p) =>
         ["cloning", "building", "deploying", "configuring-dns"].includes(
           p.status
@@ -180,214 +159,6 @@ export default function DashboardPage() {
       errorProjects: projects.filter((p) => p.status === "error").length,
     };
     setStats(newStats);
-<<<<<<< HEAD
-  }, [projects]);
-
-  // Carregar dados iniciais
-  useEffect(() => {
-    loadDashboardData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Atualizar estatísticas quando projetos mudarem
-  useEffect(() => {
-    updateStats();
-  }, [projects, updateStats]);
-
-  const loadDashboardData = async () => {
-    setIsLoading(true);
-
-    try {
-      // Carregar dados das APIs reais
-      const [projectsResponse, statsResponse] = await Promise.all([
-        fetch("/api/dashboard/projects"),
-        fetch("/api/dashboard/stats"),
-      ]);
-
-      if (!projectsResponse.ok || !statsResponse.ok) {
-        throw new Error("Erro ao carregar dados do dashboard");
-      }
-
-      const projectsData = await projectsResponse.json();
-      const statsData = await statsResponse.json();
-
-      if (projectsData.success && statsData.success) {
-        // Mapear os dados da API para o formato esperado pelo dashboard
-        const mappedProjects: Project[] = projectsData.data.map(
-          (project: {
-            id: string;
-            name: string;
-            description: string;
-            deployUrl: string | null;
-            githubUrl: string;
-            subdomain: string;
-            featured: boolean;
-            status: string;
-            techStack: string[];
-            createdAt: string;
-            lastDeployed: string | null;
-            analytics?: {
-              totalViews?: number;
-              uniqueVisitors?: number;
-              bounceRate?: number;
-              loadTime?: number;
-            };
-            _count?: { deployments: number };
-            previewImage: string | null;
-          }) => ({
-            id: project.id,
-            name: project.name,
-            description: project.description,
-            deployUrl: project.deployUrl,
-            githubUrl: project.githubUrl,
-            subdomain: project.subdomain,
-            featured: project.featured,
-            status: mapProjectStatus(project.status),
-            techStack: project.techStack || [],
-            createdAt: new Date(project.createdAt),
-            lastDeployed: project.lastDeployed
-              ? new Date(project.lastDeployed)
-              : null,
-            analytics: project.analytics
-              ? {
-                  views: project.analytics.totalViews || 0,
-                  visitors: project.analytics.uniqueVisitors || 0,
-                  bounceRate: project.analytics.bounceRate || 0,
-                  loadTime: project.analytics.loadTime || 0,
-                }
-              : null,
-            totalDeployments: project._count?.deployments || 0,
-            previewImage: project.previewImage,
-          })
-        );
-
-        setProjects(mappedProjects);
-
-        // Mapear as estatísticas da API
-        const mappedStats: DashboardStats = {
-          totalProjects: statsData.data.totalProjects,
-          featuredProjects: mappedProjects.filter((p) => p.featured).length,
-          onlineProjects: mappedProjects.filter(
-            (p) => p.status === "online" || p.status === "deployed"
-          ).length,
-          deployingProjects: statsData.data.activeDeployments,
-          errorProjects: mappedProjects.filter((p) => p.status === "error")
-            .length,
-        };
-
-        setStats(mappedStats);
-      } else {
-        console.error("Erro nos dados da API:", projectsData, statsData);
-        loadFallbackData();
-      }
-    } catch (error) {
-      console.error("❌ Erro ao carregar dados:", error);
-      loadFallbackData();
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Função para mapear status da API para status do dashboard
-  const mapProjectStatus = (apiStatus: string): Project["status"] => {
-    switch (apiStatus?.toUpperCase()) {
-      case "DEPLOYED":
-        return "online";
-      case "BUILDING":
-      case "DEPLOYING":
-        return "deploying";
-      case "FAILED":
-        return "error";
-      case "IDLE":
-      default:
-        return "idle";
-    }
-  };
-
-  // Dados fallback em caso de erro
-  const loadFallbackData = () => {
-    const fallbackProjects: Project[] = [
-      {
-        id: "1",
-        name: "E-commerce React",
-        description: "Loja virtual completa com React e Node.js",
-        deployUrl: "https://ecommerce-demo.devlincon.com.br",
-        githubUrl: "https://github.com/lincon-cardoso/ecommerce-react",
-        subdomain: "ecommerce-demo",
-        featured: true,
-        status: "online",
-        techStack: ["React", "Node.js", "MongoDB", "Stripe"],
-        createdAt: new Date("2024-01-15"),
-        lastDeployed: new Date("2024-01-20"),
-        analytics: {
-          views: 1250,
-          visitors: 890,
-          bounceRate: 25,
-          loadTime: 1.2,
-        },
-        totalDeployments: 12,
-        previewImage: "/img/projects/ecommerce.jpg",
-      },
-      {
-        id: "2",
-        name: "Dashboard Analytics",
-        description: "Dashboard para análise de dados em tempo real",
-        deployUrl: "https://analytics-demo.devlincon.com.br",
-        githubUrl: "https://github.com/lincon-cardoso/dashboard-analytics",
-        subdomain: "analytics-demo",
-        featured: true,
-        status: "online",
-        techStack: ["Next.js", "TypeScript", "PostgreSQL", "Chart.js"],
-        createdAt: new Date("2024-01-10"),
-        lastDeployed: new Date("2024-01-18"),
-        analytics: {
-          views: 856,
-          visitors: 432,
-          bounceRate: 18,
-          loadTime: 0.8,
-        },
-        totalDeployments: 8,
-        previewImage: "/img/projects/dashboard.jpg",
-      },
-      {
-        id: "3",
-        name: "Blog Pessoal",
-        description: "Blog desenvolvido com Next.js e MDX",
-        deployUrl: "https://blog-demo.devlincon.com.br",
-        githubUrl: "https://github.com/lincon-cardoso/blog-pessoal",
-        subdomain: "blog-demo",
-        featured: false,
-        status: "deploying",
-        techStack: ["Next.js", "MDX", "Tailwind CSS"],
-        createdAt: new Date("2024-01-12"),
-        lastDeployed: null,
-        analytics: {
-          views: 0,
-          visitors: 0,
-          bounceRate: 0,
-          loadTime: 0,
-        },
-        totalDeployments: 0,
-      },
-    ];
-
-    setProjects(fallbackProjects);
-
-    // Definir stats fallback também
-    const fallbackStats: DashboardStats = {
-      totalProjects: fallbackProjects.length,
-      featuredProjects: fallbackProjects.filter((p) => p.featured).length,
-      onlineProjects: fallbackProjects.filter((p) => p.status === "online")
-        .length,
-      deployingProjects: fallbackProjects.filter(
-        (p) => p.status === "deploying"
-      ).length,
-      errorProjects: fallbackProjects.filter((p) => p.status === "error")
-        .length,
-    };
-
-    setStats(fallbackStats);
-=======
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
   };
 
   // Filtrar projetos por filtro ativo e termo de busca
@@ -403,12 +174,7 @@ export default function DashboardPage() {
         "configuring-dns",
       ].includes(project.status);
     } else if (filter === "online")
-<<<<<<< HEAD
-      matchesFilter =
-        project.status === "online" || project.status === "deployed";
-=======
       matchesFilter = project.status === "deployed";
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
     else if (filter === "error") matchesFilter = project.status === "error";
 
     // Filtro por busca
@@ -498,12 +264,7 @@ export default function DashboardPage() {
     }
   };
 
-<<<<<<< HEAD
-  const formatDate = (date: Date | null) => {
-    if (!date) return "Nunca";
-=======
   const formatDate = (date: Date) => {
->>>>>>> ff03523 (feat: add dashboard page styles and media queries)
     return new Intl.DateTimeFormat("pt-BR", {
       day: "2-digit",
       month: "2-digit",
