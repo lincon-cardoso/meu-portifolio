@@ -30,8 +30,5 @@
 @use './helpers/classes-utilitarias.scss';
 @use './helpers/media-queries.scss';
 
-// 6. Media Queries por Breakpoint
-@use './helpers/media/tablet.scss';
-@use './helpers/media/mobile.scss';
-@use './helpers/media/mobile-small.scss';
-@use './helpers/media/dashboard.scss' as dashboard-media;
+// 6. Media Queries Centralizadas
+@use './helpers/media/midia.scss';

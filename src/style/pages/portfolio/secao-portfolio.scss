@@ -26,10 +26,12 @@
     flex-direction: row;
     align-items: center;
     gap: var(--spacing-8); // Espaçamento entre a foto e o texto
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 /* ===========================
-   Estilos da foto
+Estilos da foto
 =========================== */
 .MeuPortifolio-foto {
     flex-shrink: 0; // Garante que a imagem não será redimensionada

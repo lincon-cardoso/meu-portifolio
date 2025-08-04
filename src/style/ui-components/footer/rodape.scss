@@ -2,65 +2,168 @@
    Rodapé (Footer)
 ======================================================================== */
 .footer {
-    background-color: var(--color-dark);
-    color: #fff;
-    padding: var(--spacing-20) 0;
+    background-color: var(--color-footer);
+    color: var(--color-footer-text);
+    padding: var(--spacing-10) 0;
     text-align: center;
+    box-shadow: 0 -2px 16px 0 rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
 
-    .footer-container {
+    .container {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: var(--spacing-10);
-        max-width: var(--max-width);
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-6);
+        width: 100%;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 var(--content-padding-x);
 
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
+        .footer-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: var(--spacing-8);
+            width: 100%;
+            padding-bottom: var(--spacing-6);
+            border-bottom: 1px solid var(--color-footer-border);
 
-            h3 {
-                font-size: var(--font-size-lg);
-                margin-bottom: var(--spacing-4);
-                color: var(--color-accent);
+
+            .footer-column {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                align-items: center;
+                gap: var(--spacing-3);
+                min-width: 180px;
+                max-width: 260px;
+
+
+                h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 1.2rem;
+                    margin-bottom: var(--spacing-2);
+                    color: var(--color-footer-text);
+                    letter-spacing: 0.5px;
+                    font-weight: 600;
+                }
             }
 
-            ul {
-                list-style: none;
-                padding: 0;
+            .footer-social-header {
+                h3 {
+                    color: var(--color-footer-text);
+                }
+            }
 
-                li {
-                    margin-bottom: var(--spacing-2);
+            .footer-social {
+                display: flex;
+                gap: var(--spacing-4);
+                margin-top: var(--spacing-2);
 
-                    a {
-                        color: #fff;
-                        font-size: var(--font-size-md);
-                        transition: color 0.3s ease;
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    background: var(--color-footer-border);
+                    color: var(--color-footer);
+                    font-size: 1.5rem;
+                    transition: background 0.2s, color 0.2s;
 
-                        &:hover {
-                            color: var(--color-accent);
-                        }
+                    &:hover {
+                        background: var(--color-footer-link-hover);
+                        color: var(--color-footer-text);
                     }
                 }
             }
         }
 
-        .footer-social {
+        .footer-bottom {
+            margin-top: var(--spacing-8);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: var(--spacing-4);
+            width: 100%;
 
-            a {
-                color: var(--color-light-text);
-                font-size: var(--font-size-lg);
-                transition: color 0.3s ease;
+            .footer-signature {
+                font-style: italic;
+                font-size: 1.1rem;
+                color: var(--color-footer-text);
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-back-to-top {
+                margin: 0 auto;
+            }
+
+            .btn-back-to-top {
+                background: none;
+                border: 1px solid var(--color-footer-border);
+                color: var(--color-footer-text);
+                padding: 0.5rem 1.5rem;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+                font-size: 1rem;
+                font-weight: 500;
+                box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 
                 &:hover {
-                    color: var(--color-accent);
+                    background: var(--color-footer-link-hover);
+                    color: var(--color-footer);
                 }
             }
+
+            .footer-copyright {
+                font-size: 0.95rem;
+                color: var(--color-footer-text);
+                letter-spacing: 0.2px;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: var(--spacing-4);
+                margin-top: var(--spacing-2);
+
+                a {
+                    color: var(--color-footer-link);
+                    text-decoration: underline;
+                    transition: color 0.2s;
+                    font-weight: 500;
+
+                    &:hover {
+                        color: var(--color-footer-link-hover);
+                    }
+                }
+            }
+        }
+
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                letter-spacing: 0.1px;
+                transition: color 0.2s;
+                cursor: pointer;
+            }
+
+            li:hover {
+                color: var(--color-footer-link-hover);
+            }
+        }
+
+        a {
+            transition: color 0.2s;
         }
     }
 }

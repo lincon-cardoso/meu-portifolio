@@ -12,6 +12,7 @@ import {
   SiJsonwebtokens,
   SiZod,
 } from "react-icons/si";
+import { Projetos } from "./Projetos";
 
 export default function HomePage() {
   return (
@@ -99,40 +100,7 @@ export default function HomePage() {
       <section className="cards-de-projetos fade-in">
         <h2 className="projetos-title">Projetos em Destaque</h2>
         <div className="cards-container">
-          {/* <div className="card" data-category="frontend">
-            <div className="card-image"></div>
-            <h3 className="card-title">E-commerce Responsivo</h3>
-            <p className="card-description">
-              Site de vendas com design adaptável desenvolvido com React e
-              Node.js
-            </p>
-          </div>
-          <div className="card" data-category="backend">
-            <div className="card-image"></div>
-            <h3 className="card-title">API de Gestão</h3>
-            <p className="card-description">
-              Sistema backend para gerenciamento de recursos empresariais
-            </p>
-          </div>
-          <div className="card" data-category="mobile">
-            <div className="card-image"></div>
-            <h3 className="card-title">App de Finanças</h3>
-            <p className="card-description">
-              Aplicativo móvel para controle financeiro pessoal
-            </p>
-          </div> */}
-        </div>
-        
-        {/* Provisorio */}
-        <div
-          style={{
-            marginTop: "2rem",
-            fontSize: "1.2rem",
-            color: "#666",
-            textAlign: "center",
-          }}
-        >
-          Projetos ficarão disponíveis em breve!
+          <Projetos />
         </div>
 
         <div className="text-center" style={{ marginTop: "4rem" }}>

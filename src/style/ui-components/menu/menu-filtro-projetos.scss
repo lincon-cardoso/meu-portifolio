@@ -27,12 +27,3 @@
     transition: var(--transition-default);
     border: 1px solid var(--color-light-text);
 }
-
-.menu-horizontal .menu-item a:hover,
-.menu-horizontal .menu-item a:focus,
-.menu-horizontal .menu-item a.active {
-    background-color: var(--color-accent);
-    color: white;
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-}

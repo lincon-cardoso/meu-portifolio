@@ -25,18 +25,22 @@
     /* Preto profundo */
     --color-text: #1c1e21;
     /* Cinza escuro para texto */
-    --color-light-text: #6c757d;
+    --color-light-text: #f8f9fa;
     /* Cinza claro para texto secundário */
     --color-bg: #f8f9fa;
     /* Cinza muito claro para fundo */
     --color-card-bg: #ffffff;
-    /* Branco puro para cartões */
+    /* Branco para o fundo do card */
     --color-footer: #121212;
+    --color-footer-text: #ffffff;
+    --color-footer-link: #ffffff;
+    --color-footer-link-hover: #007bff;
+    --color-footer-border: #ffffff;
     /* Preto profundo para rodapé */
 
     /* Efeitos e Bordas */
     --border-radius: 8px;
-    --box-shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-soft: 3px 14px 22px rgba(0, 0, 0, 0.35);
     --box-shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
     --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
     --transition-default: all 0.3s ease-in-out;
@@ -91,4 +95,8 @@
     --z-index-overlay: 1300;
     --z-index-header: 1400;
     --z-index-footer: 1500;
+
+    /* Layout */
+    --max-width: 1200px;
+    --content-padding-x: 1rem;
 }

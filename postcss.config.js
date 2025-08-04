@@ -1,5 +1,5 @@
 // postcss.config.js
-module.exports = {
+const config = {
   plugins: {
     // Corrige bugs conhecidos do Flexbox em alguns navegadores antigos
     "postcss-flexbugs-fixes": {},
@@ -27,3 +27,5 @@ module.exports = {
       : {}),
   },
 };
+
+export default config;

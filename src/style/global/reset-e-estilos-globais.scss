@@ -61,6 +61,7 @@ section {
     padding: var(--spacing-16) 0;
 }
 
+/* Removendo classes não utilizadas */
 .section-title {
     position: relative;
     font-size: var(--font-size-3xl);
@@ -69,18 +70,6 @@ section {
     margin-bottom: var(--spacing-10);
     text-align: center;
     letter-spacing: -0.025em;
-}
-
-.section-title::after {
-    content: "";
-    position: absolute;
-    width: 60px;
-    height: 4px;
-    background: var(--color-accent);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
 }
 
 .text-gradient {

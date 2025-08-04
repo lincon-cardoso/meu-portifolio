@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,175 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ========================================
-// MODELS FOR DASHBOARD PROJECT MANAGEMENT
-// ========================================
-
-// Modelo principal de Projeto
-model Project {
-  id          String  @id @default(cuid())
-  name        String
-  description String?
-
-  // URLs e Configurações
-  githubUrl        String
-  deployUrl        String?
-  subdomain        String  @unique
-  repositoryBranch String? @default("main")
-  buildCommand     String? @default("npm run build")
-
-  // Status e Configurações
-  featured Boolean       @default(false)
-  status   ProjectStatus @default(IDLE)
-
-  // Tech Stack (JSON array)
-  techStack String[] @default([])
-
-  // Variáveis de Ambiente (JSON object)
-  environmentVars Json?
-
-  // Imagem de Preview
-  previewImage String?
-
-  // Timestamps
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  lastDeployed DateTime?
-
-  // Relações
-  deployments Deployment[]
-  analytics   ProjectAnalytics?
-
-  @@map("projects")
-}
-
-// Enum para Status do Projeto
-enum ProjectStatus {
-  IDLE
-  CLONING
-  BUILDING
-  DEPLOYING
-  CONFIGURING_DNS
-  DEPLOYED
-  ERROR
-
-  @@map("project_status")
-}
-
-// Modelo de Deploy/Deployment
-model Deployment {
-  id        String @id @default(cuid())
-  projectId String
-
-  // Informações do Deploy
-  status        DeploymentStatus @default(PENDING)
-  triggerBy     String? // GitHub commit, manual, etc.
-  commitHash    String?
-  commitMessage String?
-
-  // Logs do Deploy
-  logs      String[] @default([])
-  errorLogs String[] @default([])
-
-  // Métricas de Deploy
-  startedAt   DateTime  @default(now())
-  completedAt DateTime?
-  duration    Int? // em segundos
-
-  // URLs geradas
-  deployUrl  String?
-  previewUrl String?
-
-  // Relações
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-
-  @@index([projectId])
-  @@map("deployments")
-}
-
-// Enum para Status do Deployment
-enum DeploymentStatus {
-  PENDING
-  IN_PROGRESS
-  SUCCESS
-  FAILED
-  CANCELLED
-
-  @@map("deployment_status")
-}
-
-// Modelo de Analytics do Projeto
-model ProjectAnalytics {
-  id        String @id @default(cuid())
-  projectId String @unique
-
-  // Métricas básicas
-  totalViews     Int    @default(0)
-  uniqueVisitors Int    @default(0)
-  bounceRate     Float? @default(0)
-  avgSessionTime Int?   @default(0) // em segundos
-
-  // Performance Metrics
-  loadTime      Float? // em segundos
-  coreWebVitals Json? // LCP, FID, CLS
-
-  // Top Pages (JSON array of objects)
-  topPages Json? @default("[]")
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relação
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-
-  @@map("project_analytics")
-}
-
-// Modelo de Usuário (para futuras funcionalidades)
 model User {
-  id     String  @id @default(cuid())
-  email  String  @unique
-  name   String?
-  avatar String?
-
-  // Configurações
-  githubUsername String?
-  githubToken    String? // Encrypted
-
-  // Preferences
-  defaultDomain String? @default("devlincon.com.br")
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
+  id             String   @id @default(cuid())
+  name           String?
+  email          String   @unique
+  emailVerified  DateTime? 
+  hashedPassword String?
+  role           Role     @default(ADMIN) // 👈 ADICIONADO
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
-// Modelo de Configurações do Sistema
-model SystemConfig {
-  id    String @id @default(cuid())
-  key   String @unique
-  value String
-
-  // Metadata
-  description String?
-  type        ConfigType @default(STRING)
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("system_config")
+enum Role {
+  ADMIN
 }
 
-// Enum para Tipos de Configuração
-enum ConfigType {
-  STRING
-  NUMBER
-  BOOLEAN
-  JSON
-
-  @@map("config_type")
+model Projeto {
+  id          String   @id @default(cuid())
+  titulo      String
+  descricao   String
+  imagem      String?
+  tecnologias String[]
+  link        String?
+  linkGithub  String?  
+  criadoEm    DateTime @default(now())
+  usuarioId   String
 }
