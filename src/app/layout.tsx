@@ -1,8 +1,7 @@
-import type { Metadata, Viewport } from "next";
 import "@/style/style.scss";
-
-// Força a renderização dinâmica (SSR) em toda requisição
-export const dynamic = "force-dynamic";
+import type { Metadata, Viewport } from "next";
+import { ReactNode } from "react";
+import { Providers } from "@/components/Providers";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -56,14 +55,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-br" suppressHydrationWarning>
-      <body>{children}</body>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
