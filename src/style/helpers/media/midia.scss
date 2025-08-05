@@ -2,32 +2,40 @@
    Media Queries Centralizadas (Mobile, Tablet, Desktop)
 ======================================================================== */
 
+// ===========================
 // MOBILE (até 768px)
+// ===========================
 @media (max-width: 768px) {
+
+    // Variáveis de espaçamento para dispositivos móveis
     :root {
-        --content-padding-x: var(--spacing-4);
+        --content-padding-x: var(--spacing-4); // Espaçamento padrão para conteúdo
     }
 
+    // Espaçamento vertical para seções
     section {
-        padding: var(--spacing-10) 0;
+        padding: var(--spacing-10) 0; // Espaçamento vertical para seções
     }
 
+    // Cabeçalho
     .header-container {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: space-between; // Espaçamento entre elementos do cabeçalho
+        align-items: center; // Alinhamento vertical dos itens
 
+        // Perfil no cabeçalho
         .header-profile {
             display: flex;
             align-items: center;
-            gap: var(--spacing-2);
-            padding: 10px;
+            gap: var(--spacing-2); // Espaçamento entre itens do perfil
+            padding: 10px; // Espaçamento interno
         }
 
+        // Ícone de menu para dispositivos móveis
         .mobile-menu-toggle {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 4px; // Espaçamento entre linhas do ícone de menu
             background: none;
             border: none;
             cursor: pointer;
@@ -36,14 +44,15 @@
                 display: block;
                 width: 25px;
                 height: 3px;
-                background-color: var(--color-text);
+                background-color: var(--color-text); // Cor das linhas do menu
             }
         }
 
+        // Navegação no cabeçalho
         .header-nav {
             display: none;
             flex-direction: column;
-            gap: var(--spacing-2);
+            gap: var(--spacing-2); // Espaçamento entre itens do menu
             background-color: var(--color-bg);
             position: absolute;
             top: 100%;
@@ -65,93 +74,145 @@
         }
     }
 
+    // Lista de navegação
     .nav-list {
         flex-direction: column;
-        gap: var(--spacing-2);
+        gap: var(--spacing-2); // Espaçamento entre itens da lista de navegação
         align-items: center;
         width: 100%;
         padding: var(--spacing-4) 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.1); // Linha separadora
         margin-top: var(--spacing-4);
     }
 
+    // Container de cards
     .cards-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--spacing-4);
+        gap: var(--spacing-4); // Espaçamento entre os cards
 
         .card {
             width: 100%;
-            max-width: 300px;
+            max-width: 300px; // Largura máxima dos cards
         }
     }
 
+    // Menu horizontal
     .menu-horizontal {
         .menu-list {
             flex-direction: row;
-            overflow-x: auto;
+            overflow-x: auto; // Permitir rolagem horizontal
             padding-bottom: var(--spacing-2);
             justify-content: flex-start;
-            -webkit-overflow-scrolling: touch;
+            -webkit-overflow-scrolling: touch; // Suporte para rolagem suave em dispositivos móveis
         }
     }
 
+    // Formulário de contato
     .contato-form {
-        padding: var(--spacing-4);
+        padding: var(--spacing-4); // Espaçamento interno do formulário de contato
     }
 
+    // Texto principal
     .MeuPortifolio-text {
-        font-size: var(--font-size-md);
-        text-align: center;
-        line-height: 1.6;
+        font-size: var(--font-size-md); // Tamanho da fonte do texto principal
+        text-align: center; // Centralizar o texto
+        line-height: 1.6; // Altura da linha para melhor legibilidade
     }
 
+    // Rodapé
     .footer .container .footer-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--spacing-6);
+        gap: var(--spacing-6); // Espaçamento entre os elementos do rodapé
         width: 100%;
-        max-width: 1200px;
+        max-width: 1200px; // Largura máxima do rodapé
     }
 
+    // Grade de habilidades
     .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); // Layout em grade para habilidades
+    }
+
+    // Conteúdo principal do portfólio
+    .MeuPortifolio-content {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-6); // Espaçamento entre os elementos principais
+    }
+
+    // Imagem do portfólio
+    .MeuPortifolio-foto {
+        order: -1; // Colocar a imagem acima dos textos
+        max-width: 200px;
+        max-height: 200px; // Tamanho máximo da imagem
+    }
+
+    // Stacks de tecnologias
+    .MeuPortifolio-stacks {
+        display: flex;
+        flex-direction: row; // Organizar os itens lado a lado
+        justify-content: center; // Centralizar os itens horizontalmente
+        align-items: center; // Alinhar os itens verticalmente
+        gap: var(--spacing-4); // Espaçamento entre os itens
+        list-style: none; // Remover marcadores de lista
+        padding: 0;
+        margin: 20px 0 0; // Espaçamento superior
+        width: 100%; // Garantir que ocupe toda a largura disponível
+
+        .stack-item {
+            display: flex;
+            flex-direction: column; // Organizar o conteúdo de cada item em coluna
+            align-items: center;
+            justify-content: center; // Centralizar o conteúdo de cada item
+            gap: var(--spacing-2); // Espaçamento entre o ícone e o texto
+        }
+    }
+
+    // Botões principais
+    .MeuPortifolio-buttons {
+        justify-content: center;
+        flex-direction: column; // Organizar os botões em coluna
+        align-items: center;
+        gap: var(--spacing-4); // Espaçamento entre os botões
     }
 }
 
+// ===========================
 // TABLET (até 1024px)
+// ===========================
 @media (max-width: 1024px) {
     :root {
-        --font-size-4xl: 2rem;
+        --font-size-4xl: 2rem; // Ajuste de tamanho de fonte para tablets
         --font-size-3xl: 1.75rem;
         --font-size-2xl: 1.375rem;
     }
 
     .header-container {
         flex-direction: column;
-        gap: var(--spacing-4);
+        gap: var(--spacing-4); // Espaçamento entre os elementos do cabeçalho
         padding: var(--spacing-4);
 
         .header-profile {
-            margin-bottom: var(--spacing-2);
+            margin-bottom: var(--spacing-2); // Espaçamento inferior do perfil
         }
 
         .profile-name {
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-xl); // Tamanho da fonte do nome do perfil
         }
     }
 
     .nav-list {
-        gap: var(--spacing-4);
+        gap: var(--spacing-4); // Espaçamento entre itens da lista de navegação
     }
 
     .footer-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: row; // Organizar os elementos do rodapé em linha
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: space-between; // Espaçamento entre colunas do rodapé
         gap: var(--spacing-6);
         padding: 0 var(--spacing-6);
         width: 100%;
@@ -161,36 +222,58 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        max-width: 260px;
+        max-width: 260px; // Largura máxima das colunas do rodapé
         width: 100%;
+    }
+
+    .MeuPortifolio-content {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-8); // Espaçamento entre os elementos principais
+    }
+
+    .MeuPortifolio-text {
+        font-size: var(--font-size-lg); // Tamanho da fonte do texto principal
+    }
+
+    .MeuPortifolio-foto {
+        order: -1; // Colocar a imagem acima dos textos
+        max-width: 250px;
+        max-height: 250px; // Tamanho máximo da imagem
+    }
+
+    .MeuPortifolio-stacks {
+        gap: var(--spacing-6); // Espaçamento entre os itens
     }
 }
 
+// ===========================
 // DESKTOP (acima de 1024px)
+// ===========================
 @media (min-width: 1025px) {
     .dashboard-page {
         .dashboard-container {
-            max-width: 1200px;
+            max-width: 1200px; // Largura máxima do container do dashboard
         }
     }
 
     .cards-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--spacing-8);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Layout em grade para os cards
+        gap: var(--spacing-8); // Espaçamento entre os cards
         justify-content: center;
     }
 
     .card {
         max-width: 100%;
-        margin: 0 auto;
+        margin: 0 auto; // Centralizar os cards
     }
 
     .footer-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: row; // Organizar os elementos do rodapé em linha
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: space-between; // Espaçamento entre colunas do rodapé
         gap: var(--spacing-8);
     }
 
@@ -198,12 +281,42 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        max-width: 260px;
+        max-width: 260px; // Largura máxima das colunas do rodapé
+    }
+
+    .MeuPortifolio-content {
+        flex-direction: row; // Organizar os elementos principais em linha
+        align-items: center;
+        gap: var(--spacing-10); // Espaçamento entre os elementos principais
+    }
+
+    .MeuPortifolio-foto {
+        max-width: 300px;
+        max-height: 300px; // Tamanho máximo da imagem
+    }
+
+    .MeuPortifolio-stacks {
+        gap: var(--spacing-8); // Espaçamento entre os itens
+    }
+
+    .MeuPortifolio-text {
+        font-size: var(--font-size-xl); // Tamanho da fonte do texto principal
     }
 }
 
+// ===========================
+// DESKTOP GRANDE (acima de 1200px)
+// ===========================
 @media (min-width: 1200px) {
     .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // Layout em grade para os cards
+    }
+
+    .MeuPortifolio-content {
+        gap: var(--spacing-12); // Espaçamento entre os elementos principais
+    }
+
+    .MeuPortifolio-stacks {
+        gap: var(--spacing-10); // Espaçamento entre os itens
     }
 }
