@@ -1,6 +1,6 @@
 "use client";
 import { signIn } from "next-auth/react";
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import "@/style/pages/login/login.scss";
 
@@ -8,17 +8,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
-  const [isMounted, setIsMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null; // Evita problemas de hidratação
-  }
 
   async function handleLogin(e: FormEvent) {
     e.preventDefault();

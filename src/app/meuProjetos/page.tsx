@@ -1,35 +1,53 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useProjectFilter from "@/hooks/useProjectFilter";
 import Cabecalho from "../../components/layout/Cabecalho";
 import Rodape from "../../components/layout/Rodape";
+import { Projeto } from "@/types/Projeto";
 
 const menuItems = [
   { category: "todos", label: "Todos" },
-  { category: "frontend", label: "Frontend" },
-  { category: "backend", label: "Backend" },
-  { category: "mobile", label: "Mobile" },
-  { category: "ui", label: "UI/UX" },
-];
-
-const projectsData = [
-  { category: "frontend", title: "E-commerce Responsivo", date: "01/2023" },
-  { category: "backend", title: "API de Gestão", date: "03/2023" },
-  { category: "mobile", title: "App de Finanças", date: "05/2023" },
-  { category: "ui", title: "Design System", date: "07/2023" },
-  { category: "frontend", title: "Landing Page", date: "09/2023" },
-  { category: "backend", title: "Sistema de Autenticação", date: "10/2023" },
-  { category: "mobile", title: "App de Delivery", date: "11/2023" },
-  { category: "ui", title: "Redesign de Interface", date: "12/2023" },
-  { category: "frontend", title: "Blog Pessoal", date: "01/2024" },
-  { category: "backend", title: "API RESTful", date: "02/2024" },
-  { category: "mobile", title: "App de Notas", date: "03/2024" },
-  { category: "ui", title: "Dashboard de Analytics", date: "04/2024" },
+  { category: "financeiro", label: "Financeiro" },
+  { category: "comercial", label: "Comercial" },
+  { category: "dashboard-admin", label: "Dashboard/Admin" },
+  { category: "landing-page", label: "Landing Page" },
+  { category: "blog", label: "Blog" },
+  { category: "educacao", label: "Educação" },
+  { category: "delivery", label: "Delivery" },
+  { category: "pessoal", label: "Pessoal" },
 ];
 
 export default function MeuProjetosPage() {
+  const [projects, setProjects] = useState<Projeto[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("todos");
   useProjectFilter();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch("/api/projetos?all=true"); // Busca todos os projetos
+        if (!response.ok) {
+          throw new Error("Erro ao buscar projetos");
+        }
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  const handleFilterClick = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const filteredProjects =
+    selectedCategory === "todos"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
 
   return (
     <>
@@ -46,7 +64,13 @@ export default function MeuProjetosPage() {
                   <a
                     href="#"
                     data-category={item.category}
-                    className={item.category === "todos" ? "active" : ""}
+                    className={
+                      item.category === selectedCategory ? "active" : ""
+                    }
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleFilterClick(item.category);
+                    }}
                   >
                     {item.label}
                   </a>
@@ -55,18 +79,25 @@ export default function MeuProjetosPage() {
             </ul>
           </div>
           <div className="cards-container">
-            {projectsData.map((project, index) => (
+            {filteredProjects.map((project) => (
               <div
                 className="card"
                 data-category={project.category}
-                key={index}
+                key={project.id}
               >
-                <div className="card-image"></div>
-                <h3 className="card-title">{project.title}</h3>
-                <p className="card-description">{project.date}</p>
+                <div className="card-image">
+                  {/* {project.imagem && (
+                    <img
+                      src={project.imagem}
+                      alt={`Imagem do projeto ${project.titulo}`}
+                    />
+                  )} */}
+                </div>
+                <h3 className="card-title">{project.titulo}</h3>
+                <p className="card-description">{project.descricao}</p>
               </div>
             ))}
-          </div>     
+          </div>
         </section>
       </main>
       <Rodape />

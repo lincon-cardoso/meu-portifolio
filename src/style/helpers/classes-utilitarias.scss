@@ -10,7 +10,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-4);
+    flex-direction: column;
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-10);
 }
 
 .skills-container {

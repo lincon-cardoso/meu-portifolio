@@ -43,7 +43,7 @@ export default function HomePage() {
             </p>
 
             <h2 className="MeuPortifolio-tech">
-              React · Next.js · UI/UX Design
+              React · Next.js · Front-end Moderno e Acessível
             </h2>
 
             <div className="MeuPortifolio-buttons">

@@ -17,6 +17,21 @@
     padding: 0;
 }
 
+
+.menu-horizontal .menu-item {
+    list-style: none;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--border-radius);
+    background-color: var(--color-background);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-horizontal .menu-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-light-background);
+}
+
 .menu-horizontal .menu-item a {
     display: inline-block;
     font-size: var(--font-size-sm);

@@ -57,50 +57,42 @@ export default function SobrePage() {
               {/* Texto descritivo */}
               <div className="sobre-mim-text">
                 <p className="sobre-mim-description">
-                  Olá! Sou Lincon Cardoso,{" "}
-                  <strong>desenvolvedor front-end</strong> apaixonado por criar{" "}
-                  <strong>soluções digitais</strong> que façam sentido para as
-                  pessoas. Acredito que cada linha de código pode carregar um{" "}
-                  <strong>propósito</strong> — seja para facilitar a rotina de
-                  alguém ou transformar uma ideia em algo{" "}
-                  <strong>real e funcional</strong>.
+                  👋 Oi, sou o Lincon Cardoso,{" "}
+                  <strong>desenvolvedor front-end</strong> com 5 anos de
+                  experiência criando{" "}
+                  <strong>interfaces modernas, acessíveis</strong> e com foco em{" "}
+                  <strong>performance e usabilidade</strong>.
                 </p>
                 <p className="sobre-mim-description">
-                  Minha trajetória com programação começou há cerca de 5 anos,
-                  quando descobri o poder de unir{" "}
-                  <strong>criatividade com tecnologia</strong>. Desde então,
-                  venho me especializando na criação de{" "}
-                  <strong>interfaces modernas, acessíveis e seguras</strong>,
-                  sempre com atenção aos detalhes que melhoram a{" "}
-                  <strong>experiência do usuário</strong>.
+                  Gosto de transformar ideias em{" "}
+                  <strong>interfaces claras e intuitivas</strong>, sempre com
+                  atenção à <strong>experiência do usuário</strong>. Utilizo{" "}
+                  <strong>React, Next.js e TypeScript</strong> para construir
+                  aplicações robustas e escaláveis, mantendo um código limpo e
+                  organizado com o suporte de ferramentas como{" "}
+                  <strong>ESLint, Prettier e Jest</strong>.
                 </p>
                 <p className="sobre-mim-description">
-                  Trabalho com tecnologias como{" "}
-                  <strong>React, Next.js, TypeScript e Sass</strong>, buscando
-                  desenvolver{" "}
-                  <strong>
-                    aplicações rápidas, responsivas e com código limpo
-                  </strong>
-                  . No dia a dia, utilizo ferramentas como{" "}
-                  <strong>Git, ESLint e Jest</strong> para manter a qualidade do
-                  projeto, além de contar com o apoio de soluções como{" "}
-                  <strong>Cloudflare</strong> para performance e proteção.
+                  Tenho experiência com <strong>estilização em SCSS</strong>,
+                  componentização, responsividade e{" "}
+                  <strong>acessibilidade (WCAG)</strong>. No dia a dia, colaboro
+                  com designers utilizando o <strong>Figma</strong> para
+                  entender os layouts, extrair medidas, cores e garantir
+                  fidelidade visual na implementação — sem atuar diretamente na
+                  criação do design.
                 </p>
                 <p className="sobre-mim-description">
-                  Tenho <strong>experiência também no back-end</strong>,
-                  utilizando <strong>Node.js, Prisma e PostgreSQL</strong> para
-                  estruturar <strong>APIs seguras</strong>, com autenticação via{" "}
-                  <strong>JWT</strong> e validação de dados com{" "}
-                  <strong>Zod</strong>. Isso me permite colaborar melhor com{" "}
-                  <strong>times fullstack</strong> e entender a aplicação de
-                  ponta a ponta.
+                  Além disso, também tenho conhecimento em{" "}
+                  <strong>Node.js, Prisma e PostgreSQL</strong>, o que me
+                  permite ter uma visão mais completa da aplicação e contribuir
+                  melhor em <strong>times full-stack</strong>.
                 </p>
                 <p className="sobre-mim-description">
-                  Mais do que programar, gosto de{" "}
-                  <strong>resolver problemas com empatia e clareza</strong>.
-                  Valorizo projetos que priorizam a{" "}
-                  <strong>experiência do usuário</strong> e que entregam{" "}
-                  <strong>valor de verdade</strong>.
+                  Se você procura um desenvolvedor comprometido com a{" "}
+                  <strong>qualidade da interface</strong>, boa{" "}
+                  <strong>experiência do usuário</strong> e foco em{" "}
+                  <strong>entregar valor real ao projeto</strong>, estou à
+                  disposição pra conversar.
                 </p>
 
                 {/* Seção de habilidades */}
@@ -124,8 +116,11 @@ export default function SobrePage() {
 
                 {/* Call to Action */}
                 <div className="cta-container">
-                  <Link href="/contato" className="btn btn-primary">
-                    Entre em contato
+                  <p className="cta-text">
+                    Gostou do que viu? Vamos construir algo incrível juntos.
+                  </p>
+                  <Link href="/contato" className="hire-me-button">
+                    Vamos conversar
                   </Link>
                 </div>
               </div>

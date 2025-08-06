@@ -15,8 +15,13 @@ export async function middleware(req: NextRequest) {
   try {
     const token = await getToken({ req });
     const isAuth = !!token;
+    const isLoginPage = req.nextUrl.pathname.startsWith("/login");
     const isProtectedRoute = req.nextUrl.pathname.startsWith("/dashboard");
     const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
+
+    if (isAuth && isLoginPage) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
 
     if (isProtectedRoute && !isAuth) {
       console.warn(

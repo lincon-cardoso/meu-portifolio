@@ -16,16 +16,16 @@ export function Projetos() {
     fetcher
   );
 
-  if (!projetos) return <p>Carregando...</p>;
-  if (error) return <p>Erro ao carregar projetos.</p>;
+  if (!projetos) return <p>Carregando projetos destacados...</p>;
+  if (error) return <p>Erro ao carregar projetos destacados.</p>;
 
   return (
     <div className="cards-container">
       {projetos.length === 0 ? (
-        <p>Nenhum projeto encontrado.</p>
+        <p>Nenhum projeto destacado encontrado.</p>
       ) : (
         projetos.map((p) => (
-          <div className="card" key={p.id} data-category={p.categoria}>
+          <div className="card" key={p.id} data-category={p.category}>
             <div
               className="card-image"
               style={{ backgroundImage: `url(${p.imagem})` }}

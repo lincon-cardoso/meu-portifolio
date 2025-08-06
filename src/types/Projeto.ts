@@ -1,8 +1,12 @@
-export type Projeto = {
+export interface Projeto {
   id: string;
   titulo: string;
   descricao: string;
+  imagem?: string | null;
+  category: string;
+  tecnologias: string[];
+  link?: string | null;
+  linkGithub?: string | null;
   criadoEm: string;
-  categoria: string; // Nova propriedade adicionada
-  imagem: string; // Adicionando a propriedade imagem
-};
+  usuarioId: string;
+}
