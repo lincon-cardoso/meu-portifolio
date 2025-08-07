@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-name: Controle de Versão Automático (main)
-=======
 name: Controle de Versão Automático (develop)
->>>>>>> 04250baee0c2f085e8ad4f301735adfdc990b5b1
 
 on:
   push:
     branches:
-<<<<<<< HEAD
       - main  # Alterado de 'develop' para 'main'
-=======
-      - develop
->>>>>>> 04250baee0c2f085e8ad4f301735adfdc990b5b1
   workflow_dispatch:
 
 permissions:
@@ -33,8 +25,4 @@ jobs:
         with:
           tag-prefix: 'v'  # Ex: v1.2.0
         env:
-<<<<<<< HEAD
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-=======
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 04250baee0c2f085e8ad4f301735adfdc990b5b1
