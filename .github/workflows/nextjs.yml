@@ -1,12 +1,13 @@
-name: Deploy para Railway (main)
+name: Deploy Next.js site to Railway
 
 on:
   push:
     branches:
-      - main
+      - main           # sua branch padrão
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write # Permissão para o workflow fazer commit da nova versão
   id-token: write
 
 concurrency:
@@ -16,14 +17,21 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # Necessário para que a action de bump possa fazer push
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Detectar gerenciador de pacotes
+      - name: Bump version and push tag
+        uses: phips28/gh-action-bump-version@v11.0.0
+        with:
+          tag-prefix: ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Detect package manager
         id: detect
         run: |
           if [ -f yarn.lock ]; then
@@ -40,7 +48,7 @@ jobs:
           node-version: 20
           cache: ${{ steps.detect.outputs.manager }}
 
-      - name: Cache de dependências e do .next
+      - name: Cache deps & .next
         uses: actions/cache@v4
         with:
           path: |
@@ -51,20 +59,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-deps-
 
-      - name: Instalar dependências
+      - name: Install dependencies
         run: ${{ steps.detect.outputs.manager }} ${{ steps.detect.outputs.installCmd }}
 
-      - name: Build do Next.js
+      - name: Build Next.js
         run: ${{ steps.detect.outputs.manager }} run build
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Limpar cache da Cloudflare
+      - name: Purge Cloudflare cache
+        shell: bash
         run: |
-          echo "🔍 Limpando cache da zona Cloudflare $ZONE_ID"
+          echo "🔍 Purging Cloudflare zone $ZONE_ID"
           resp=$(curl -w '\nHTTP_STATUS:%{http_code}' \
             -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/purge_cache" \
             -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
@@ -75,7 +83,7 @@ jobs:
           ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
-      - name: Disparar deploy na Railway
+      - name: Trigger Railway Deploy
         run: |
           curl -X POST https://backboard.railway.app/graphql \
             -H "Authorization: Bearer $RAILWAY_API_TOKEN" \
