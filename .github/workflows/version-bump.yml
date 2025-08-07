@@ -1,9 +1,9 @@
-name: Controle de Versão Automático (develop)
+name: Controle de Versão Automático (main)
 
 on:
   push:
     branches:
-      - develop
+      - main  # Alterado de 'develop' para 'main'
   workflow_dispatch:
 
 permissions:
