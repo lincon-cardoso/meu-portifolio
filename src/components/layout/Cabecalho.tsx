@@ -16,6 +16,7 @@ export default function Cabecalho() {
     <header className="header fade-in">
       <div className="container">
         <div className="header-container">
+          {/* teste */}
           <div className="header-profile">
             <Link href="/" className="profile-name">
               Meu Portfólio Pessoal
