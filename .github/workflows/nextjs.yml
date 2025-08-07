@@ -5,10 +5,11 @@ on:
   push:
     branches:
       - main           # sua branch padrão
+      - develop        # nova branch adicionada
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # Corrigido para 'write' para permitir o commit da nova versão
   id-token: write
 
 concurrency:
@@ -21,6 +22,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Bump version and push tag
+        uses: phips28/gh-action-bump-version@v11.0.0
+        with:
+          tag-prefix: ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Detect package manager
         id: detect
