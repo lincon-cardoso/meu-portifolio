@@ -3,7 +3,7 @@ name: Controle de Versão Automático (develop)
 on:
   push:
     branches:
-      - main  # Alterado de 'develop' para 'main'
+      - develop  
   workflow_dispatch:
 
 permissions:
