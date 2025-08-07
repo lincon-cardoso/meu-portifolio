@@ -19,6 +19,7 @@ export default function Cabecalho() {
           {/* teste */}
           <div className="header-profile">
             <Link href="/" className="profile-name">
+              {/* teste */}
               Meu Portfólio Pessoal
             </Link>
             <button
