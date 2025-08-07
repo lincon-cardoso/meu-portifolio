@@ -80,7 +80,7 @@ export default function Rodape() {
             </button>
           </div>
 
-          {/* Copyright */}
+          
           <div className="footer-copyright">
             <p>
               © 2025 Lincon Cardoso – Desenvolvedor Web. Todos os direitos
