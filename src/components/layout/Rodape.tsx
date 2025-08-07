@@ -70,7 +70,7 @@ export default function Rodape() {
             </p>
           </div>
 
-          {/* Botão Voltar ao Topo */}
+         
           <div className="footer-back-to-top">
             <button
               className="btn-back-to-top"
