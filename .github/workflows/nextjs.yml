@@ -3,12 +3,12 @@ name: Deploy Next.js site to Railway
 on:
   push:
     branches:
-      - main           # sua branch padrão
-      - develop        # nova branch adicionada
+      - develop   # Apenas develop vai gerar bump/tag
+      - main      # main só roda build/deploy
   workflow_dispatch:
 
 permissions:
-  contents: write # Permissão para o workflow fazer commit da nova versão
+  contents: write
   id-token: write
 
 concurrency:
@@ -22,10 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Necessário para que a action de bump possa fazer push
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Bump version and push tag
+      - name: Bump version and push tag (only on develop)
+        if: github.ref == 'refs/heads/develop' # ⚠️ Só roda na branch develop
         uses: phips28/gh-action-bump-version@v11.0.0
         with:
           tag-prefix: ''
