@@ -3,7 +3,7 @@ name: Controle de Versão Automático (develop)
 on:
   push:
     branches:
-      - develop  
+      - Develop
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,6 @@ jobs:
       - name: Bump de versão com base nos commits
         uses: phips28/gh-action-bump-version@v11.0.0
         with:
-          tag-prefix: 'v'  # Ex: v1.2.0
+          tag-prefix: "v" # Ex: v1.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
