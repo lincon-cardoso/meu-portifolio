@@ -1,4 +1,3 @@
-# .github/workflows/deploy-nextjs.yml
 name: Deploy Next.js site to Railway
 
 on:
@@ -9,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # Corrigido para 'write' para permitir o commit da nova versão
+  contents: write # Permissão para o workflow fazer commit da nova versão
   id-token: write
 
 concurrency:
@@ -22,6 +21,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Necessário para que a action de bump possa fazer push
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version and push tag
         uses: phips28/gh-action-bump-version@v11.0.0
