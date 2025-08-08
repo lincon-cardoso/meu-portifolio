@@ -58,7 +58,7 @@ jobs:
         run: ${{ steps.detect.outputs.manager }} ${{ steps.detect.outputs.installCmd }}
 
       - name: Build Next.js
-        run: ${{ steps.detect.outputs.manager }} run build
+        run: ${{ steps.detect.outputs.manager }} run build # Build ID ${{ github.sha }}
 
       - name: Run lint
         run: ${{ steps.detect.outputs.manager }} run lint
