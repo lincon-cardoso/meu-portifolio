@@ -5,6 +5,17 @@ on:
     branches:
       - main # sua branch padrão
   workflow_dispatch:
+    inputs:
+      clear_cache:
+        description: "Forçar rebuild ignorando cache de build da Railway (clearCache)"
+        required: false
+        type: boolean
+        default: false
+      skip_cloudflare_purge:
+        description: "Não purgar cache global da Cloudflare neste deploy"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -18,12 +29,35 @@ jobs:
   build:
     timeout-minutes: 15
     runs-on: ubuntu-latest
+    outputs:
+      clear_cache: ${{ steps.cache_flag.outputs.clear_cache }}
+      skip_purge: ${{ steps.purge_flag.outputs.skip_purge }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           # Necessário para que a action de bump possa fazer push
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Detectar se deve limpar cache Railway
+        id: cache_flag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.clear_cache }}" = "true" ]; then
+            echo "clear_cache=true" >> $GITHUB_OUTPUT
+            echo "⚠️  Deploy irá forçar rebuild sem cache da Railway"
+          else
+            echo "clear_cache=false" >> $GITHUB_OUTPUT
+            echo "Usando cache padrão da Railway"
+          fi
+      - name: Detectar se deve pular purge Cloudflare
+        id: purge_flag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.skip_cloudflare_purge }}" = "true" ]; then
+            echo "skip_purge=true" >> $GITHUB_OUTPUT
+            echo "➡️  Purge Cloudflare será pulado"
+          else
+            echo "skip_purge=false" >> $GITHUB_OUTPUT
+            echo "Cloudflare purge habilitado"
+          fi
 
       - name: Detect package manager
         id: detect
@@ -72,6 +106,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate environment variables
+        env:
+          ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
         run: |
           if [ -z "$ZONE_ID" ] || [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$RAILWAY_API_TOKEN" ] || [ -z "$RAILWAY_PROJECT_ID" ]; then
             echo "❌ Missing required environment variables."
@@ -79,6 +118,7 @@ jobs:
           fi
 
       - name: Purge Cloudflare cache
+        if: ${{ needs.build.outputs.skip_purge == 'false' }}
         shell: bash
         run: |
           echo "🔍 Purging Cloudflare zone $ZONE_ID"
@@ -91,18 +131,35 @@ jobs:
         env:
           ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Skipping Cloudflare purge (informativo)
+        if: ${{ needs.build.outputs.skip_purge == 'true' }}
+        run: echo "⏩ Purge Cloudflare pulado por input skip_cloudflare_purge=true"
 
       - name: Trigger Railway Deploy
+        env:
+          CLEAR_CACHE: ${{ needs.build.outputs.clear_cache }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
         run: |
+          if [ "$CLEAR_CACHE" = "true" ]; then
+            echo "🚀 Disparando deploy Railway com clearCache=true"
+            MUTATION='mutation { deploy(input: { projectId: "'$RAILWAY_PROJECT_ID'" clearCache: true }) { id } }'
+          else
+            echo "🚀 Disparando deploy Railway usando cache existente"
+            MUTATION='mutation { deploy(input: { projectId: "'$RAILWAY_PROJECT_ID'" }) { id } }'
+          fi
+
+          JSON_PAYLOAD=$(jq -cn --arg q "$MUTATION" '{query: $q}')
+
           resp=$(curl -s -o response.json -w "%{http_code}" -X POST https://backboard.railway.app/graphql \
             -H "Authorization: Bearer $RAILWAY_API_TOKEN" \
             -H "Content-Type: application/json" \
-            --data '{"query":"mutation { deploy(input: { projectId: \"$RAILWAY_PROJECT_ID\" }) { id }}"}')
+            --data "$JSON_PAYLOAD")
+
           if [ "$resp" -ne 200 ]; then
-            echo "❌ Railway deploy failed."
+            echo "❌ Railway deploy failed (HTTP $resp)."
             cat response.json
             exit 1
           fi
-        env:
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
-          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          echo "Resposta da API:"
+          cat response.json
