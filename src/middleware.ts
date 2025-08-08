@@ -1,17 +1,8 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next();
-  const host = req.nextUrl.host;
-  const isLocal = host.includes("localhost");
-  const devCsp =
-    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws://localhost:3000 wss://localhost:3000;";
-  const prodCsp =
-    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';";
-  res.headers.set("Content-Security-Policy", isLocal ? devCsp : prodCsp);
-
+  let response: NextResponse;
   try {
     const token = await getToken({ req });
     const isAuth = !!token;
@@ -20,32 +11,36 @@ export async function middleware(req: NextRequest) {
     const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
 
     if (isAuth && isLoginPage) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
-
-    if (isProtectedRoute && !isAuth) {
+      response = NextResponse.redirect(new URL("/dashboard", req.url));
+    } else if (isProtectedRoute && !isAuth) {
       console.warn(
         "Acesso negado: usuário não autenticado tentando acessar",
         req.nextUrl.pathname
       );
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-
-    if (isAdminRoute) {
+      response = NextResponse.redirect(new URL("/login", req.url));
+    } else if (isAdminRoute) {
       if (!isAuth || token?.role !== "ADMIN") {
         console.warn(
           "Acesso negado: usuário sem permissão tentando acessar",
           req.nextUrl.pathname
         );
-        return NextResponse.redirect(new URL("/", req.url));
+        response = NextResponse.redirect(new URL("/", req.url));
+      } else {
+        response = NextResponse.next();
       }
+    } else {
+      response = NextResponse.next();
     }
   } catch (error) {
     console.error("Erro no middleware de autenticação:", error);
-    return NextResponse.redirect(new URL("/login", req.url));
+    response = NextResponse.redirect(new URL("/login", req.url));
   }
 
-  return res;
+  response.headers.set(
+    "Content-Security-Policy",
+    "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; form-action 'self'; frame-ancestors 'none';"
+  );
+  return response;
 }
 
 // aplica somente às rotas de página (não afeta _next/static, _next/image nem favicon)
