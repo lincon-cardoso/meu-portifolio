@@ -4,7 +4,7 @@ dotenv.config();
 
 import type { NextConfig } from "next";
 
-const isDev = process.env.NODE_ENV === "development";
+const isDev = process.env.APP_ENV === "development";
 
 // ─── Cabeçalhos de Segurança ─────────────────────────────
 const securityHeaders = [
