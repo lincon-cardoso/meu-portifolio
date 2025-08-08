@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # Permissão para o workflow fazer commit da nova versão
+  contents: read
   id-token: write
 
 concurrency:
@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   build:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,6 +52,7 @@ jobs:
           key: ${{ runner.os }}-nextjs-deps-${{ hashFiles('**/package-lock.json','**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-deps-
+            ${{ runner.os }}-
 
       - name: Install dependencies
         run: ${{ steps.detect.outputs.manager }} ${{ steps.detect.outputs.installCmd }}
@@ -58,10 +60,24 @@ jobs:
       - name: Build Next.js
         run: ${{ steps.detect.outputs.manager }} run build
 
+      - name: Run lint
+        run: ${{ steps.detect.outputs.manager }} run lint
+
+      - name: Run tests
+        run: ${{ steps.detect.outputs.manager }} run test
+
   deploy:
     needs: build
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
+      - name: Validate environment variables
+        run: |
+          if [ -z "$ZONE_ID" ] || [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$RAILWAY_API_TOKEN" ] || [ -z "$RAILWAY_PROJECT_ID" ]; then
+            echo "❌ Missing required environment variables."
+            exit 1
+          fi
+
       - name: Purge Cloudflare cache
         shell: bash
         run: |
@@ -78,10 +94,15 @@ jobs:
 
       - name: Trigger Railway Deploy
         run: |
-          curl -X POST https://backboard.railway.app/graphql \
+          resp=$(curl -s -o response.json -w "%{http_code}" -X POST https://backboard.railway.app/graphql \
             -H "Authorization: Bearer $RAILWAY_API_TOKEN" \
             -H "Content-Type: application/json" \
-            --data '{"query":"mutation { deploy(input: { projectId: \"$RAILWAY_PROJECT_ID\" }) { id }}"}'
+            --data '{"query":"mutation { deploy(input: { projectId: \"$RAILWAY_PROJECT_ID\" }) { id }}"}')
+          if [ "$resp" -ne 200 ]; then
+            echo "❌ Railway deploy failed."
+            cat response.json
+            exit 1
+          fi
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
