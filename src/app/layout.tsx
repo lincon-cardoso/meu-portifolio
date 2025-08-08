@@ -58,6 +58,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "90315cdace0342ea83a49fe86a8dc604"}'
+        ></script>
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
