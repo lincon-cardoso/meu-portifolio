@@ -9,10 +9,10 @@ export default function Home() {
 
       <Cabecalho />
 
-      {/* <HomePage /> */}
+      <HomePage />
 
       {/* Rodapé Global */}
-      {/* <Rodape /> */}
+      <Rodape />
     </main>
   );
 }
