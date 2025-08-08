@@ -11,11 +11,6 @@ on:
         required: false
         type: boolean
         default: false
-      skip_cloudflare_purge:
-        description: "Não purgar cache global da Cloudflare neste deploy"
-        required: false
-        type: boolean
-        default: false
 
 permissions:
   contents: read
