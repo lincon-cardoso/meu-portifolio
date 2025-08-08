@@ -2,9 +2,6 @@ import "@/style/style.scss";
 import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
 import { Providers } from "@/components/Providers";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -61,7 +58,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body>
         <Providers>{children}</Providers>
       </body>
     </html>
