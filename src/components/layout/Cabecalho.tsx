@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Cabecalho() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data: session, status } = useSession();
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -45,9 +47,7 @@ export default function Cabecalho() {
               <li className="nav-item">
                 <Link
                   href="/meuprojetos"
-                  className={`nav-link ${
-                    pathname === "/meuprojetos" ? "active" : ""
-                  }`}
+                  className={`nav-link ${pathname === "/meuprojetos" ? "active" : ""}`}
                 >
                   Meus Projetos
                 </Link>
@@ -63,18 +63,32 @@ export default function Cabecalho() {
               <li className="nav-item">
                 <Link
                   href="/contato"
-                  className={`nav-link ${
-                    pathname === "/contato" ? "active" : ""
-                  }`}
+                  className={`nav-link ${pathname === "/contato" ? "active" : ""}`}
                 >
                   Contato
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link href="/login" className="nav-link">
-                  Login
-                </Link>
-              </li>
+              {status === "loading" ? (
+                <li
+                  className="nav-item"
+                  aria-busy="true"
+                  style={{ minWidth: 90 }}
+                >
+                  Carregando...
+                </li>
+              ) : session ? (
+                <li className="nav-item">
+                  <Link href="/dashboard" className="nav-link">
+                    Dashboard
+                  </Link>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link href="/login" className="nav-link">
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>

@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main>
       <h1>Dashboard</h1>
       <p>Bem-vindo, {session.user?.name || session.user?.email}!</p>
       <p>Você está autenticado e pode acessar os recursos do dashboard.</p>
