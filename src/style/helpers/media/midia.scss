@@ -18,6 +18,15 @@
     }
 
     // Cabeçalho
+    .header {
+        background-color: var(--color-bg);
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--box-shadow-soft);
+    }
+
     .header-container {
         display: flex;
         justify-content: space-between; // Espaçamento entre elementos do cabeçalho
@@ -313,7 +322,11 @@
     }
 
     .MeuPortifolio-content {
-        gap: var(--spacing-12); // Espaçamento entre os elementos principais
+    flex-direction: row;
+        align-items: center;
+        // gap: 40px;
+        gap: var(--spacing-10);
+        
     }
 
     .MeuPortifolio-stacks {

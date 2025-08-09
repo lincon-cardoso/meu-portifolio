@@ -1,7 +1,9 @@
 import "@/style/style.scss";
 import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
-import { Providers } from "@/components/Providers";
+import {Providers} from "@/components/Providers";
+
+const cloudflareInsightsToken = process.env.CLOUDFLARE_INSIGHTS_TOKEN;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -58,6 +60,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        {cloudflareInsightsToken && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${cloudflareInsightsToken}"}`}
+          ></script>
+        )}
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

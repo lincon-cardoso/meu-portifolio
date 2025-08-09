@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import "@/style/pages/projects/projetos-loader.scss";
 import useProjectFilter from "@/hooks/useProjectFilter";
 import Cabecalho from "../../components/layout/Cabecalho";
 import Rodape from "../../components/layout/Rodape";
@@ -18,25 +19,34 @@ const menuItems = [
   { category: "pessoal", label: "Pessoal" },
 ];
 
-export default function MeuProjetosPage() {
+export default function MeuprojetosPage() {
   const [projects, setProjects] = useState<Projeto[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("todos");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   useProjectFilter();
 
   useEffect(() => {
     const fetchProjects = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await fetch("/api/projetos?all=true"); // Busca todos os projetos
+        const response = await fetch("/api/projetos?all=true");
         if (!response.ok) {
           throw new Error("Erro ao buscar projetos");
         }
         const data = await response.json();
         setProjects(data);
-      } catch (error) {
-        console.error(error);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Erro ao buscar projetos");
+        }
+      } finally {
+        setLoading(false);
       }
     };
-
     fetchProjects();
   }, []);
 
@@ -78,26 +88,53 @@ export default function MeuProjetosPage() {
               ))}
             </ul>
           </div>
-          <div className="cards-container">
-            {filteredProjects.map((project) => (
+          {loading ? (
+            <div className="projetos-loader-container">
               <div
-                className="card"
-                data-category={project.category}
-                key={project.id}
+                className="loader-spinner projetos-loader-spinner"
+                role="status"
+                aria-label="Carregando projetos"
+              />
+              <span className="projetos-loader-text" aria-live="polite">
+                Carregando projetos...
+              </span>
+            </div>
+          ) : error ? (
+            <div className="projetos-loader-container">
+              <span
+                className="projetos-loader-text"
+                aria-live="polite"
+                style={{ color: "red" }}
               >
-                <div className="card-image">
-                  {/* {project.imagem && (
-                    <img
-                      src={project.imagem}
-                      alt={`Imagem do projeto ${project.titulo}`}
-                    />
-                  )} */}
-                </div>
-                <h3 className="card-title">{project.titulo}</h3>
-                <p className="card-description">{project.descricao}</p>
-              </div>
-            ))}
-          </div>
+                {error}
+              </span>
+            </div>
+          ) : (
+            <div className="cards-container">
+              {filteredProjects.length === 0 ? (
+                <p>Nenhum projeto encontrado.</p>
+              ) : (
+                filteredProjects.map((project) => (
+                  <div
+                    className="card"
+                    data-category={project.category}
+                    key={project.id}
+                  >
+                    <div className="card-image">
+                      {/* {project.imagem && (
+                        <img
+                          src={project.imagem}
+                          alt={`Imagem do projeto ${project.titulo}`}
+                        />
+                      )} */}
+                    </div>
+                    <h3 className="card-title">{project.titulo}</h3>
+                    <p className="card-description">{project.descricao}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
         </section>
       </main>
       <Rodape />

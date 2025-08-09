@@ -13,7 +13,7 @@ const securityHeaders = [
     value: [
       "default-src 'self';",
       "base-uri 'self';",
-      "script-src 'self' 'unsafe-inline';", // ou use 'nonce-XYZ' em produção
+      "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com;", // permite Cloudflare
       "style-src 'self' 'unsafe-inline';",
       "img-src 'self' data: https:;",
       "font-src 'self' https: data:;",

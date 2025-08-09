@@ -14,17 +14,24 @@ export async function GET(req: Request) {
       },
     });
 
+    // Se não houver projetos, retorna 200 com array vazio
     if (!projetos || projetos.length === 0) {
-      console.warn(
-        showAll
-          ? "Nenhum projeto encontrado."
-          : "Nenhum projeto destacado encontrado."
-      );
       return NextResponse.json([], { status: 200 });
     }
 
     return NextResponse.json(projetos);
-  } catch (error) {
+  } catch (error: unknown) {
+    // Só retorna 403 se for erro de permissão
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      ("code" in error || "status" in error)
+    ) {
+      // @ts-expect-error: code e status podem existir em erros do Prisma ou customizados
+      if (error.code === "P2001" || error.status === 403) {
+        return NextResponse.json({ message: "Acesso negado" }, { status: 403 });
+      }
+    }
     console.error("Erro ao buscar projetos:", error);
     return NextResponse.json(
       { message: "Erro interno do servidor" },

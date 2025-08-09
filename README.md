@@ -33,10 +33,10 @@ Dashboard completo para gerenciamento de projetos com deploy automático integra
   - **`app/`**: Páginas do Next.js.
     - **`layout.tsx`**: Layout principal da aplicação.
     - **`page.tsx`**: Página inicial.
-    - **`meuProjetos/page.tsx`**: Página de projetos.
-    - **`sobre/page.tsx`**: Página sobre mim.
-    - **`contato/page.tsx`**: Página de contato.
-    - **`login/page.tsx`**: Página de login.
+  - **`meuprojetos/page.tsx`**: Página de projetos.
+  - **`sobre/page.tsx`**: Página sobre mim.
+  - **`contato/page.tsx`**: Página de contato.
+  - **`login/page.tsx`**: Página de login.
   - **`components/`**: Componentes reutilizáveis.
     - **`layout/`**: Cabeçalho e rodapé.
     - **`home/`**: Componentes da página inicial.

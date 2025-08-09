@@ -15,7 +15,7 @@ export default function Rodape() {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/meuProjetos">Projetos</Link>
+                <Link href="/meuprojetos">Projetos</Link>
               </li>
               <li>
                 <Link href="/sobre">Sobre Mim</Link>
