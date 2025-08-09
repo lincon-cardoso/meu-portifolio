@@ -55,7 +55,7 @@ export default function HomePage() {
                 🚀 Contrate-me agora
               </Link>
               <Link
-                href="/meuProjetos"
+                href="/meuprojetos"
                 className="btn btn-secondary"
                 aria-label="Ver todos os projetos"
               >
@@ -104,7 +104,7 @@ export default function HomePage() {
         </div>
 
         <div className="text-center" style={{ marginTop: "4rem" }}>
-          <Link href="/meuProjetos" className="btn btn-primary">
+          <Link href="/meuprojetos" className="btn btn-primary">
             Ver todos os projetos
           </Link>
         </div>

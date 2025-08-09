@@ -42,9 +42,9 @@ export default function Cabecalho() {
               </li>
               <li className="nav-item">
                 <Link
-                  href="/meuProjetos"
+                  href="/meuprojetos"
                   className={`nav-link ${
-                    pathname === "/meuProjetos" ? "active" : ""
+                    pathname === "/meuprojetos" ? "active" : ""
                   }`}
                 >
                   Meus Projetos

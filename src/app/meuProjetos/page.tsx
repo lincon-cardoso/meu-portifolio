@@ -18,7 +18,7 @@ const menuItems = [
   { category: "pessoal", label: "Pessoal" },
 ];
 
-export default function MeuProjetosPage() {
+export default function MeuprojetosPage() {
   const [projects, setProjects] = useState<Projeto[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("todos");
   useProjectFilter();
