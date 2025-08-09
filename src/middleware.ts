@@ -36,10 +36,18 @@ export async function middleware(req: NextRequest) {
     response = NextResponse.redirect(new URL("/login", req.url));
   }
 
-  response.headers.set(
-    "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; form-action 'self'; frame-ancestors 'none';"
-  );
+  // Ajusta CSP para permitir 'unsafe-eval' apenas em desenvolvimento
+  if (process.env.NODE_ENV === "development") {
+    response.headers.set(
+      "Content-Security-Policy",
+      "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; form-action 'self'; frame-ancestors 'none';"
+    );
+  } else {
+    response.headers.set(
+      "Content-Security-Policy",
+      "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; form-action 'self'; frame-ancestors 'none';"
+    );
+  }
   return response;
 }
 
