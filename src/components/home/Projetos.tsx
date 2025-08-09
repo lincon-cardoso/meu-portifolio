@@ -3,6 +3,8 @@
 import useSWR from "swr";
 import { Projeto } from "@/types/Projeto";
 import "@/style/pages/projects/projetos-cards.scss";
+import "@/style/pages/projects/projetos-loader.scss";
+import "@/style/pages/projects/projetos-loader.scss";
 
 const fetcher = (url: string) =>
   fetch(url).then((res) => {
@@ -11,12 +13,23 @@ const fetcher = (url: string) =>
   });
 
 export function Projetos() {
-  const { data: projetos = [], error } = useSWR<Projeto[]>(
-    "/api/projetos",
-    fetcher
-  );
+  const { data: projetos, error } = useSWR<Projeto[]>("/api/projetos", fetcher);
 
-  if (!projetos) return <p>Carregando projetos destacados...</p>;
+  if (typeof projetos === "undefined") {
+    return (
+      <div className="projetos-loader-container">
+        {/* Spinner acessível */}
+        <div
+          className="loader-spinner projetos-loader-spinner"
+          role="status"
+          aria-label="Carregando projetos destacados"
+        />
+        <span className="projetos-loader-text" aria-live="polite">
+          Carregando projetos destacados...
+        </span>
+      </div>
+    );
+  }
   if (error) return <p>Erro ao carregar projetos destacados.</p>;
 
   return (

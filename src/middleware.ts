@@ -8,7 +8,6 @@ export async function middleware(req: NextRequest) {
     const isAuth = !!token;
     const isLoginPage = req.nextUrl.pathname.startsWith("/login");
     const isProtectedRoute = req.nextUrl.pathname.startsWith("/dashboard");
-    const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
 
     if (isAuth && isLoginPage) {
       response = NextResponse.redirect(new URL("/dashboard", req.url));
@@ -18,16 +17,6 @@ export async function middleware(req: NextRequest) {
         req.nextUrl.pathname
       );
       response = NextResponse.redirect(new URL("/login", req.url));
-    } else if (isAdminRoute) {
-      if (!isAuth || token?.role !== "ADMIN") {
-        console.warn(
-          "Acesso negado: usuário sem permissão tentando acessar",
-          req.nextUrl.pathname
-        );
-        response = NextResponse.redirect(new URL("/", req.url));
-      } else {
-        response = NextResponse.next();
-      }
     } else {
       response = NextResponse.next();
     }
@@ -56,6 +45,5 @@ export const config = {
   matcher: [
     "/((?!_next/static|_next/image|favicon.ico).*)",
     "/dashboard/:path*",
-    "/admin/:path*",
   ],
 };
