@@ -55,7 +55,7 @@ export default function MeuprojetosPage() {
       <main className="fade-in">
         <section className="cards-de-projetos">
           <h2 className="projetos-title" id="projetos">
-            Meus Projetos
+            Meus Projetos x2
           </h2>
           <div className="menu-horizontal">
             <ul className="menu-list">
