@@ -1,0 +1,356 @@
+// Toast de erro no topo da tela
+.dashboard__error-toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e53935;
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(229, 57, 53, 0.15);
+    z-index: 2000;
+    animation: fadeInOut 1.5s;
+}
+
+.dashboard__btn-apagar {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.dashboard__btn-apagar:hover {
+    background: #b71c1c;
+    color: #fff;
+}
+
+// Toast de sucesso no topo da tela
+.dashboard__success-toast {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #43a047;
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(67, 160, 71, 0.15);
+    z-index: 2000;
+    animation: fadeInOut 1.5s;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+// Estilos para formulário do modal de edição
+.dashboard__modal-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dashboard__modal-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.dashboard__modal-input,
+.dashboard__modal-textarea {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cfd8dc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background: #f8fafc;
+    color: #222;
+    transition: border 0.2s;
+}
+
+.dashboard__modal-input:focus,
+.dashboard__modal-textarea:focus {
+    border: 1.5px solid #1976d2;
+    outline: none;
+    background: #fff;
+}
+
+.dashboard__modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.dashboard__modal-cancel {
+    background: #bbb;
+    color: #222;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dashboard__modal-cancel:hover {
+    background: #888;
+}
+
+.dashboard__modal-save {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dashboard__modal-save:hover {
+    background: #1565c0;
+}
+
+// Estilos para o modal react-modal
+.dashboard__modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dashboard__modal {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px rgba(25, 118, 210, 0.12), 0 1.5px 6px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    min-width: 260px;
+    max-width: 340px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: fadeInModal 0.2s;
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dashboard__modal h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #1976d2;
+    font-weight: 700;
+}
+
+.dashboard__modal p {
+    margin: 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.dashboard__modal button {
+    margin-top: 1.2rem;
+    padding: 6px 20px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dashboard__modal button:hover {
+    background: #1565c0;
+}
+
+// Centraliza todo o conteúdo do dashboard
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &__title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    &__welcome {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    &__projects-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    &__projects-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem 0;
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__no-projects {
+        color: #888;
+        font-style: italic;
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    &__project-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        background: #fafbfc;
+        border-radius: 6px;
+        padding: 10px 16px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        transition: box-shadow 0.2s;
+        width: 100%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:hover {
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+        }
+    }
+
+    &__project-name {
+        flex: 1;
+        font-weight: 500;
+        color: #222;
+        font-size: 1.1rem;
+        letter-spacing: 0.01em;
+        margin-right: 16px;
+        word-break: break-word;
+        text-align: left;
+    }
+
+    &__btn-editar,
+    &__btn-visualizar {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    &__btn-editar {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+        padding: 4px 12px;
+        margin-right: 8px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+
+        &:hover {
+            background: #e0e0e0;
+            color: #1976d2;
+        }
+    }
+
+    &__btn-visualizar {
+        background: #1976d2;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 4px 12px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+
+        &:hover {
+            background: #1565c0;
+            color: #fff;
+        }
+    }
+}
+
+// fim do bloco .dashboard
+
+.dashboard__signout-btn {
+    margin-top: 2rem;
+    padding: 8px 24px;
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 1px 4px rgba(229, 57, 53, 0.08);
+    display: inline-block;
+
+    &:hover {
+        background: #b71c1c;
+        color: #fff;
+    }
+}
