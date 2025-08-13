@@ -27,11 +27,12 @@ async function fetchProjetoBySlugOrId(param: string): Promise<Projeto | null> {
 }
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const projeto = await fetchProjetoBySlugOrId(params.id);
+  const { id } = await params;
+  const projeto = await fetchProjetoBySlugOrId(id);
   if (!projeto) return { title: "Projeto não encontrado" };
   const baseTitle = projeto.titulo || "Projeto";
   const desc = projeto.descricao?.slice(0, 155) || "Projeto do portfólio";
@@ -57,7 +58,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjetoPage({ params }: Props) {
-  const projeto = await fetchProjetoBySlugOrId(params.id);
+  const { id } = await params;
+  const projeto = await fetchProjetoBySlugOrId(id);
   if (!projeto) return notFound();
 
   return (

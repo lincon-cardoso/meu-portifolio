@@ -3,9 +3,9 @@ import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
   req: Request,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = context.params.id;
+  const { id } = await params;
   try {
     await prisma.projeto.delete({ where: { id } });
     return new Response(null, { status: 204 });
@@ -17,14 +17,9 @@ export async function DELETE(
 }
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } } | { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  // Garante compatibilidade com params sendo Promise ou objeto direto
-  const params =
-    "then" in context.params
-      ? await (context.params as Promise<{ id: string }>)
-      : (context.params as { id: string });
-  const id = params.id;
+  const { id } = await params;
   const data = await req.json();
   console.log("Backend PUT - Dados recebidos:", data);
 
@@ -54,13 +49,9 @@ export async function PUT(
 
 export async function GET(
   req: Request,
-  context: { params: { id: string } } | { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const params =
-    "then" in context.params
-      ? await (context.params as Promise<{ id: string }>)
-      : (context.params as { id: string });
-  const id = params.id;
+  const { id } = await params;
   try {
     const projeto = await prisma.projeto.findUnique({ where: { id } });
     if (!projeto) {
