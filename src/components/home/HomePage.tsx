@@ -19,15 +19,18 @@ export default function HomePage() {
     <main>
       <section className="MeuPortifolio fade-in">
         <div className="MeuPortifolio-content">
-          <Image
-            src="/img/Foto.jpg"
-            alt="Minha foto de perfil"
-            className="MeuPortifolio-foto"
-            width={300}
-            height={300}
-            priority
-          />
+          {/* Imagem posicionada à esquerda */}
+          <div className="MeuPortifolio-foto">
+            <Image
+              src="/img/Foto.jpg"
+              alt="Foto de perfil de Lincon Cardoso"
+              width={300}
+              height={300}
+              priority
+            />
+          </div>
 
+          {/* Texto à direita da imagem */}
           <div className="MeuPortifolio-text">
             <h1 className="MeuPortifolio-title">
               Desenvolvedor <span className="text-gradient">Web</span>

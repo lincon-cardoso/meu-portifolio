@@ -1,42 +1,47 @@
 "use client";
 
 import { useState } from "react";
-import Modal from "react-modal";
+import Link from "next/link";
+import { slugify } from "@/utils/slugify";
 import styles from "./dashboard.module.scss";
-
-const menuItems = [
-  { category: "todos", label: "Todos" },
-  { category: "financeiro", label: "Financeiro" },
-  { category: "comercial", label: "Comercial" },
-  { category: "dashboard-admin", label: "Dashboard/Admin" },
-  { category: "landing-page", label: "Landing Page" },
-  { category: "blog", label: "Blog" },
-  { category: "educacao", label: "Educação" },
-  { category: "delivery", label: "Delivery" },
-  { category: "pessoal", label: "Pessoal" },
-];
-interface Projeto {
-  id: string;
-  nome?: string;
-  titulo?: string;
-  name?: string;
-  descricao?: string;
-  imagem?: string;
-  category?: string;
-  tecnologias?: string[];
-  link?: string;
-  linkGithub?: string;
-  destaque?: boolean;
-}
+import Toast from "./components/Toast";
+import ViewModal from "./components/ViewModal";
+import EditModal from "./components/EditModal";
+import ConfirmModal from "./components/ConfirmModal";
+import CreateModal from "./components/CreateModal";
+import { Projeto } from "@/types/Projeto"; // Garantir que o tipo correto seja usado
 
 export default function ProjectList({ projetos }: { projetos: Projeto[] }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProjeto, setSelectedProjeto] = useState<Projeto | null>(null);
-  const [editData, setEditData] = useState<Partial<Projeto>>({});
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [viewProjeto, setViewProjeto] = useState<Projeto | null>(null);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editProjeto, setEditProjeto] = useState<Projeto | null>(null);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [projetosState, setProjetosState] = useState<Projeto[]>(projetos);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [projetoToDelete, setProjetoToDelete] = useState<Projeto | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [creating, setCreating] = useState(false);
+
   const handleView = (projeto: Projeto) => {
-    setViewProjeto(projeto);
+    const currentProjeto = projetosState.find((p) => p.id === projeto.id);
+    console.log(
+      "1. [Visualizar] Projeto encontrado no estado:",
+      currentProjeto
+    );
+    if (!currentProjeto) return;
+
+    // Garante que destaque seja booleano
+    let destaqueValue = currentProjeto.destaque;
+    if (typeof destaqueValue === "string") {
+      destaqueValue = destaqueValue === "true" || destaqueValue === "1";
+    } else if (typeof destaqueValue === "number") {
+      destaqueValue = destaqueValue === 1;
+    }
+    console.log("2. [Visualizar] Valor final do destaque:", !!destaqueValue);
+    setViewProjeto({ ...currentProjeto, destaque: !!destaqueValue });
     setViewModalOpen(true);
   };
 
@@ -44,92 +49,152 @@ export default function ProjectList({ projetos }: { projetos: Projeto[] }) {
     setViewModalOpen(false);
     setViewProjeto(null);
   };
-  const [projetosState, setProjetosState] = useState<Projeto[]>(projetos);
-  const [successMsg, setSuccessMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Tem certeza que deseja apagar este projeto?")) return;
+
+  const handleEdit = (projeto: Projeto) => {
+    // Garantir que usamos a versão mais recente do estado
+    const currentProjeto =
+      projetosState.find((p) => p.id === projeto.id) || projeto;
+    console.log("[Editar] Projeto clicado:", currentProjeto);
+    // Normaliza destaque em boolean
+    let destaqueValue: boolean | string | number | undefined =
+      currentProjeto.destaque as unknown as
+        | boolean
+        | string
+        | number
+        | undefined;
+    if (typeof destaqueValue === "string") {
+      destaqueValue = destaqueValue === "true" || destaqueValue === "1";
+    } else if (typeof destaqueValue === "number") {
+      destaqueValue = destaqueValue === 1;
+    } else {
+      destaqueValue = !!destaqueValue;
+    }
+    setEditProjeto({ ...currentProjeto, destaque: destaqueValue });
+    setEditModalOpen(true);
+    console.log("[Editar] Modal deve abrir agora. Estado editModalOpen = true");
+  };
+
+  const closeEditModal = () => {
+    setEditModalOpen(false);
+    setEditProjeto(null);
+  };
+
+  const openDeleteModal = (projeto: Projeto) => {
+    setProjetoToDelete(projeto);
+    setDeleteModalOpen(true);
+  };
+
+  const cancelDelete = () => {
+    if (deleting) return;
+    setDeleteModalOpen(false);
+    setProjetoToDelete(null);
+  };
+
+  const confirmDelete = async () => {
+    if (!projetoToDelete) return;
+    setDeleting(true);
     try {
-      const res = await fetch(`/api/projetos/${id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Erro ao apagar");
-      setProjetosState((prev) => prev.filter((p) => p.id !== id));
+      const res = await fetch(`/api/projetos/${projetoToDelete.id}`, {
+        method: "DELETE",
+      });
+      if (!(res.ok || res.status === 204)) throw new Error("Erro ao apagar");
+      setProjetosState((prev) =>
+        prev.filter((p) => p.id !== projetoToDelete.id)
+      );
       setSuccessMsg("Projeto apagado com sucesso!");
       setTimeout(() => setSuccessMsg(""), 1500);
-    } catch {
+      setDeleteModalOpen(false);
+      setProjetoToDelete(null);
+    } catch (e) {
+      console.error("Erro ao apagar projeto", e);
       setErrorMsg("Erro ao apagar projeto!");
+      setTimeout(() => setErrorMsg(""), 2000);
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const handleSaveEdit = async (data: Partial<Projeto>) => {
+    if (!editProjeto) return;
+    try {
+      const res = await fetch(`/api/projetos/${editProjeto.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Erro ao atualizar");
+      const updated = (await res.json()) as Projeto;
+      setProjetosState((prev) =>
+        prev.map((p) => (p.id === updated.id ? { ...p, ...updated } : p))
+      );
+      setSuccessMsg("Projeto atualizado com sucesso!");
+      setTimeout(() => setSuccessMsg(""), 1500);
+      closeEditModal();
+    } catch (e) {
+      console.error("Erro ao atualizar projeto", e);
+      setErrorMsg("Erro ao atualizar projeto!");
       setTimeout(() => setErrorMsg(""), 2000);
     }
   };
 
-  if (typeof window !== "undefined") {
-    Modal.setAppElement("body");
-  }
-
-  const handleEdit = (projeto: Projeto) => {
-    setSelectedProjeto(projeto);
-    setEditData({ ...projeto });
-    setModalOpen(true);
-    setSuccessMsg("");
+  const handleCancelEdit = () => {
+    closeEditModal();
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-    setSelectedProjeto(null);
-    setEditData({});
-    setSuccessMsg("");
+  // Criação
+  const openCreateModal = () => {
+    setCreateModalOpen(true);
   };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setEditData((prev) => ({ ...prev, [name]: value }));
+  const closeCreateModal = () => {
+    if (creating) return;
+    setCreateModalOpen(false);
   };
-
-  const handleChangeArray = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditData((prev) => ({
-      ...prev,
-      [name]: value.split(",").map((t) => t.trim()),
-    }));
-  };
-
-  const handleSave = async () => {
-    if (!selectedProjeto) return;
+  const handleCreate = async (data: Partial<Projeto>) => {
+    setCreating(true);
     try {
-      const res = await fetch(`/api/projetos/${selectedProjeto.id}`, {
-        method: "PUT",
+      const res = await fetch("/api/projetos", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editData),
+        body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("Erro ao salvar");
-      const updatedProjeto = await res.json();
-      setProjetosState((prev) =>
-        prev.map((p) => (p.id === updatedProjeto.id ? updatedProjeto : p))
-      );
-      // Se o modal de visualização estiver aberto para o mesmo projeto, atualize também
-      setViewProjeto((prev) =>
-        prev && prev.id === updatedProjeto.id ? updatedProjeto : prev
-      );
-      setSuccessMsg("Cadastrado com sucesso!");
-      setTimeout(() => {
-        closeModal();
-      }, 1200);
-    } catch {
-      alert("Erro ao salvar alterações!");
+      if (!res.ok) throw new Error("Erro ao criar");
+      const novo = await res.json();
+      setProjetosState((prev) => [novo, ...prev]);
+      setSuccessMsg("Projeto criado com sucesso!");
+      setTimeout(() => setSuccessMsg(""), 1500);
+      setCreateModalOpen(false);
+    } catch (e) {
+      console.error("Erro ao criar projeto", e);
+      setErrorMsg("Erro ao criar projeto!");
+      setTimeout(() => setErrorMsg(""), 2000);
+    } finally {
+      setCreating(false);
     }
   };
 
   return (
     <>
-      {successMsg && (
-        <div className={styles["dashboard__success-toast"]}>{successMsg}</div>
-      )}
-      {errorMsg && (
-        <div className={styles["dashboard__error-toast"]}>{errorMsg}</div>
-      )}
+      <Toast message={successMsg} type="success" />
+      <Toast message={errorMsg} type="error" />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+          marginBottom: 16,
+        }}
+      >
+        <button
+          className={styles["dashboard__btn-criar"]}
+          type="button"
+          onClick={openCreateModal}
+          disabled={creating || editModalOpen || deleteModalOpen}
+          style={{ opacity: creating ? 0.7 : 1 }}
+        >
+          {creating ? "Criando..." : "+ Criar Projeto"}
+        </button>
+      </div>
       <ul className={styles["dashboard__projects-list"]}>
         {projetosState.length === 0 && (
           <li className={styles["dashboard__no-projects"]}>
@@ -138,184 +203,32 @@ export default function ProjectList({ projetos }: { projetos: Projeto[] }) {
         )}
         {projetosState.map((projeto: Projeto) => (
           <li key={projeto.id} className={styles["dashboard__project-item"]}>
-            <span className={styles["dashboard__project-name"]}>
+            <Link
+              href={`/projetos/${slugify(projeto.titulo || projeto.nome || projeto.name || "")}`}
+              className={styles["dashboard__project-name"]}
+              prefetch={true}
+            >
               {projeto.nome || projeto.titulo || projeto.name}
-            </span>
+            </Link>
+            {/* editar projeto */}
             <button
               className={styles["dashboard__btn-editar"]}
               onClick={() => handleEdit(projeto)}
+              style={{ marginLeft: 8 }}
             >
               Editar
             </button>
+            {/*  visualizar projeto */}
             <button
               className={styles["dashboard__btn-visualizar"]}
               onClick={() => handleView(projeto)}
             >
               Visualizar
             </button>
-            {/* Modal de Visualização (idêntico ao de edição, mas read-only) */}
-            <Modal
-              isOpen={viewModalOpen}
-              onRequestClose={closeViewModal}
-              contentLabel="Visualizar Projeto"
-              className={styles["dashboard__modal"]}
-              overlayClassName={styles["dashboard__modal-overlay"]}
-            >
-              {viewProjeto && (
-                <>
-                  <h3>Visualizar Projeto</h3>
-                  <form className={styles["dashboard__modal-form"]}>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Título:</b>
-                      <input
-                        type="text"
-                        value={
-                          viewProjeto.titulo ||
-                          viewProjeto.nome ||
-                          viewProjeto.name ||
-                          ""
-                        }
-                        className={styles["dashboard__modal-input"]}
-                        disabled
-                        readOnly
-                      />
-                    </label>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Descrição:</b>
-                      <textarea
-                        value={viewProjeto.descricao || ""}
-                        className={styles["dashboard__modal-textarea"]}
-                        rows={3}
-                        disabled
-                        readOnly
-                      />
-                    </label>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Imagem (URL):</b>
-                      <input
-                        type="text"
-                        value={viewProjeto.imagem || ""}
-                        className={styles["dashboard__modal-input"]}
-                        disabled
-                        readOnly
-                      />
-                      {viewProjeto.imagem && (
-                        <a
-                          href={viewProjeto.imagem}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ marginLeft: 8 }}
-                        >
-                          Ver imagem
-                        </a>
-                      )}
-                    </label>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Categoria:</b>
-                      <select
-                        value={viewProjeto.category || ""}
-                        className={styles["dashboard__modal-input"]}
-                        disabled
-                      >
-                        <option value="" disabled>
-                          Selecione uma categoria
-                        </option>
-                        {menuItems
-                          .filter((item) => item.category !== "todos")
-                          .map((item) => (
-                            <option key={item.category} value={item.category}>
-                              {item.label}
-                            </option>
-                          ))}
-                      </select>
-                    </label>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Tecnologias (separadas por vírgula):</b>
-                      <input
-                        type="text"
-                        value={
-                          Array.isArray(viewProjeto.tecnologias)
-                            ? viewProjeto.tecnologias.join(", ")
-                            : ""
-                        }
-                        className={styles["dashboard__modal-input"]}
-                        disabled
-                        readOnly
-                      />
-                    </label>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Link:</b>
-                      <input
-                        type="text"
-                        value={viewProjeto.link || ""}
-                        className={styles["dashboard__modal-input"]}
-                        disabled
-                        readOnly
-                      />
-                      {viewProjeto.link && (
-                        <a
-                          href={viewProjeto.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ marginLeft: 8 }}
-                        >
-                          Abrir
-                        </a>
-                      )}
-                    </label>
-                    <label className={styles["dashboard__modal-label"]}>
-                      <b>Link Github:</b>
-                      <input
-                        type="text"
-                        value={viewProjeto.linkGithub || ""}
-                        className={styles["dashboard__modal-input"]}
-                        disabled
-                        readOnly
-                      />
-                      {viewProjeto.linkGithub && (
-                        <a
-                          href={viewProjeto.linkGithub}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ marginLeft: 8 }}
-                        >
-                          Abrir
-                        </a>
-                      )}
-                    </label>
-                    <label
-                      className={styles["dashboard__modal-label"]}
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 8,
-                      }}
-                    >
-                      <b>Destaque:</b>
-                      <input
-                        type="checkbox"
-                        checked={!!viewProjeto.destaque}
-                        disabled
-                        readOnly
-                        style={{ marginLeft: 8 }}
-                      />
-                    </label>
-                    <div className={styles["dashboard__modal-actions"]}>
-                      <button
-                        type="button"
-                        onClick={closeViewModal}
-                        className={styles["dashboard__modal-cancel"]}
-                      >
-                        Fechar
-                      </button>
-                    </div>
-                  </form>
-                </>
-              )}
-            </Modal>
+            {/* apagar */}
             <button
               className={styles["dashboard__btn-apagar"]}
-              onClick={() => handleDelete(projeto.id)}
+              onClick={() => openDeleteModal(projeto)}
               style={{ marginLeft: 8 }}
             >
               Apagar
@@ -324,147 +237,38 @@ export default function ProjectList({ projetos }: { projetos: Projeto[] }) {
         ))}
       </ul>
 
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Editar Projeto"
-        className={styles["dashboard__modal"]}
-        overlayClassName={styles["dashboard__modal-overlay"]}
-      >
-        {selectedProjeto && (
-          <>
-            <h3>Editar Projeto</h3>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSave();
-              }}
-              className={styles["dashboard__modal-form"]}
-            >
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Título:</b>
-                <input
-                  type="text"
-                  name="titulo"
-                  value={editData.titulo || ""}
-                  onChange={handleChange}
-                  className={styles["dashboard__modal-input"]}
-                  required
-                />
-              </label>
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Descrição:</b>
-                <textarea
-                  name="descricao"
-                  value={editData.descricao || ""}
-                  onChange={handleChange}
-                  className={styles["dashboard__modal-textarea"]}
-                  rows={3}
-                  required
-                />
-              </label>
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Imagem (URL):</b>
-                <input
-                  type="text"
-                  name="imagem"
-                  value={editData.imagem || ""}
-                  onChange={handleChange}
-                  className={styles["dashboard__modal-input"]}
-                />
-              </label>
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Categoria:</b>
-                <select
-                  name="category"
-                  value={editData.category || ""}
-                  onChange={handleChange}
-                  className={styles["dashboard__modal-input"]}
-                  required
-                >
-                  <option value="" disabled>
-                    Selecione uma categoria
-                  </option>
-                  {menuItems
-                    .filter((item) => item.category !== "todos")
-                    .map((item) => (
-                      <option key={item.category} value={item.category}>
-                        {item.label}
-                      </option>
-                    ))}
-                </select>
-              </label>
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Tecnologias (separadas por vírgula):</b>
-                <input
-                  type="text"
-                  name="tecnologias"
-                  value={
-                    Array.isArray(editData.tecnologias)
-                      ? editData.tecnologias.join(", ")
-                      : ""
-                  }
-                  onChange={handleChangeArray}
-                  className={styles["dashboard__modal-input"]}
-                />
-              </label>
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Link:</b>
-                <input
-                  type="text"
-                  name="link"
-                  value={editData.link || ""}
-                  onChange={handleChange}
-                  className={styles["dashboard__modal-input"]}
-                />
-              </label>
-              <label className={styles["dashboard__modal-label"]}>
-                <b>Link Github:</b>
-                <input
-                  type="text"
-                  name="linkGithub"
-                  value={editData.linkGithub || ""}
-                  onChange={handleChange}
-                  className={styles["dashboard__modal-input"]}
-                />
-              </label>
-              <label
-                className={styles["dashboard__modal-label"]}
-                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
-              >
-                <b>Destaque:</b>
-                <input
-                  type="checkbox"
-                  name="destaque"
-                  checked={!!editData.destaque}
-                  onChange={(e) =>
-                    setEditData((prev) => ({
-                      ...prev,
-                      destaque: e.target.checked,
-                    }))
-                  }
-                  style={{ marginLeft: 8 }}
-                />
-              </label>
-              <div className={styles["dashboard__modal-actions"]}>
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className={styles["dashboard__modal-cancel"]}
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  className={styles["dashboard__modal-save"]}
-                >
-                  Salvar
-                </button>
-              </div>
-            </form>
-          </>
-        )}
-      </Modal>
+      <ViewModal
+        isOpen={viewModalOpen}
+        onRequestClose={closeViewModal}
+        projeto={viewProjeto}
+      />
+      <EditModal
+        isOpen={editModalOpen}
+        onRequestClose={closeEditModal}
+        projeto={editProjeto || null}
+        onSave={handleSaveEdit}
+        onCancel={handleCancelEdit}
+      />
+      <ConfirmModal
+        isOpen={deleteModalOpen}
+        title="Apagar Projeto"
+        message={
+          projetoToDelete
+            ? `Tem certeza que deseja apagar o projeto "${projetoToDelete.titulo || projetoToDelete.nome || projetoToDelete.name || "(sem título)"}"? Esta ação não poderá ser desfeita.`
+            : "Tem certeza que deseja apagar este projeto?"
+        }
+        confirmLabel="Apagar"
+        cancelLabel="Cancelar"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+        loading={deleting}
+      />
+      <CreateModal
+        isOpen={createModalOpen}
+        onRequestClose={closeCreateModal}
+        onCreate={handleCreate}
+        loading={creating}
+      />
     </>
   );
 }

@@ -2,8 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import SignOutButton from "../../components/dashboard/SignOutButton";
-import styles from "./dashboard.module.scss";
 import ProjectList from "./ProjectList";
+import styles from "./dashboard.module.scss";
 
 // Função para buscar projetos da API (server-side fetch precisa de URL absoluta)
 async function getProjetos() {
@@ -39,7 +39,6 @@ export default async function DashboardPage() {
         Bem-vindo, {session.user?.name || session.user?.email}
       </p>
       <h2 className={styles["dashboard__projects-title"]}>Lista de Projetos</h2>
-
       <ProjectList projetos={projetos} />
 
       <SignOutButton className={styles["dashboard__signout-btn"]} />

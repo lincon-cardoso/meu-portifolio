@@ -49,13 +49,19 @@ export default function Rodape() {
             </div>
             <div className="footer-social">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/lincon-cardoso/"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin />
               </a>
-              <a href="https://github.com" target="_blank" aria-label="GitHub">
+              <a
+                href="https://github.com/lincon-cardoso"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
                 <FaGithub />
               </a>
             </div>
@@ -70,7 +76,6 @@ export default function Rodape() {
             </p>
           </div>
 
-         
           <div className="footer-back-to-top">
             <button
               className="btn-back-to-top"
@@ -80,7 +85,6 @@ export default function Rodape() {
             </button>
           </div>
 
-          
           <div className="footer-copyright">
             <p>
               © 2025 Lincon Cardoso – Desenvolvedor Web. Todos os direitos

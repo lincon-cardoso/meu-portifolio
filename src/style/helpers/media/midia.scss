@@ -254,6 +254,20 @@
     .MeuPortifolio-stacks {
         gap: var(--spacing-6); // Espaçamento entre os itens
     }
+
+    /* Layout de cards igual ao mobile até 1024px (coluna centralizada) */
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-4);
+        margin: 0 auto;
+    }
+
+    .cards-container .card {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 // ===========================
@@ -322,11 +336,11 @@
     }
 
     .MeuPortifolio-content {
-    flex-direction: row;
+        flex-direction: row;
         align-items: center;
         // gap: 40px;
         gap: var(--spacing-10);
-        
+
     }
 
     .MeuPortifolio-stacks {

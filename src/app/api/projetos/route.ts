@@ -39,3 +39,43 @@ export async function GET(req: Request) {
     );
   }
 }
+
+export async function POST(req: Request) {
+  try {
+    const data = await req.json();
+    // Normalizações básicas
+    const tecnologiasArr = Array.isArray(data.tecnologias)
+      ? data.tecnologias
+      : typeof data.tecnologias === "string"
+        ? data.tecnologias
+            .split(",")
+            .map((t: string) => t.trim())
+            .filter(Boolean)
+        : [];
+    const destaqueBool =
+      String(data.destaque).toLowerCase() === "true" || data.destaque === true;
+
+    // Nota: usuarioId precisa vir do auth (placeholder simples). Ajustar com session se necessário.
+    const usuarioId = data.usuarioId || "admin-temp"; // TODO: substituir por user real
+
+    const projeto = await prisma.projeto.create({
+      data: {
+        titulo: data.titulo,
+        descricao: data.descricao,
+        category: data.category,
+        tecnologias: tecnologiasArr,
+        link: data.link || null,
+        linkGithub: data.linkGithub || null,
+        destaque: destaqueBool,
+        usuarioId,
+      },
+    });
+    return NextResponse.json(projeto, { status: 201 });
+  } catch (error) {
+    console.error("Erro ao criar projeto", error);
+    return NextResponse.json(
+      { error: "Erro ao criar projeto" },
+      { status: 500 }
+    );
+  }
+}

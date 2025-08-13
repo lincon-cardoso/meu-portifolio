@@ -1,7 +1,7 @@
 import "@/style/style.scss";
 import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
-import {Providers} from "@/components/Providers";
+import { Providers } from "@/components/Providers";
 
 const cloudflareInsightsToken = process.env.CLOUDFLARE_INSIGHTS_TOKEN;
 
@@ -24,14 +24,6 @@ export const metadata: Metadata = {
       "Projetos profissionais com foco em design moderno, performance e acessibilidade.",
     url: "https://www.devlincon.com.br",
     siteName: "Dev Lincon",
-    images: [
-      {
-        url: "/img/Foto.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Preview do site de Lincon Cardoso",
-      },
-    ],
     locale: "pt_BR",
     type: "website",
   },
@@ -39,7 +31,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Portfólio | Lincon Cardoso",
     description: "Desenvolvedor Front-End com projetos de impacto visual real.",
-    images: ["/img/Foto.jpg"],
     creator: "@seuUsuarioTwitter",
   },
   icons: {

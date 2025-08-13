@@ -32,7 +32,8 @@
     background-color: var(--color-light-background);
 }
 
-.menu-horizontal .menu-item a {
+.menu-horizontal .menu-item a,
+.menu-horizontal .menu-item button {
     display: inline-block;
     font-size: var(--font-size-sm);
     padding: var(--spacing-2) var(--spacing-4);
@@ -41,4 +42,25 @@
     color: var(--color-text);
     transition: var(--transition-default);
     border: 1px solid var(--color-light-text);
+    cursor: pointer;
+}
+
+.menu-horizontal .menu-item button {
+    background: none;
+}
+
+/* Estado ativo/selecionado */
+.menu-horizontal .menu-item button.active,
+.menu-horizontal .menu-item a.active,
+.menu-horizontal .menu-item button[aria-pressed="true"],
+.menu-horizontal .menu-item a[aria-pressed="true"] {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, .05);
+}
+
+.menu-horizontal .menu-item button:focus-visible {
+    outline: 3px solid var(--color-accent, #ff9800);
+    outline-offset: 2px;
 }

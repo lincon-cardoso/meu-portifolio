@@ -26,7 +26,6 @@ model Projeto {
   id          String   @id @default(cuid())
   titulo      String
   descricao   String
-  imagem      String?
   category    String
   tecnologias String[]
   link        String?

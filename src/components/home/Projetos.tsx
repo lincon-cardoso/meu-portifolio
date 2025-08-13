@@ -2,6 +2,8 @@
 
 import useSWR from "swr";
 import { Projeto } from "@/types/Projeto";
+import { slugify } from "@/utils/slugify";
+import Link from "next/link";
 import "@/style/pages/projects/projetos-cards.scss";
 import "@/style/pages/projects/projetos-loader.scss";
 import "@/style/pages/projects/projetos-loader.scss";
@@ -38,14 +40,17 @@ export function Projetos() {
         <p>Nenhum projeto destacado encontrado.</p>
       ) : (
         projetos.map((p) => (
-          <div className="card" key={p.id} data-category={p.category}>
-            <div
-              className="card-image"
-              style={{ backgroundImage: `url(${p.imagem})` }}
-            ></div>
+          <Link
+            href={`/projetos/${slugify(p.titulo || "")}`}
+            key={p.id}
+            className="card"
+            data-category={p.category}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <div className="card-image"></div>
             <h3 className="card-title">{p.titulo}</h3>
             <p className="card-description">{p.descricao}</p>
-          </div>
+          </Link>
         ))
       )}
     </div>

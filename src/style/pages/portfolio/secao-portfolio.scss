@@ -34,11 +34,76 @@
 Estilos da foto
 =========================== */
 .MeuPortifolio-foto {
-    flex-shrink: 0; // Garante que a imagem não será redimensionada
-    max-width: 300px;
-    max-height: 300px;
+    flex-shrink: 0; // Garante que a imagem não será comprimida
+    width: clamp(180px, 22vw, 300px);
+    aspect-ratio: 1 / 1; // Mantém formato quadrado para o recorte circular
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    // margin-right: var(--spacing-7); // Adiciona espaçamento à direita para centralizar melhor
+    overflow: hidden; // Corta qualquer canto da imagem
+    isolation: isolate; // Garante blending correto
+    background: radial-gradient(circle at 30% 30%, #ffffff11, transparent 70%);
+    box-shadow: 0 4px 25px -5px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(255, 255, 255, 0.05);
+
+    // Anel gradiente externo
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 3px; // largura do anel
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-primary), var(--color-accent));
+        -webkit-mask:
+            radial-gradient(circle at 50% 50%, #0000 60%, #000 61%);
+        mask:
+            radial-gradient(circle at 50% 50%, #0000 60%, #000 61%);
+        pointer-events: none;
+        filter: drop-shadow(0 0 6px var(--color-accent));
+    }
+
+    // Glow suave atrás
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -15%;
+        background: radial-gradient(circle at 60% 40%, var(--color-accent)22%, transparent 70%);
+        opacity: .35;
+        z-index: -1;
+        animation: pulse-glow 6s ease-in-out infinite;
+    }
+
+    img {
+        // Next.js <Image /> gera um img dentro de um span wrapper
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: transform .6s ease, filter .4s ease;
+        filter: saturate(1.05) contrast(1.05);
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+
+    &:hover img {
+        transform: scale(1.06) rotate(-1deg);
+        filter: saturate(1.18) contrast(1.1);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: .28;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .5;
+        transform: scale(1.05);
+    }
 }
 
 /* ===========================

@@ -1,12 +1,14 @@
 export interface Projeto {
   id: string;
-  titulo: string;
-  descricao: string;
-  imagem?: string | null;
-  category: string;
-  tecnologias: string[];
-  link?: string | null;
-  linkGithub?: string | null;
-  criadoEm: string;
-  usuarioId: string;
+  nome?: string;
+  titulo?: string;
+  name?: string;
+  descricao?: string;
+  category?: string;
+  tecnologias?: string[];
+  link?: string;
+  linkGithub?: string;
+  destaque?: boolean;
+  criadoEm: string; // Adicionado para compatibilidade
+  usuarioId: string; // Adicionado para compatibilidade
 }
