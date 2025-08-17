@@ -1,6 +1,10 @@
 {
   "name": "meu-portifolio-next",
+<<<<<<< HEAD
   "version": "0.7.2",
+=======
+  "version": "0.7.1",
+>>>>>>> 27c55cd (ci: version bump to v0.7.1)
   "private": true,
   "type": "module",
   "scripts": {
