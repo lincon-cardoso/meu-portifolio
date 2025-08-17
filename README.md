@@ -1,67 +1,78 @@
-# 🚀 Portfolio Automatizado com Deploy Railway + Cloudflare
+# 🌟 Meu Portfólio Automatizado
 
-Dashboard completo para gerenciamento de projetos com deploy automático integrado entre **Railway** e **Cloudflare**.
+Bem-vindo ao **Meu Portfólio Automatizado**! Este projeto é uma solução completa para gerenciamento de portfólios, com funcionalidades modernas e integração de deploy automático utilizando **Railway** e **Cloudflare**.
 
-## 🎯 Funcionalidades Principais
+---
 
-### ✅ **Implementado** (Itens 13-15 + Integração Completa)
+## 🚀 **Destaques do Projeto**
 
-- 📊 **Dashboard APIs** - CRUD completo de projetos
-- 🔗 **Integração Real** - Dados conectados ao PostgreSQL
-- 🚀 **Deploy Automático** - Railway + Cloudflare integrados
-- 🌐 **Subdomínios Automáticos** - DNS configurado automaticamente
-- 📈 **Monitoramento** - Logs e status de deploy em tempo real
+### 🔥 Funcionalidades Principais
 
-### 🔧 **Próximos Passos** (Itens 16-18)
+- **Dashboard Completo**: Gerencie seus projetos de forma intuitiva.
+- **APIs Integradas**: CRUD de projetos conectado ao banco de dados PostgreSQL.
+- **Deploy Automático**: Integração com Railway e Cloudflare para deploy contínuo.
+- **Subdomínios Dinâmicos**: Configuração automática de DNS.
+- **Monitoramento em Tempo Real**: Logs e status de deploy diretamente no dashboard.
 
-- 🔒 **Authentication Middleware** - Proteção de rotas
-- 🎨 **ProjectManager Component** - Modal de criação
-- 💄 **Estilização Completa** - SCSS para modal
-
-## 🚀 Tecnologias Utilizadas
+### 🛠️ Tecnologias Utilizadas
 
 - **Next.js**: Framework React para renderização do lado do servidor e geração de sites estáticos.
-- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
-- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
-- **Sass**: Pré-processador CSS para estilos mais dinâmicos e organizados.
-- **React Icons**: Biblioteca de ícones para React.
-- **PostgreSQL**: Banco de dados relacional para armazenamento de dados.
+- **React**: Biblioteca para construção de interfaces dinâmicas.
+- **TypeScript**: Tipagem estática para maior segurança no código.
+- **Sass**: Estilização avançada e modular.
+- **PostgreSQL**: Banco de dados relacional robusto.
+- **Prisma**: ORM para manipulação de dados.
+- **NextAuth**: Autenticação segura e escalável.
 
-## 📂 Estrutura do Projeto
+---
 
-- **`src/`**: Diretório principal do código-fonte.
-  - **`app/`**: Páginas do Next.js.
-    - **`layout.tsx`**: Layout principal da aplicação.
-    - **`page.tsx`**: Página inicial.
-  - **`meuprojetos/page.tsx`**: Página de projetos.
-  - **`sobre/page.tsx`**: Página sobre mim.
-  - **`contato/page.tsx`**: Página de contato.
-  - **`login/page.tsx`**: Página de login.
-  - **`components/`**: Componentes reutilizáveis.
-    - **`layout/`**: Cabeçalho e rodapé.
-    - **`home/`**: Componentes da página inicial.
-  - **`hooks/`**: Hooks personalizados.
-  - **`utils/`**: Funções utilitárias, como validações.
-  - **`style/`**: Arquivos de estilo organizados por seções e utilitários.
-- **`public/`**: Arquivos públicos, como imagens e fontes.
-- **`tsconfig.json`**: Configurações do TypeScript.
-- **`next.config.ts`**: Configurações do Next.js.
-- **`.github/workflows/`**: Configuração de CI/CD para deploy no GitHub Pages.
+## 🎨 **Interface do Usuário**
 
-## 🌟 Funcionalidades
+### Página Inicial
 
-- **Página Inicial**: Apresentação pessoal com destaque para habilidades e tecnologias.
-- **Projetos**: Filtro dinâmico para exibir projetos por categoria.
-- **Sobre Mim**: Informações detalhadas sobre minha trajetória e habilidades.
+- Apresentação pessoal com destaque para habilidades e tecnologias.
+- Botões de ação para contato e visualização de projetos.
+
+### Dashboard
+
+- Gerenciamento completo de projetos.
+- Filtros dinâmicos para categorias.
+- Modais para criação, edição e visualização de projetos.
+
+### Outras Páginas
+
+- **Sobre Mim**: Informações detalhadas sobre minha trajetória.
 - **Contato**: Formulário funcional para envio de mensagens.
 - **Login**: Página de autenticação com validação de campos.
 
-## 🛠️ Como Executar o Projeto
+---
+
+## 📂 **Estrutura do Projeto**
+
+```plaintext
+src/
+├── app/
+│   ├── meuprojetos/       # Página de projetos
+│   ├── sobre/             # Página sobre mim
+│   ├── contato/           # Página de contato
+│   ├── login/             # Página de login
+│   └── dashboard/         # Dashboard de gerenciamento
+├── components/            # Componentes reutilizáveis
+├── hooks/                 # Hooks personalizados
+├── lib/                   # Configurações e integrações
+├── style/                 # Estilos organizados por seções
+├── utils/                 # Funções utilitárias
+└── types/                 # Tipos TypeScript
+```
+
+---
+
+## 🛠️ **Como Executar o Projeto**
 
 1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/seu-usuario/meu-portifolio.git
+   git clone https://github.com/lincon-cardoso/meu-portifolio.git
    cd meu-portifolio
    ```
 
@@ -78,25 +89,34 @@ Dashboard completo para gerenciamento de projetos com deploy automático integra
    ```
 
 4. **Acesse no navegador**:
+
    ```
    http://localhost:3000
    ```
 
-## 📦 Scripts Disponíveis
+---
+
+## 📦 **Scripts Disponíveis**
 
 - `npm run dev`: Inicia o servidor de desenvolvimento.
 - `npm run build`: Gera a build de produção.
 - `npm run start`: Inicia o servidor de produção.
 - `npm run lint`: Executa o linter para verificar problemas no código.
+- `npm run db:migrate`: Executa as migrações do banco de dados.
+- `npm run db:seed`: Popula o banco de dados com dados iniciais.
 
-## 🌐 Deploy
+---
 
-O projeto está configurado para ser implantado no **GitHub Pages** utilizando o workflow do GitHub Actions.
+## 🌐 **Deploy**
 
-## 📄 Licença
+O projeto está configurado para deploy automático utilizando **Railway** e **Cloudflare**. Basta configurar as variáveis de ambiente e o deploy será realizado automaticamente.
+
+---
+
+## 📄 **Licença**
 
 Este projeto é de uso pessoal e não possui uma licença específica. Entre em contato para mais informações.
 
 ---
 
-Desenvolvido com 💻 por **Lincon Cardoso**.
+Desenvolvido com 💻 por **Lincon Cardoso**. Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/lincon-cardoso/) ou envie um e-mail para **lincon.cardoso@example.com**.
