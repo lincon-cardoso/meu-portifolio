@@ -120,3 +120,5 @@ Este projeto é de uso pessoal e não possui uma licença específica. Entre em 
 ---
 
 Desenvolvido com 💻 por **Lincon Cardoso**. Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/lincon-cardoso/) ou envie um e-mail para **lincon.cardoso@example.com**.
+
+Small update for Develop branch: minor README note.
