@@ -76,6 +76,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       { error: "Erro ao criar projeto" },
       { status: 500 }
+      // teste
     );
   }
 }
