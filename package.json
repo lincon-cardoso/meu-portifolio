@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "0.7.2",
 =======
   "version": "0.7.1",
@@ -13,6 +14,9 @@
 =======
   "version": "0.7.3",
 >>>>>>> 78f1474 (ci: version bump to v0.7.3)
+=======
+  "version": "0.7.3",
+>>>>>>> 78f147482732c90c14a1baaa628b236930dcf1ce
   "private": true,
   "type": "module",
   "scripts": {
