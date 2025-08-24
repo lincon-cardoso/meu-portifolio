@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import SignOutButton from "../../components/dashboard/SignOutButton";
 import ProjectList from "./ProjectList";
 import styles from "./dashboard.module.scss";
@@ -42,6 +43,9 @@ export default async function DashboardPage() {
       <ProjectList projetos={projetos} />
 
       <SignOutButton className={styles["dashboard__signout-btn"]} />
+      <Link href="/" className={styles["dashboard__back-btn"]}>
+        Voltar
+      </Link>
     </main>
   );
 }

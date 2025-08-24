@@ -373,3 +373,34 @@
         color: #fff;
     }
 }
+
+/* Botão voltar para a página inicial - aparece abaixo do botão sair */
+.dashboard__back-btn {
+    display: block;
+    margin: 1rem auto 0 auto;
+    /* fica abaixo do botão de sair e centralizado */
+    padding: 8px 24px;
+    min-width: 160px;
+    max-width: 320px;
+    background: transparent;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.08s;
+}
+
+.dashboard__back-btn:hover {
+    background: rgba(25, 118, 210, 0.08);
+    color: #0d47a1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.06);
+}
+
+.dashboard__back-btn:focus {
+    outline: 3px solid rgba(25, 118, 210, 0.14);
+    outline-offset: 2px;
+}
