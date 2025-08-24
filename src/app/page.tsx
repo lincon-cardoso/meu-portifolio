@@ -4,7 +4,7 @@ import Rodape from "@/components/layout/Rodape"; // Ensure that the file exists 
 
 export default function Home() {
   return (
-    <main>
+    <main id="main" role="main">
       {/* Cabeçalho Global */}
 
       <Cabecalho />

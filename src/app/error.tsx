@@ -17,6 +17,9 @@ export default function Error({
 
   return (
     <div
+      role="alertdialog"
+      aria-labelledby="error-title"
+      aria-describedby="error-description"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -28,14 +31,19 @@ export default function Error({
         backgroundColor: "#f9f9f9",
       }}
     >
-      <h1 style={{ fontSize: "2rem", color: "#333" }}>
+      <h1 id="error-title" style={{ fontSize: "2rem", color: "#333" }}>
         Ocorreu um erro inesperado
       </h1>
-      <p style={{ fontSize: "1.1rem", color: "#555", marginBottom: "1rem" }}>
+      <p
+        id="error-description"
+        style={{ fontSize: "1.1rem", color: "#555", marginBottom: "1rem" }}
+        aria-live="polite"
+      >
         Algo deu errado no servidor. Por favor, tente novamente.
       </p>
       <button
         onClick={() => reset()}
+        aria-label="Tentar novamente"
         style={{
           padding: "0.75rem 1.5rem",
           fontSize: "1rem",
