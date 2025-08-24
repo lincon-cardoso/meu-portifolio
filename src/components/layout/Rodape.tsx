@@ -80,6 +80,7 @@ export default function Rodape() {
             <button
               className="btn-back-to-top"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="Voltar ao topo da página"
             >
               Voltar ao Topo
             </button>

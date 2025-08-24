@@ -17,32 +17,12 @@ export default function NotFound() {
   }, [router]);
 
   return (
-    <main
-      id="main"
-      role="main"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        padding: "2rem",
-        backgroundColor: "#f9f9f9",
-      }}
-    >
-      <h1 style={{ fontSize: "2rem", color: "#333" }}>Erro 404</h1>
-      <p aria-live="polite" style={{ fontSize: "1.1rem", color: "#555" }}>
+    <main id="main" role="main" className="page-centered">
+      <h1 className="notfound-title">Erro 404</h1>
+      <p aria-live="polite" className="notfound-desc">
         Página não encontrada. Você será redirecionado em 6 segundos...
       </p>
-      <Link
-        href="/"
-        style={{
-          marginTop: "1rem",
-          color: "#0070f3",
-          textDecoration: "underline",
-        }}
-      >
+      <Link href="/" className="notfound-link">
         Voltar para a página inicial agora
       </Link>
     </main>

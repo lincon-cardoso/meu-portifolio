@@ -28,7 +28,7 @@ export default function ContatoPage() {
     e.preventDefault();
     setIsSending(true);
     setStatus("Enviando...");
-// teste
+    // teste
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -68,25 +68,40 @@ export default function ContatoPage() {
               Preencha o formulário abaixo e entrarei em contato o mais breve
               possível.
             </p>
+
             <div className="contato-grid">
               {/* Informações de Contato */}
               <div className="contato-info">
                 <div className="contato-item">
-                  <i className="fas fa-envelope"></i>
+                  <i className="fas fa-envelope" aria-hidden="true"></i>
                   <h3>E-mail</h3>
-                  <p>linkon789@gmail.com</p>
+                  <p>
+                    <a
+                      href="mailto:linkon789@gmail.com"
+                      className="contato-link"
+                    >
+                      linkon789@gmail.com
+                    </a>
+                  </p>
                 </div>
+
                 <div className="contato-item">
-                  <i className="fas fa-phone"></i>
+                  <i className="fas fa-phone" aria-hidden="true"></i>
                   <h3>Telefone</h3>
-                  <p>(47) 9 9936-7604</p>
+                  <p>
+                    <a href="tel:+5547999367604" className="contato-link">
+                      (47) 9 9936-7604
+                    </a>
+                  </p>
                 </div>
+
                 <div className="contato-item">
-                  <i className="fas fa-map-marker-alt"></i>
+                  <i className="fas fa-map-marker-alt" aria-hidden="true"></i>
                   <h3>Localização</h3>
                   <p>Joinville, SC - Brasil</p>
                 </div>
               </div>
+
               {/* Formulário de Contato */}
               <form className="contato-form" onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -144,7 +159,15 @@ export default function ContatoPage() {
                 >
                   {isSending ? "Enviando..." : "Enviar Mensagem"}
                 </button>
-                {status && <p className="contato-status">{status}</p>}
+                {status && (
+                  <p
+                    className="contato-status"
+                    aria-live="polite"
+                    role="status"
+                  >
+                    {status}
+                  </p>
+                )}
               </form>
             </div>
           </div>

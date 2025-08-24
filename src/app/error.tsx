@@ -20,23 +20,14 @@ export default function Error({
       role="alertdialog"
       aria-labelledby="error-title"
       aria-describedby="error-description"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        padding: "2rem",
-        backgroundColor: "#f9f9f9",
-      }}
+      className="page-centered"
     >
-      <h1 id="error-title" style={{ fontSize: "2rem", color: "#333" }}>
+      <h1 id="error-title" className="error-title">
         Ocorreu um erro inesperado
       </h1>
       <p
         id="error-description"
-        style={{ fontSize: "1.1rem", color: "#555", marginBottom: "1rem" }}
+        className="error-description"
         aria-live="polite"
       >
         Algo deu errado no servidor. Por favor, tente novamente.
@@ -44,15 +35,7 @@ export default function Error({
       <button
         onClick={() => reset()}
         aria-label="Tentar novamente"
-        style={{
-          padding: "0.75rem 1.5rem",
-          fontSize: "1rem",
-          color: "#fff",
-          backgroundColor: "#0070f3",
-          border: "none",
-          borderRadius: "0.25rem",
-          cursor: "pointer",
-        }}
+        className="error-button"
       >
         Tentar Novamente
       </button>

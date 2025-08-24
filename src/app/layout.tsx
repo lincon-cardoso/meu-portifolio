@@ -59,45 +59,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             data-cf-beacon={`{"token": "${cloudflareInsightsToken}"}`}
           ></script>
         )}
+        {/* Structured data (JSON-LD) para SEO básico */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Portfólio | Lincon Cardoso",
+              url: "https://www.devlincon.com.br",
+              author: { "@type": "Person", name: "Lincon Cardoso" },
+            }),
+          }}
+        />
       </head>
       <body>
         {/* Skip link: acessível para usuários de teclado/leitores de tela */}
-        <a
-          href="#main"
-          className="skip-link"
-          style={{
-            position: "absolute",
-            left: "-999px",
-            top: "auto",
-            width: "1px",
-            height: "1px",
-            overflow: "hidden",
-            zIndex: 100,
-          }}
-          onFocus={(e) => {
-            const el = e.currentTarget as HTMLAnchorElement;
-            el.style.left = "1rem";
-            el.style.top = "1rem";
-            el.style.width = "auto";
-            el.style.height = "auto";
-            el.style.overflow = "visible";
-            el.style.background = "#000";
-            el.style.color = "#fff";
-            el.style.padding = "0.5rem 1rem";
-            el.style.borderRadius = "4px";
-          }}
-          onBlur={(e) => {
-            const el = e.currentTarget as HTMLAnchorElement;
-            el.style.left = "-999px";
-            el.style.top = "auto";
-            el.style.width = "1px";
-            el.style.height = "1px";
-            el.style.overflow = "hidden";
-            el.style.background = "transparent";
-            el.style.color = "inherit";
-            el.style.padding = "0";
-          }}
-        >
+        <a href="#main" className="skip-link">
           Pular para o conteúdo
         </a>
 

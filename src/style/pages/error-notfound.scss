@@ -1,0 +1,47 @@
+/* Styles para Error e NotFound pages */
+
+.page-centered {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.error-title,
+.notfound-title {
+    font-size: 2rem;
+    color: #333;
+}
+
+.error-description,
+.notfound-desc {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.error-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #0070f3;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.error-button:focus,
+.notfound-link:focus {
+    outline: 3px solid rgba(0, 112, 243, 0.3);
+    outline-offset: 2px;
+}
+
+.notfound-link {
+    margin-top: 1rem;
+    color: #0070f3;
+    text-decoration: underline;
+}
