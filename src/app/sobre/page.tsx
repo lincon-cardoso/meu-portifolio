@@ -58,7 +58,7 @@ export default function SobrePage() {
               <div className="sobre-mim-text">
                 <p className="sobre-mim-description">
                   👋 Oi, sou o Lincon Cardoso,{" "}
-                  <strong>desenvolvedor front-end</strong> com 5 anos de
+                  <strong>desenvolvedor front-end</strong> com 3 anos de
                   experiência criando{" "}
                   <strong>interfaces modernas, acessíveis</strong> e com foco em{" "}
                   <strong>performance e usabilidade</strong>.
