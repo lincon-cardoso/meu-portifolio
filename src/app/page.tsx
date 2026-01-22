@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 export default function Home() {
   return (
     <main id="main" role="main">
+{/* 
       {/* Cabeçalho Global */}
 
       <Cabecalho />
@@ -14,6 +15,8 @@ export default function Home() {
 
       {/* Rodapé Global */}
       <Rodape />
+*/}
+<p>Página em Reconstrução</p>
     </main>
   );
 }
