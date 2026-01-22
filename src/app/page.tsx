@@ -1,6 +1,3 @@
-import HomePage from "@/components/home/HomePage";
-import Cabecalho from "@/components/layout/Cabecalho";
-import Rodape from "@/components/layout/Rodape";
 import type { Metadata } from "next";
 
 export default function Home() {

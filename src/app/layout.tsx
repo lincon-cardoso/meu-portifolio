@@ -1,7 +1,5 @@
-import "@/style/style.scss";
 import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
-import { Providers } from "@/components/Providers";
 
 const cloudflareInsightsToken = process.env.CLOUDFLARE_INSIGHTS_TOKEN;
 
@@ -79,7 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Pular para o conteúdo
         </a>
 
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );
