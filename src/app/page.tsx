@@ -2,8 +2,18 @@ import type { Metadata } from "next";
 
 export default function Home() {
   return (
-    <main id="main" role="main">
-      Pagina em reconstrução...
+    <main 
+      id="main" 
+      role="main"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        textAlign: 'center'
+      }}
+    >
+      Página em reconstrução...
     </main>
   );
 }
