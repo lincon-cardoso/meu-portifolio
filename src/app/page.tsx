@@ -13,7 +13,7 @@ export default function Home() {
         textAlign: 'center'
       }}
     >
-      Pagina em reconstrução...
+      Página em reconstrução...
     </main>
   );
 }
