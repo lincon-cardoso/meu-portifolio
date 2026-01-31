@@ -2,7 +2,17 @@ import type { Metadata } from "next";
 
 export default function Home() {
   return (
-    <main id="main" role="main">
+    <main 
+      id="main" 
+      role="main"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        textAlign: 'center'
+      }}
+    >
       Pagina em reconstrução...
     </main>
   );
