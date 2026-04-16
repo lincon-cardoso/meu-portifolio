@@ -72,11 +72,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        {/* Skip link: acessível para usuários de teclado/leitores de tela */}
-        <a href="#main" className="skip-link">
-          Pular para o conteúdo
-        </a>
-
         {children}
       </body>
     </html>
