@@ -18,7 +18,7 @@ const config = {
     },
 
     // Remove comentários e minifica CSS em produção
-    ...(process.env.APP_ENV === "production"
+    ...(process.env.NODE_ENV === "production"
       ? {
           cssnano: {
             preset: "default",

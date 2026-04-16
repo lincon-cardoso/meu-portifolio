@@ -4,7 +4,7 @@ dotenv.config();
 
 import type { NextConfig } from "next";
 
-const isDev = process.env.APP_ENV === "development";
+const isDev = process.env.NODE_ENV !== "production";
 
 // ─── Cabeçalhos de Segurança ─────────────────────────────
 const securityHeaders = [
@@ -77,31 +77,6 @@ const securityHeaders = [
     key: "Origin-Agent-Cluster",
     value: "?1",
   },
-  {
-    key: "Expect-CT",
-    value: "max-age=86400, enforce",
-  },
-];
-
-// ─── Cabeçalhos para Reporte de Erros ─────────────────────
-const reportHeaders = [
-  {
-    key: "Report-To",
-    value: JSON.stringify({
-      group: "default",
-      max_age: 31536000,
-      endpoints: [{ url: "https://your-report-endpoint.com/report" }],
-      include_subdomains: true,
-    }),
-  },
-  {
-    key: "NEL",
-    value: JSON.stringify({
-      report_to: "default",
-      max_age: 31536000,
-      include_subdomains: true,
-    }),
-  },
 ];
 
 const nextConfig: NextConfig = {
@@ -119,7 +94,6 @@ const nextConfig: NextConfig = {
 
   async headers() {
     return [
-      // ─── HTML / Páginas dinâmicas ───────────────────────
       {
         source: "/:path*",
         headers: [
@@ -129,8 +103,14 @@ const nextConfig: NextConfig = {
                   key: "Cache-Control",
                   value: "no-store, no-cache, must-revalidate",
                 },
-                { key: "Pragma", value: "no-cache" },
-                { key: "Expires", value: "0" },
+                {
+                  key: "Pragma",
+                  value: "no-cache",
+                },
+                {
+                  key: "Expires",
+                  value: "0",
+                },
               ]
             : [
                 {
@@ -140,29 +120,6 @@ const nextConfig: NextConfig = {
                 },
               ]),
           ...securityHeaders,
-          ...reportHeaders,
-        ],
-      },
-
-      // ─── Assets estáticos versionados ────────────────────
-      {
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-
-      // ─── Imagens otimizadas do Next ─────────────────────
-      {
-        source: "/_next/image/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
         ],
       },
     ];
